@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block pageTitle %}{% endblock %} - Wink Murder</title>
+        {% stylesheets
+            'bundles/winkmurdergame/scss/screen.scss'
+            filter="compass,cssrewrite"
+            output="css/screen.css"
+        %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" media="screen" />
+        {% endstylesheets %}
+    </head>
+    <body>
+        {% block body %}{% endblock %}
+    </body>
+</html>

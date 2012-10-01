@@ -1,0 +1,91 @@
+{
+    "hash": "b6065dc03ed836fef0a326924c4f2fb5",
+    "packages": [
+        {
+            "package": "doctrine/common",
+            "version": "2.1.4"
+        },
+        {
+            "package": "doctrine/dbal",
+            "version": "2.1.7"
+        },
+        {
+            "package": "doctrine/doctrine-migrations-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "bd69825665bf3cb4c36b608fa79f364cece371c5",
+            "commit-date": "1338459525"
+        },
+        {
+            "package": "doctrine/migrations",
+            "version": "dev-master",
+            "source-reference": "9610f6bfe3bfb99c98da1f425e6c71bf02e52aaf"
+        },
+        {
+            "package": "doctrine/orm",
+            "version": "2.1.7"
+        },
+        {
+            "package": "jlong/sass-twitter-bootstrap",
+            "version": "2.1.0"
+        },
+        {
+            "package": "kriswallsmith/assetic",
+            "version": "v1.0.4"
+        },
+        {
+            "package": "monolog/monolog",
+            "version": "1.2.1"
+        },
+        {
+            "package": "sensio/framework-extra-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "v2.0.17",
+            "commit-date": "1343372444"
+        },
+        {
+            "package": "swiftmailer/swiftmailer",
+            "version": "v4.2.1"
+        },
+        {
+            "package": "symfony/assetic-bundle",
+            "version": "2.0.x-dev",
+            "source-reference": "6f15728c1aefa5246caa83730e3dbf70b0d46052",
+            "commit-date": "1342820272"
+        },
+        {
+            "package": "symfony/symfony",
+            "version": "v2.0.17"
+        },
+        {
+            "package": "twig/twig",
+            "version": "v1.10.0"
+        },
+        {
+            "package": "webfactory/assetdependenciesbugfix-bundle",
+            "version": "1.0.1"
+        },
+        {
+            "package": "webfactory/compass-bundle",
+            "version": "1.0.1"
+        },
+        {
+            "package": "webfactory/doctrine-mysql-bundle",
+            "version": "1.0.0"
+        },
+        {
+            "package": "webfactory/exceptions-bundle",
+            "version": "1.0.8"
+        }
+    ],
+    "packages-dev": null,
+    "aliases": [
+
+    ],
+    "minimum-stability": "stable",
+    "stability-flags": {
+        "doctrine/doctrine-migrations-bundle": 20,
+        "doctrine/migrations": 20,
+        "symfony/assetic-bundle": 20,
+        "sensio/framework-extra-bundle": 20
+    }
+}

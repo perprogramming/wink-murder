@@ -1,0 +1,44 @@
+framework:
+    secret: %secret%
+    charset:         utf-8
+    router:          { resource: "%kernel.root_dir%/routing.yml" }
+    form:            true
+    templating:      { engines: ['twig'] }
+    translator:      { fallback: de }
+    session:
+        default_locale: de
+    esi:             { enabled: true }
+
+assetic:
+    read_from:      %project.webdir%
+    debug:          false
+    use_controller: false
+    filters:
+        cssrewrite: ~
+        compass:
+            bin: %path.compass%
+
+doctrine:
+    dbal:
+        driver:   pdo_sqlite
+        user:     %sqlite.user%
+        password: %sqlite.password%
+        path:     %sqlite.database%
+    orm:
+        auto_mapping: true
+
+monolog:
+    handlers:
+        main:
+            type:  stream
+            path:  %kernel.logs_dir%/%kernel.environment%.log
+            level: debug
+
+swiftmailer:
+    host:      %smtp.host%
+    username:  %smtp.username%
+    password:  %smtp.password%
+
+webfactory_exceptions:
+    bundle: WinkMurderGameBundle
+    force: false

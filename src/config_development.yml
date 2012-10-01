@@ -1,0 +1,11 @@
+imports:
+    - { resource: config.yml }
+
+framework:
+    router: { resource: "%kernel.root_dir%/routing_development.yml" }
+
+assetic:
+    use_controller: true
+
+twig:
+    strict_variables: true

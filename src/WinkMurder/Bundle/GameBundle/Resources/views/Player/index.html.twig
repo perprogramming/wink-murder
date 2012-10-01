@@ -1,0 +1,15 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}Liste aller Spieler{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for player in players %}
+            <li>
+                {{ player.name }}
+                {% if player is admin %}(Admin){% endif %}
+                {% if player is murderer %}(Mörder){% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,10 @@
+syntax: glob
+
+bin/*
+conf/*
+lib/*
+logs/*
+sessions/*
+tmp/*
+www/*
+
