@@ -1,5 +1,5 @@
 {
-    "hash": "b6065dc03ed836fef0a326924c4f2fb5",
+    "hash": "2f045ff386f7414daf9a9f965fa4bf71",
     "packages": [
         {
             "package": "doctrine/common",
@@ -8,17 +8,6 @@
         {
             "package": "doctrine/dbal",
             "version": "2.1.7"
-        },
-        {
-            "package": "doctrine/doctrine-migrations-bundle",
-            "version": "2.0.x-dev",
-            "source-reference": "bd69825665bf3cb4c36b608fa79f364cece371c5",
-            "commit-date": "1338459525"
-        },
-        {
-            "package": "doctrine/migrations",
-            "version": "dev-master",
-            "source-reference": "9610f6bfe3bfb99c98da1f425e6c71bf02e52aaf"
         },
         {
             "package": "doctrine/orm",
@@ -69,10 +58,6 @@
             "version": "1.0.1"
         },
         {
-            "package": "webfactory/doctrine-mysql-bundle",
-            "version": "1.0.0"
-        },
-        {
             "package": "webfactory/exceptions-bundle",
             "version": "1.0.8"
         }
@@ -83,8 +68,6 @@
     ],
     "minimum-stability": "stable",
     "stability-flags": {
-        "doctrine/doctrine-migrations-bundle": 20,
-        "doctrine/migrations": 20,
         "symfony/assetic-bundle": 20,
         "sensio/framework-extra-bundle": 20
     }

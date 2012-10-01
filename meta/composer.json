@@ -8,9 +8,6 @@
     "require": {
         "symfony/symfony": "2.0.*",
         "doctrine/orm": "2.1.*",
-        "webfactory/doctrine-mysql-bundle": "1.0.*",
-        "doctrine/doctrine-migrations-bundle": "2.0.x-dev",
-        "doctrine/migrations": "dev-master#9610f6bfe3bfb99c98da1f425e6c71bf02e52aaf",
         "symfony/assetic-bundle": "2.0.x-dev",
         "webfactory/assetdependenciesbugfix-bundle": "1.0.*",
         "webfactory/compass-bundle": "1.0.*",
