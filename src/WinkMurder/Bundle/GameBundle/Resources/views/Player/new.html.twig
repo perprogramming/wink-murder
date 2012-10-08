@@ -1,0 +1,10 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}Spieler anlegen{% endblock %}
+
+{% block body %}
+    <form action="{{ path('winkmurder_game_player_create') }}" method="post" {{ form_enctype(form) }}>
+        {{ form_widget(form) }}
+        <div><input type="submit" value="Anlegen" /> <a href="{{ path('winkmurder_game_player_index') }}">Abbrechen</a></div>
+    </form>
+{% endblock %}

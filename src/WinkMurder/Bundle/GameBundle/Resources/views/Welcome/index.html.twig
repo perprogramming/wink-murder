@@ -1,0 +1,14 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}Willkommen{% endblock %}
+
+{% block body %}
+    <ul>
+        {% for player in players %}
+            <li>
+                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}

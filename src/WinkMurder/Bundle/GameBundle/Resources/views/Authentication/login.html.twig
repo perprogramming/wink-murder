@@ -1,0 +1,24 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}Einloggen{% endblock %}
+
+{% block body %}
+    {% if error %}
+        <div>Etwas stimmt mit Deinen Zugangsdaten nicht! Ist der Benutzername und das Passwort richtig?</div>
+    {% endif %}
+
+    <form action="{{ path('winkmurder_game_authentication_logincheck') }}" method="post">
+        <div>
+            <label for="username">Benutzername:</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+
+        <div>
+            <label for="password">Passwort:</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+        <div>
+            <input type="submit" value="Einloggen" />
+        </div>
+    </form>
+{% endblock %}

@@ -1,3 +1,12 @@
+imports:
+    - {resource: "security.yml"}
+
+parameters:
+    roleLabels:
+        ROLE_ADMIN: Admin
+        ROLE_PLAYER: Spieler
+        ROLE_MURDERER: Mörder
+
 framework:
     secret: %secret%
     charset:         utf-8
@@ -8,6 +17,7 @@ framework:
     session:
         default_locale: de
     esi:             { enabled: true }
+    validation:      { enable_annotations: true }
 
 assetic:
     read_from:      %project.webdir%
@@ -20,10 +30,13 @@ assetic:
 
 doctrine:
     dbal:
-        driver:   pdo_sqlite
-        user:     %sqlite.user%
-        password: %sqlite.password%
-        path:     %sqlite.database%
+        driver:   pdo_mysql
+        user:     %mysql.user%
+        password: %mysql.password%
+        dbname:   %mysql.db%
+        port:     %mysql.port%
+        host:     %mysql.host%
+        charset:  utf8
     orm:
         auto_mapping: true
 

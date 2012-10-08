@@ -1,15 +1,20 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}Liste aller Spieler{% endblock %}
+{% block pageTitle %}Spieler verwalten{% endblock %}
 
 {% block body %}
     <ul>
         {% for player in players %}
             <li>
-                {{ player.name }}
-                {% if player is admin %}(Admin){% endif %}
-                {% if player is murderer %}(Mörder){% endif %}
+                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                <div>Rollen: {% include "WinkMurderGameBundle:Player:_roles.html.twig" %}</div>
+                <ul>
+                    <li><a href="{{ path('winkmurder_game_player_edit', {id: player.id}) }}">Bearbeiten</a></li>
+                    <li><form method="post" action="{{ path('winkmurder_game_player_delete', {id: player.id}) }}"><div><input type="submit" value="Löschen" /></div></form></li>
+                </ul>
             </li>
         {% endfor %}
     </ul>
+
+    <p><a href="{{ path('winkmurder_game_player_new') }}">Neuen Spieler anlegen</a></p>
 {% endblock %}

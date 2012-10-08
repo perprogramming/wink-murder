@@ -1,0 +1,27 @@
+security:
+    firewalls:
+        main:
+            pattern:    ^/
+            anonymous: ~
+            form_login:
+                login_path: /login/
+                check_path: /login/check/
+            logout:
+                path: /logout/
+                target: /login/
+            remember_me:
+                key: %secret%
+                always_remember_me: true
+
+    access_control:
+        - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: ROLE_ADMIN }
+
+    providers:
+        players:
+            entity:
+                class: WinkMurder\Bundle\GameBundle\Entity\Player
+                property: username
+    encoders:
+        WinkMurder\Bundle\GameBundle\Entity\Player: plaintext
