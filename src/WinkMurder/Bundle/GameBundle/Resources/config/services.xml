@@ -5,5 +5,9 @@
             <argument>%roleLabels%</argument>
             <tag name="twig.extension" />
         </service>
+        <service id="flickr" class="phpFlickr">
+            <argument>%flickr_key%</argument>
+            <argument>%flickr_secret%</argument>
+        </service>
     </services>
 </container>

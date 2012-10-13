@@ -1,5 +1,5 @@
 {
-    "hash": "2f045ff386f7414daf9a9f965fa4bf71",
+    "hash": "1ad8bd8cf0a1944f44f91d7ff02867ed",
     "packages": [
         {
             "package": "doctrine/common",
@@ -24,6 +24,10 @@
         {
             "package": "monolog/monolog",
             "version": "1.2.1"
+        },
+        {
+            "package": "phpflickr/phpflickr",
+            "version": "3.1.0"
         },
         {
             "package": "sensio/framework-extra-bundle",
@@ -51,7 +55,7 @@
         },
         {
             "package": "webfactory/assetdependenciesbugfix-bundle",
-            "version": "1.0.1"
+            "version": "1.0.2"
         },
         {
             "package": "webfactory/compass-bundle",

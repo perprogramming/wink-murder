@@ -16,6 +16,7 @@ security:
     access_control:
         - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/flickr/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_ADMIN }
 
     providers:

@@ -2,7 +2,21 @@
     "name": "plb/wink-murder",
 
     "repositories": [
-        {"type": "composer", "url": "http://composer.webfactory.de"}
+        {"type": "composer", "url": "http://composer.webfactory.de"},
+        {
+            "type": "package",
+            "package": {
+                "name": "phpflickr/phpflickr",
+                "version": "3.1.0",
+                "dist": {
+                    "url": "http://phpflickr.googlecode.com/files/phpFlickr-3.1.zip",
+                    "type": "zip"
+                },
+                "autoload": {
+                    "classmap": [""]
+                }
+            }
+        }
     ],
 
     "require": {
@@ -13,7 +27,8 @@
         "webfactory/compass-bundle": "1.0.*",
         "sensio/framework-extra-bundle": "2.0.x-dev",
         "webfactory/exceptions-bundle": "1.0.*",
-        "jlong/sass-twitter-bootstrap": "2.1.0"
+        "jlong/sass-twitter-bootstrap": "2.1.0",
+        "phpflickr/phpflickr": "3.1.*"
     },
 
     "autoload": {
