@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Security\Core\SecurityContext;
 use WinkMurder\Bundle\GameBundle\Entity\Account;
-use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
+use WinkMurder\Bundle\GameBundle\Security\AccountToken;
 
 class AuthenticationController extends BaseController {
 
@@ -34,22 +34,10 @@ class AuthenticationController extends BaseController {
     }
 
     /**
-     * @Route("/login/player/{id}")
+     * @Route("/login/player/")
      * @Method("POST")
      */
-    public function playerLoginAction($id) {
-        if ($player = $this->getPlayerRepository()->findOneUnauthenticated($id)) {
-            $account = new Account($player);
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($account);
-            $em->flush();
-
-            $this->getSecurityContext()->setToken(new RememberMeToken($account, 'accounts', $account->getUsername()));
-
-            return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
-        } else {
-            return $this->redirect($this->generateUrl('winkmurder_game_authentication_login'));
-        }
+    public function loginPlayerAction($id, Request $request) {
     }
 
     /**

@@ -7,7 +7,7 @@
     <div>
         {% embed "WinkMurderGameBundle:Player:_list.html.twig" with {players: unauthenticatedPlayers} %}
             {% block action %}
-                <form action="{{ path('winkmurder_game_authentication_playerlogin', {id: player.id}) }}" method="post"><div><input type="submit" value="Login" /></div></form>
+                <form action="{{ path('winkmurder_game_authentication_loginplayer') }}" method="post"><div><input type="hidden" name="id" value="{{ player.id }}" /><input type="submit" value="Login" /></div></form>
             {% endblock %}
         {% endembed %}
         {% if not unauthenticatedPlayers %}

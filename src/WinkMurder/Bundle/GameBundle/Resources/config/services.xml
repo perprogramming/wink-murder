@@ -21,8 +21,18 @@
             <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
         </service>
 
-        <service id="wink_murder.logout_success_handler" class="WinkMurder\Bundle\GameBundle\EventListener\DeleteAccountHandler">
+        <service id="wink_murder.logout_handler" class="WinkMurder\Bundle\GameBundle\Security\LogoutHandler">
             <argument type="service" id="doctrine.orm.entity_manager" />
         </service>
+
+        <service id="wink_murder.security.account_listener"
+             class="WinkMurder\Bundle\GameBundle\Security\AccountListener"
+             parent="security.authentication.listener.abstract"
+             abstract="true" />
+
+        <service id="wink_murder.security.account_provider" class="WinkMurder\Bundle\GameBundle\Security\AccountProvider">
+            <argument></argument>
+        </service>
+
     </services>
 </container>

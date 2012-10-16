@@ -1,6 +1,6 @@
 <?php
 
-namespace WinkMurder\Bundle\GameBundle\EventListener;
+namespace WinkMurder\Bundle\GameBundle\Security;
 
 use Symfony\Component\Security\Http\Logout\LogoutHandlerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
@@ -10,7 +10,7 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Doctrine\ORM\EntityManager;
 use WinkMurder\Bundle\GameBundle\Entity\Account;
 
-class DeleteAccountHandler implements \Symfony\Component\Security\Http\Logout\LogoutHandlerInterface {
+class LogoutHandler implements \Symfony\Component\Security\Http\Logout\LogoutHandlerInterface {
 
     protected $entityManager;
 
@@ -19,10 +19,11 @@ class DeleteAccountHandler implements \Symfony\Component\Security\Http\Logout\Lo
     }
 
     public function logout(Request $request, Response $response, TokenInterface $token) {
-        if ($token instanceof Account) {
-            $this->entityManager->remove($token);
+        $account = $token->getUser();
+        if ($account instanceof Account) {
+            $this->entityManager->remove($account);
             $this->entityManager->flush();
-        }
+        }   
     }
 
 }

@@ -10,10 +10,13 @@ security:
             remember_me:
                 key: %secret%
                 always_remember_me: true
+            account:
+                check_path: /login/player/
+                default_target_path: /you/
             logout:
                 path: /logout/
                 target: /login/
-                handlers: [wink_murder.logout_success_handler]
+                handlers: [wink_murder.logout_handler]
 
     access_control:
         - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
@@ -37,3 +40,6 @@ security:
             algorithm: sha1
             iterations: 1
             encode_as_base64: false
+
+    factories:
+        - "%project.srcdir%/WinkMurder/Bundle/GameBundle/Resources/config/security_factory.xml"
