@@ -11,15 +11,13 @@
         {% endstylesheets %}
     </head>
     <body>
-        {% if app.user %}
-            <ul>
-                <li><a href="{{ path('winkmurder_game_welcome_index') }}">Zur Startseite</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('winkmurder_game_player_index') }}">Spieler verwalten</a></li>
-                {%  endif %}
-                <li><form action="{{ path('winkmurder_game_authentication_logout') }}" method="post"><div><input type="submit" value="Logout" /></div></form></li>
-            </ul>
-        {% endif %}
+        <ul>
+            <li><a href="{{ path('winkmurder_game_status_show') }}">Game</a></li>
+            <li><a href="{{ path('winkmurder_game_player_index') }}">The others</a></li>
+            <li><a href="{{ path('winkmurder_game_profile_show') }}">You</a></li>
+            <li><a href="{{ path('winkmurder_game_rules_show') }}">Rules</a></li>
+            {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('winkmurder_game_administration_index') }}">Administration</a></li>{% endif %}
+        </ul>
         <h1>{{ block('pageTitle') }}</h1>
         {% block body %}{% endblock %}
     </body>

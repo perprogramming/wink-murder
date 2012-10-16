@@ -1,20 +1,15 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}Spieler verwalten{% endblock %}
+{% block pageTitle %}The others{% endblock %}
 
 {% block body %}
-    <ul>
-        {% for player in players %}
-            <li>
-                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
-                <div>Rollen: {% include "WinkMurderGameBundle:Player:_roles.html.twig" %}</div>
-                <ul>
-                    <li><a href="{{ path('winkmurder_game_player_edit', {id: player.id}) }}">Bearbeiten</a></li>
-                    <li><form method="post" action="{{ path('winkmurder_game_player_delete', {id: player.id}) }}"><div><input type="submit" value="Löschen" /></div></form></li>
-                </ul>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <p><a href="{{ path('winkmurder_game_player_new') }}">Neuen Spieler anlegen</a></p>
+    {% embed "WinkMurderGameBundle:Player:_list.html.twig" %}
+        {% block action %}
+            {% if app.user.player.mayMurder(player) %}
+                <form action="{{ path('winkmurder_game_murder_commit', {id: player.id}) }}" method="post"><div><input type="submit" value="Murder" /></div></form>
+            {% elseif player.dead %}
+                This player is dead.
+            {% endif %}
+        {% endblock %}
+    {% endembed %}
 {% endblock %}

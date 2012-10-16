@@ -1,24 +1,37 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}Einloggen{% endblock %}
+{% block pageTitle %}Login{% endblock %}
 
 {% block body %}
+    <h2>Who are you?</h2>
+    <div>
+        {% embed "WinkMurderGameBundle:Player:_list.html.twig" with {players: unauthenticatedPlayers} %}
+            {% block action %}
+                <form action="{{ path('winkmurder_game_authentication_playerlogin', {id: player.id}) }}" method="post"><div><input type="submit" value="Login" /></div></form>
+            {% endblock %}
+        {% endembed %}
+        {% if not unauthenticatedPlayers %}
+            There are no accounts left to choose. Please ask the referee for an account.
+        {% endif %}
+    </div>
+
+    <h2>Here you go as murderer or god.</h2>
     {% if error %}
-        <div>Etwas stimmt mit Deinen Zugangsdaten nicht! Ist der Benutzername und das Passwort richtig?</div>
+        <div>{{ error.message }}</div>
     {% endif %}
 
     <form action="{{ path('winkmurder_game_authentication_logincheck') }}" method="post">
         <div>
-            <label for="username">Benutzername:</label>
+            <label for="username">Username:</label>
             <input type="text" id="username" name="_username" value="{{ last_username }}" />
         </div>
 
         <div>
-            <label for="password">Passwort:</label>
+            <label for="password">Password:</label>
             <input type="password" id="password" name="_password" />
         </div>
         <div>
-            <input type="submit" value="Einloggen" />
+            <input type="submit" value="Login" />
         </div>
     </form>
 {% endblock %}

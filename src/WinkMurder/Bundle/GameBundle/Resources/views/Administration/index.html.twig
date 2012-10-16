@@ -1,0 +1,75 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}Administration{% endblock %}
+
+{% block body %}
+    <h2>The murderer</h2>
+    <div>
+        {% if not murderer %}
+            You have not selected the murderer yet!
+        {% else %}
+            You have currently selected {{ murderer.name }} as the murderer.
+        {% endif %}
+        <form action="{{ path('winkmurder_game_administration_selectmurderer') }}" method="post"><div>
+            <select name="id">
+                <option></option>
+                {% for player in players %}
+                    <option value="{{ player.id }}"{% if player is sameas(murderer) %} selected="selected"{% endif %}>{{ player.name }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="Select murderer" />
+        </div></form>
+    </div>
+
+    <h2>Accounts</h2>
+    <div>
+        <ul>
+        {% for account in accounts %}
+            <li>
+                {% set player = account.player %}
+                <div>{{ player.name }}</div>
+
+                <div>
+                    {% if account is sameas(app.user) %}
+                        <a href="{{ path('winkmurder_game_authentication_logout') }}">Logout</a>
+                    {% else %}
+                        <form action="{{ path('winkmurder_game_administration_unauthenticate', {id: account.id}) }}" method="post"><div><input type="submit" value="Unauthenticate" /></div></form>
+                    {% endif %}
+                <div>
+
+                <div>
+                {% if player.dead %}
+                    This player is dead.
+                    <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post"><div><input type="submit" value="Resurrect" /></div></form>
+                {% else %}
+                    This player is still alive.
+                    <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post"><div><input type="submit" value="Kill" /></div></form>
+                {% endif %}
+                </div>
+
+                <div>
+                    <form action="{{ path('winkmurder_game_administration_switchplayer', {id: account.id}) }}" method="post"><div>
+                        <select name="to">
+                            <option></option>
+                            {% for player in players %}
+                                {% if not player is sameas(account.player) %}
+                                    <option value="{{ player.id }}">{{ player.name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                        <input type="submit" value="Switch player" />
+                    </div></form>
+                </div>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+
+    <h2>Unauthenticated players</h2>
+    <div>
+        {% include "WinkMurderGameBundle:Player:_list.html.twig" with {players: unauthenticatedPlayers} %}
+        {% if not unauthenticatedPlayers %}
+            All players have authenticated.
+        {% endif %}
+    </div>
+{% endblock %}

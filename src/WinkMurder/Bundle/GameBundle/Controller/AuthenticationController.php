@@ -2,12 +2,14 @@
 
 namespace WinkMurder\Bundle\GameBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Security\Core\SecurityContext;
+use WinkMurder\Bundle\GameBundle\Entity\UnprivilegedAccount;
+use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 
-class AuthenticationController extends Controller {
+class AuthenticationController extends BaseController {
 
     /**
      * @Route("/login/")
@@ -25,9 +27,29 @@ class AuthenticationController extends Controller {
         }
 
         return array(
+            'unauthenticatedPlayers' => $this->getPlayerRepository()->findUnauthenticated(),
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
         );
+    }
+
+    /**
+     * @Route("/login/player/{id}")
+     * @Method("POST")
+     */
+    public function playerLoginAction($id) {
+        if ($player = $this->getPlayerRepository()->findOneUnauthenticated($id)) {
+            $account = new UnprivilegedAccount($player);
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($account);
+            $em->flush();
+
+            $this->getSecurityContext()->setToken(new RememberMeToken($account, 'accounts', $account->getUsername()));
+
+            return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
+        } else {
+            return $this->redirect($this->generateUrl('winkmurder_game_authentication_login'));
+        }
     }
 
     /**
@@ -40,6 +62,17 @@ class AuthenticationController extends Controller {
      * @Route("/logout/")
      */
     public function logoutAction() {
+        $account = $this->getAuthenticatedAccount();
+
+        if ($account instanceof UnprivilegedAccount) {
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->remove($account);
+            $em->flush();
+        }
+
+        $this->getSecurityContext()->setToken(null);
+
+        return $this->redirect($this->generateUrl('winkmurder_game_authentication_login'));
     }
 
 }

@@ -6,18 +6,16 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 /**
- * @Route("/the-others")
+ * @Route("/rules")
  */
-class PlayerController extends BaseController {
+class RulesController extends BaseController {
 
     /**
      * @Route("/")
      * @Template
      */
-    public function indexAction() {
-        return array('players' => $this->getPlayerRepository()->findForIndex(
-            $this->getAuthenticatedPlayer()
-        ));
+    public function showAction() {
+        return array();
     }
 
 }

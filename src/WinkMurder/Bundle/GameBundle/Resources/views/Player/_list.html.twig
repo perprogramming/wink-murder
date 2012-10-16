@@ -1,0 +1,13 @@
+<ul>
+    {% for player in players %}
+        <li>
+            <div>
+                {{ player.name }}
+            </div>
+            <div>
+                <img src="{{ player.imageUrl }}" alt="Avatar {{ player.name }}" />
+            </div>
+            {% block action %}{% endblock %}
+        </li>
+    {% endfor %}
+</ul>
