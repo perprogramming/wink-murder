@@ -53,6 +53,9 @@ class FlickrSynchronization {
                 }
 
                 foreach ($players as $player) {
+                    if ($account = $this->getAccount($player)) {
+                        $this->entityManager->remove($account);
+                    }
                     $this->entityManager->remove($player);
                 }
 
@@ -78,6 +81,10 @@ class FlickrSynchronization {
             $latestUpdate = max($latestUpdate, intval($photo['lastupdate']));
         }
         return $latestUpdate;
+    }
+
+    protected function getAccount(Player $player) {
+        return $this->entityManager->getRepository('WinkMurderGameBundle:Account')->findOneByPlayer($player);
     }
 
     protected function getPlayersIndexedByFlickrId() {

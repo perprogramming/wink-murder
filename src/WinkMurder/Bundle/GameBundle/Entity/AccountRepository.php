@@ -10,6 +10,13 @@ class AccountRepository extends EntityRepository {
         return $this->createDefaultQueryBuilder()->getQuery()->getResult();
     }
 
+    public function findOneByPlayer(Player $player) {
+        $queryBuilder = $this->createDefaultQueryBuilder();
+        $queryBuilder->andWhere('p = :player');
+        $queryBuilder->setParameter('player', $player);
+        return $queryBuilder->getQuery()->getOneOrNullResult();
+    }
+
     protected function createDefaultQueryBuilder() {
         $queryBuilder = $this->createQueryBuilder('a');
         $queryBuilder->join('a.player', 'p');
