@@ -25,34 +25,39 @@ class FlickrSynchronization {
     public function onKernelRequest(GetResponseEvent $event) {
         if (HttpKernelInterface::MASTER_REQUEST == $event->getRequestType()) {
 
-            if ($photos = $this->getPhotos()) {
-                $cacheTimestampIdentifier = 'wink_murder_flickr_cache';
-                $cacheTimestamp = intval($this->cache->fetch($cacheTimestampIdentifier));
-                $latestUpdate = $this->getLatestUpdate($photos);
+            $this->synchronize();
 
-                if ($latestUpdate > $cacheTimestamp) {
-                    $players = $this->getPlayersIndexedByFlickrId();
+        }
+    }
 
-                    foreach ($photos as $photo) {
-                        $id = $photo['id'];
-                        if (isset($players[$id])) {
-                            $player = $players[$id];
-                            unset($players[$id]);
-                        } else {
-                            $player = new Player($id);
-                            $this->entityManager->persist($player);
-                        }
-                        $player->setName($photo['title']);
-                        $player->setImageUrl($photo['url_sq']);
+    public function synchronize() {
+        if ($photos = $this->getPhotos()) {
+            $cacheTimestampIdentifier = 'wink_murder_flickr_cache';
+            $cacheTimestamp = intval($this->cache->fetch($cacheTimestampIdentifier));
+            $latestUpdate = $this->getLatestUpdate($photos);
+
+            if ($latestUpdate > $cacheTimestamp) {
+                $players = $this->getPlayersIndexedByFlickrId();
+
+                foreach ($photos as $photo) {
+                    $id = $photo['id'];
+                    if (isset($players[$id])) {
+                        $player = $players[$id];
+                        unset($players[$id]);
+                    } else {
+                        $player = new Player($id);
+                        $this->entityManager->persist($player);
                     }
-
-                    foreach ($players as $player) {
-                        $this->entityManager->remove($player);
-                    }
-
-                    $this->entityManager->flush();
-                    $this->cache->save($cacheTimestampIdentifier, $latestUpdate);
+                    $player->setName($photo['title']);
+                    $player->setImageUrl($photo['url_sq']);
                 }
+
+                foreach ($players as $player) {
+                    $this->entityManager->remove($player);
+                }
+
+                $this->entityManager->flush();
+                $this->cache->save($cacheTimestampIdentifier, $latestUpdate);
             }
         }
     }

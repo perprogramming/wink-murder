@@ -16,6 +16,8 @@ class CreateAdminCommand extends ContainerAwareCommand {
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
+        $this->get('wink_murder.flickr_synchronization')->synchronize();
+
         $entityManager = $this->getContainer()->get('doctrine')->getEntityManager();
         $validator = $this->getContainer()->get('validator');
         $unauthorizedPlayers = $entityManager->getRepository('WinkMurderGameBundle:Player')->findUnauthenticated();
