@@ -6,24 +6,32 @@ security:
             form_login:
                 login_path: /login/
                 check_path: /login/check/
-                default_target_path: /you/
+                default_target_path: /administration/
             remember_me:
                 key: %secret%
                 always_remember_me: true
-
-    role_hierarchy:
-        ROLE_ADMIN: ROLE_PLAYER
+            logout:
+                path: /logout/
+                target: /login/
+                handlers: [wink_murder.logout_success_handler]
 
     access_control:
         - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/, roles: ROLE_ADMIN }
-        - { path: ^/, roles: ROLE_PLAYER }
+        - { path: ^/, roles: [ROLE_PLAYER, ROLE_ADMIN] }
 
     providers:
+        in_memory:
+            users:
+                admin: { password: '5b1e4104ab5eda1b3388a68a4621aa04bc5934c1', roles: ROLE_ADMIN }
         accounts:
             entity:
                 class: WinkMurder\Bundle\GameBundle\Entity\Account
                 property: username
+
     encoders:
-        WinkMurder\Bundle\GameBundle\Entity\AdminAccount: plaintext
+        Symfony\Component\Security\Core\User\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false

@@ -8,11 +8,8 @@ use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\AccountRepository")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="discr")
- * @ORM\DiscriminatorMap({"admin" = "AdminAccount", "unprivileged" = "UnprivilegedAccount"})
  */
-abstract class Account implements UserInterface {
+class Account implements UserInterface {
 
     /**
      * @ORM\Id
@@ -40,6 +37,8 @@ abstract class Account implements UserInterface {
 
     public function __construct(Player $player) {
         $this->player = $player;
+        $this->username = md5(uniqid() . time() . rand(0, 1000));
+        $this->password = '';
     }
 
     public function getId() {

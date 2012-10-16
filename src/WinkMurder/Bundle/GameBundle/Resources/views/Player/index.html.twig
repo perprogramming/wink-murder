@@ -5,7 +5,7 @@
 {% block body %}
     {% embed "WinkMurderGameBundle:Player:_list.html.twig" %}
         {% block action %}
-            {% if app.user.player.mayMurder(player) %}
+            {% if is_granted('ROLE_PLAYER') and app.user.player.mayMurder(player) %}
                 <form action="{{ path('winkmurder_game_murder_commit', {id: player.id}) }}" method="post"><div><input type="submit" value="Murder" /></div></form>
             {% elseif player.dead %}
                 This player is dead.

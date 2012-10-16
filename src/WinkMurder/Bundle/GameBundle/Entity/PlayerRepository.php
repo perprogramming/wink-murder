@@ -27,11 +27,13 @@ class PlayerRepository extends EntityRepository {
         return $queryBuilder->getQuery()->getOneOrNullResult();
     }
 
-    public function findForIndex(Player $player) {
+    public function findForIndex(Player $player = null) {
         $queryBuilder = $this->createDefaultQueryBuilder();
 
-        $queryBuilder->andWhere('p <> :player');
-        $queryBuilder->setParameter('player', $player);
+        if ($player) {
+            $queryBuilder->andWhere('p <> :player');
+            $queryBuilder->setParameter('player', $player);
+        }
 
         return $queryBuilder->getQuery()->getResult();
     }

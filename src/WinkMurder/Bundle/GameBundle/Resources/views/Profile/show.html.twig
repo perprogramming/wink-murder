@@ -3,5 +3,10 @@
 {% block pageTitle %}You{% endblock %}
 
 {% block body %}
-    You are {{ player.name }}
+    {% if is_granted('ROLE_ADMIN') %}
+        You are the administrator.
+    {% else %}
+        <div>You are {{ player.name }}</div>
+        <div><img src="{{ player.imageUrl }}" alt="{{ player.name }}" /></div>
+    {% endif %}
 {% endblock %}

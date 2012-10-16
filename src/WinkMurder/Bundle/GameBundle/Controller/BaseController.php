@@ -3,6 +3,7 @@
 namespace WinkMurder\Bundle\GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use WinkMurder\Bundle\GameBundle\Entity\Account;
 
 abstract class BaseController extends Controller {
 
@@ -23,12 +24,16 @@ abstract class BaseController extends Controller {
 
     /** @return \WinkMurder\Bundle\GameBundle\Entity\Account */
     protected function getAuthenticatedAccount() {
-        return $this->getSecurityContext()->getToken()->getUser();
+        $user = $this->getSecurityContext()->getToken()->getUser();
+        if ($user instanceof Account)
+            return $user;
     }
 
     /** @return \WinkMurder\Bundle\GameBundle\Entity\Player */
     public function getAuthenticatedPlayer() {
-        return $this->getAuthenticatedAccount()->getPlayer();
+        if ($account = $this->getAuthenticatedAccount()) {
+            return $account->getPlayer();
+        }
     }
 
 }

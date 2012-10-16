@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\Security\Core\SecurityContext;
-use WinkMurder\Bundle\GameBundle\Entity\UnprivilegedAccount;
+use WinkMurder\Bundle\GameBundle\Entity\Account;
 use Symfony\Component\Security\Core\Authentication\Token\RememberMeToken;
 
 class AuthenticationController extends BaseController {
@@ -39,7 +39,7 @@ class AuthenticationController extends BaseController {
      */
     public function playerLoginAction($id) {
         if ($player = $this->getPlayerRepository()->findOneUnauthenticated($id)) {
-            $account = new UnprivilegedAccount($player);
+            $account = new Account($player);
             $em = $this->getDoctrine()->getEntityManager();
             $em->persist($account);
             $em->flush();
@@ -55,24 +55,13 @@ class AuthenticationController extends BaseController {
     /**
      * @Route("/login/check/")
      */
-    public function loginCheckAction($id) {
+    public function loginCheckAction() {
     }
 
     /**
      * @Route("/logout/")
      */
     public function logoutAction() {
-        $account = $this->getAuthenticatedAccount();
-
-        if ($account instanceof UnprivilegedAccount) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->remove($account);
-            $em->flush();
-        }
-
-        $this->getSecurityContext()->setToken(null);
-
-        return $this->redirect($this->generateUrl('winkmurder_game_authentication_login'));
     }
 
 }

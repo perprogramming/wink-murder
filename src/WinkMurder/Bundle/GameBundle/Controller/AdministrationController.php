@@ -6,7 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
-use WinkMurder\Bundle\GameBundle\Entity\UnprivilegedAccount;
+use WinkMurder\Bundle\GameBundle\Entity\Account;
 
 /**
  * @Route("/administration")
@@ -61,7 +61,7 @@ class AdministrationController extends BaseController {
     public function unauthenticateAction($id) {
         $account = $this->getAccountRepository()->find($id);
 
-        if ($account instanceof UnprivilegedAccount) {
+        if ($account instanceof Account) {
             $em = $this->getDoctrine()->getEntityManager();
             $em->remove($account);
             $em->flush();

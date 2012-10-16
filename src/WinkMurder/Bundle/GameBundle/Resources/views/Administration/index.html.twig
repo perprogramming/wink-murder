@@ -63,6 +63,9 @@
             </li>
         {% endfor %}
         </ul>
+        {% if not accounts %}
+            There are no accounts yet.
+        {% endif %}
     </div>
 
     <h2>Unauthenticated players</h2>
