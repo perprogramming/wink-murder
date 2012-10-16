@@ -16,6 +16,9 @@ class AuthenticationController extends BaseController {
      * @Template
      */
     public function loginAction() {
+        if ($this->getSecurityContext()->getToken())
+            return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
+        
         $request = $this->getRequest();
         $session = $request->getSession();
 
