@@ -1,5 +1,5 @@
 {
-    "hash": "1ad8bd8cf0a1944f44f91d7ff02867ed",
+    "hash": "87f4e65e4e5f3332d48f4b6fdbffced6",
     "packages": [
         {
             "package": "doctrine/common",
@@ -51,11 +51,11 @@
         },
         {
             "package": "twig/twig",
-            "version": "v1.10.0"
+            "version": "v1.10.1"
         },
         {
             "package": "webfactory/assetdependenciesbugfix-bundle",
-            "version": "1.0.2"
+            "version": "1.0.1"
         },
         {
             "package": "webfactory/compass-bundle",
