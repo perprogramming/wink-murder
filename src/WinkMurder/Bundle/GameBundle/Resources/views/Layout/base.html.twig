@@ -11,13 +11,15 @@
         {% endstylesheets %}
     </head>
     <body>
-        <ul>
-            <li><a href="{{ path('winkmurder_game_status_show') }}">Game</a></li>
-            <li><a href="{{ path('winkmurder_game_player_index') }}">The others</a></li>
-            <li><a href="{{ path('winkmurder_game_profile_show') }}">You</a></li>
-            <li><a href="{{ path('winkmurder_game_rules_show') }}">Rules</a></li>
-            {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('winkmurder_game_administration_index') }}">Administration</a></li>{% endif %}
-        </ul>
+        {% if app.user %}
+            <ul>
+                <li><a href="{{ path('winkmurder_game_status_show') }}">Game</a></li>
+                <li><a href="{{ path('winkmurder_game_player_index') }}">The others</a></li>
+                <li><a href="{{ path('winkmurder_game_profile_show') }}">You</a></li>
+                <li><a href="{{ path('winkmurder_game_rules_show') }}">Rules</a></li>
+                {% if is_granted('ROLE_ADMIN') %}<li><a href="{{ path('winkmurder_game_administration_index') }}">Administration</a></li>{% endif %}
+            </ul>
+        {% endif %}
         <h1>{{ block('pageTitle') }}</h1>
         {% block body %}{% endblock %}
     </body>
