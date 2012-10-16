@@ -1,12 +1,7 @@
 <ul>
     {% for player in players %}
         <li>
-            <div>
-                {{ player.name }}
-            </div>
-            <div>
-                <img src="{{ player.imageUrl }}" alt="Avatar {{ player.name }}" />
-            </div>
+            {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
             {% block action %}{% endblock %}
         </li>
     {% endfor %}

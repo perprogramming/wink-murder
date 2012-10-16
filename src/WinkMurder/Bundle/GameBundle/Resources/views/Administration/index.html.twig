@@ -27,7 +27,7 @@
         {% for account in accounts %}
             <li>
                 {% set player = account.player %}
-                <div>{{ player.name }}</div>
+                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
 
                 <div>
                     {% if account is sameas(app.user) %}
