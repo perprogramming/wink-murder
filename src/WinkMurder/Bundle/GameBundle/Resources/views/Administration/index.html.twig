@@ -10,56 +10,75 @@
         {% else %}
             You have currently selected {{ murderer.name }} as the murderer.
         {% endif %}
-        <form action="{{ path('winkmurder_game_administration_selectmurderer') }}" method="post"><div>
-            <select name="id">
-                <option></option>
-                {% for player in players %}
-                    <option value="{{ player.id }}"{% if player is sameas(murderer) %} selected="selected"{% endif %}>{{ player.name }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="Select murderer" />
-        </div></form>
+        <form action="{{ path('winkmurder_game_administration_selectmurderer') }}" method="post">
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <select name="id">
+                        <option></option>
+                        {% for player in players %}
+                            <option value="{{ player.id }}"{% if player is sameas(murderer) %} selected="selected"{% endif %}>{{ player.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="ui-block-b">
+                    <input type="submit" value="Select murderer" class="ui-block-b" />
+                </div>
+            </div>
+        </form>
     </div>
 
     <h2>Accounts</h2>
     <div>
-        <ul>
+        <ul data-role="listview" data-inset="true">
         {% for account in accounts %}
+            {% set player = account.player %}
             <li>
-                {% set player = account.player %}
-                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                    </div>
+                    <div class="ui-block-b">
+                        {% if account is sameas(app.user) %}
+                            <a href="{{ path('winkmurder_game_authentication_logout') }}" data-ajax="false">Logout</a>
+                        {% else %}
+                            <form action="{{ path('winkmurder_game_administration_unauthenticate', {id: account.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="Unauthenticate" /></div></form>
+                        {% endif %}
+                    </div>
 
-                <div>
-                    {% if account is sameas(app.user) %}
-                        <a href="{{ path('winkmurder_game_authentication_logout') }}">Logout</a>
+                    {% if player.dead %}
+                        <div class="ui-block-a">
+                            This player is dead.
+                        </div>
+                        <div class="ui-block-b">
+                            <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="Resurrect" /></div></form>
+                        </div>
                     {% else %}
-                        <form action="{{ path('winkmurder_game_administration_unauthenticate', {id: account.id}) }}" method="post"><div><input type="submit" value="Unauthenticate" /></div></form>
+                        <div class="ui-block-a">
+                            This player is still alive.
+                        </div>
+                        <div class="ui-block-b">
+                            <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="Kill" /></div></form>
+                        </div>
                     {% endif %}
-                <div>
-
-                <div>
-                {% if player.dead %}
-                    This player is dead.
-                    <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post"><div><input type="submit" value="Resurrect" /></div></form>
-                {% else %}
-                    This player is still alive.
-                    <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post"><div><input type="submit" value="Kill" /></div></form>
-                {% endif %}
                 </div>
 
-                <div>
-                    <form action="{{ path('winkmurder_game_administration_switchplayer', {id: account.id}) }}" method="post"><div>
-                        <select name="to">
-                            <option></option>
-                            {% for player in players %}
-                                {% if not player is sameas(account.player) %}
-                                    <option value="{{ player.id }}">{{ player.name }}</option>
-                                {% endif %}
-                            {% endfor %}
-                        </select>
-                        <input type="submit" value="Switch player" />
-                    </div></form>
-                </div>
+                <form action="{{ path('winkmurder_game_administration_switchplayer', {id: account.id}) }}" method="post" data-ajax="false">
+                    <div class="ui-grid-a">
+                        <div class="ui-block-a">
+                            <select name="to">
+                                <option></option>
+                                {% for player in players %}
+                                    {% if not player is sameas(account.player) %}
+                                        <option value="{{ player.id }}">{{ player.name }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="ui-block-b">
+                            <input type="submit" value="Switch player" />
+                        </div>
+                    </div>
+                </form>
             </li>
         {% endfor %}
         </ul>

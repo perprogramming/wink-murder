@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>{% block pageTitle %}{% endblock %} - Wink Murder</title>
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
         {% stylesheets
             'bundles/winkmurdergame/scss/screen.scss'
             filter="compass,cssrewrite"
@@ -11,19 +12,29 @@
         {% endstylesheets %}
     </head>
     <body>
-        {% if app.user %}
-            <ul>
-                <li><a href="{{ path('winkmurder_game_status_show') }}">Game</a></li>
-                <li><a href="{{ path('winkmurder_game_player_index') }}">The others</a></li>
-                <li><a href="{{ path('winkmurder_game_profile_show') }}">You</a></li>
-                <li><a href="{{ path('winkmurder_game_rules_show') }}">Rules</a></li>
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li><a href="{{ path('winkmurder_game_administration_index') }}">Administration</a></li>
-                    <li><a href="{{ path('winkmurder_game_authentication_logout') }}">Logout</a></li>
-                {% endif %}
-            </ul>
-        {% endif %}
-        <h1>{{ block('pageTitle') }}</h1>
-        {% block body %}{% endblock %}
+        <div data-role="page">
+            <div data-role="header">
+            {% if app.user %}
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="{{ path('winkmurder_game_status_show') }}" data-ajax="false">Game</a></li>
+                        <li><a href="{{ path('winkmurder_game_player_index') }}" data-ajax="false">The others</a></li>
+                        <li><a href="{{ path('winkmurder_game_profile_show') }}" data-ajax="false">You</a></li>
+                        <li><a href="{{ path('winkmurder_game_rules_show') }}" data-ajax="false">Rules</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li><a href="{{ path('winkmurder_game_administration_index') }}">Administration</a></li>
+                            <li><a href="{{ path('winkmurder_game_authentication_logout') }}">Logout</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            {% endif %}
+            </div>
+            <div data-role="content">
+                <h1>{{ block('pageTitle') }}</h1>
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
     </body>
 </html>

@@ -23,7 +23,7 @@ class LogoutHandler implements \Symfony\Component\Security\Http\Logout\LogoutHan
         if ($account instanceof Account) {
             $this->entityManager->remove($account);
             $this->entityManager->flush();
-        }   
+        }
     }
 
 }

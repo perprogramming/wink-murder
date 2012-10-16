@@ -1,8 +1,9 @@
-<ul>
-    {% for player in players %}
-        <li>
-            {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
-            {% block action %}{% endblock %}
-        </li>
-    {% endfor %}
-</ul>
+{% if players %}
+    <ul data-role="listview" data-inset="true">
+        {% for player in players %}
+            <li>
+                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

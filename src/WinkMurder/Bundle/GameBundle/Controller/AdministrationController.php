@@ -79,21 +79,24 @@ class AdministrationController extends BaseController {
         $accounts = $this->getAccountRepository()->findAll();
         $account = $this->getAccountRepository()->find($id);
         $oldPlayer = $account->getPlayer();
+
         $newPlayer = $this->getPlayerRepository()->find($request->get('to'));
 
-        $account->setPlayer(null);
-        $em->flush();
+        if ($newPlayer) {
+            $account->setPlayer(null);
+            $em->flush();
 
-        foreach ($accounts as $other) {
-            if ($other->getPlayer() === $newPlayer) {
-                $other->setPlayer($oldPlayer);
-                break;
+            foreach ($accounts as $other) {
+                if ($other->getPlayer() === $newPlayer) {
+                    $other->setPlayer($oldPlayer);
+                    break;
+                }
             }
-        }
-        $em->flush();
+            $em->flush();
 
-        $account->setPlayer($newPlayer);
-        $em->flush();
+            $account->setPlayer($newPlayer);
+            $em->flush();
+        }
 
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
