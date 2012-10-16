@@ -18,7 +18,7 @@ class CreateAdminCommand extends ContainerAwareCommand {
     protected function execute(InputInterface $input, OutputInterface $output) {
         $entityManager = $this->getContainer()->get('doctrine')->getEntityManager();
         $validator = $this->getContainer()->get('validator');
-        $unauthorizedPlayers = $entityManager->getRepository('WinkMurderGameBundle:Player')->findUnauthorized();
+        $unauthorizedPlayers = $entityManager->getRepository('WinkMurderGameBundle:Player')->findUnauthenticated();
 
         $output->writeln('Who do you want to become an admin?');
         foreach($unauthorizedPlayers as $index => $player) {
