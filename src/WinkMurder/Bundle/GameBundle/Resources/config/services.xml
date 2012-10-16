@@ -11,10 +11,10 @@
             <argument>%flickr_secret%</argument>
         </service>
 
-        <service id="cache" class="Doctrine\Common\Cache\ApcCache" />
+        <service id="wink_murder.cache" class="Doctrine\Common\Cache\ApcCache" />
 
         <service id="wink_murder.flickr_synchronization" class="WinkMurder\Bundle\GameBundle\EventListener\FlickrSynchronization">
-            <argument type="service" id="cache" />
+            <argument type="service" id="wink_murder.cache" />
             <argument type="service" id="flickr" />
             <argument type="service" id="doctrine.orm.entity_manager" />
             <argument>%flickr_photoset%</argument>
