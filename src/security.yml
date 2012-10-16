@@ -22,6 +22,8 @@ security:
         - { path: ^/, roles: [ROLE_PLAYER, ROLE_ADMIN] }
 
     providers:
+        chain_provider:
+            providers: [in_memory, accounts]
         in_memory:
             users:
                 admin: { password: '5b1e4104ab5eda1b3388a68a4621aa04bc5934c1', roles: ROLE_ADMIN }
