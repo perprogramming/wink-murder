@@ -16,7 +16,7 @@ class CreateAdminCommand extends ContainerAwareCommand {
     }
 
     protected function execute(InputInterface $input, OutputInterface $output) {
-        $this->get('wink_murder.flickr_synchronization')->synchronize();
+        $this->getContainer()->get('wink_murder.flickr_synchronization')->synchronize();
 
         $entityManager = $this->getContainer()->get('doctrine')->getEntityManager();
         $validator = $this->getContainer()->get('validator');
