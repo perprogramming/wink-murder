@@ -11,7 +11,7 @@
             <div>
                 {% if game.players %}
                     {% if game.murderer %}
-                        <p>The murderer is {{ game.murderer.name }}. <a href="{{ path('winkmurder_game_administration_selectmurderer') }}" data-ajax="false" data-inline="true" data-mini="true" data-role="button" data-icon="delete">Change</a></p>
+                        <p>{{ game.murderer.name }} is the murderer. <a href="{{ path('winkmurder_game_administration_selectmurderer') }}" data-ajax="false" data-inline="true" data-mini="true" data-role="button" data-icon="delete">Change</a></p>
                     {% else %}
                         <p>Please elect the murderer:</p>
                         <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search...">
