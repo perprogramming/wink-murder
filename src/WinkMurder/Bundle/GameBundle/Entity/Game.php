@@ -34,16 +34,28 @@ class Game {
 
     /**
      * @ORM\OneToMany(targetEntity="Murder", mappedBy="game", cascade={"PERSIST", "REMOVE"}, orphanRemoval=true)
+     * @ORM\OrderBy({"timeOfOffense" = "ASC"})
      */
     protected $murders;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    protected $requiredPositiveSuspicionRate;
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $durationOfPreliminaryProceedingsInMinutes;
 
     /**
      * @ORM\Column(type="boolean")
      */
     protected $finished = false;
 
-    public function __construct(PhotoSet $photoSet) {
+    public function __construct(PhotoSet $photoSet, $durationOfPreliminaryProceedingsInMinutes, $requiredPositiveSuspicionRate) {
         $this->photoSet = $photoSet;
+        $this->durationOfPreliminaryProceedingsInMinutes = $durationOfPreliminaryProceedingsInMinutes;
+        $this->requiredPositiveSuspicionRate = $requiredPositiveSuspicionRate;
         $this->players = new ArrayCollection();
         $this->murders = new ArrayCollection();
     }
@@ -109,12 +121,15 @@ class Game {
         return $this->murderer === $player;
     }
 
-    public function kill(Player $player) {
-        if (!$player->isDead()) {
-            $this->murders->add(new Murder($this, $player, new \DateTime('now')));
-        } else {
-            throw new \Exception("Player {$player->getName()} is already dead.");
-        }
+    public function checkKill(Player $victim, Player $murderer = null) {
+        if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$this->getName()} is not the murderer.");
+        if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
+        if ($murderer && ($murderer === $victim)) throw new \Exception("Player {$this->getName()} cannot murder himself.");
+    }
+
+    public function kill(Player $player, Player $murderer = null) {
+        $this->checkKill($player, $murderer);
+        $this->murders->add(new Murder($this, $player, new \DateTime('now')));
     }
 
     public function resurrect(Player $player) {
@@ -124,6 +139,27 @@ class Game {
         } else {
             throw new \Exception("Player {$player->getName()} is alive.");
         }
+    }
+
+    /** @return Murder */
+    public function getLatestMurder() {
+        return $this->murders->last();
+    }
+
+    public function hasSuspicion(Player $witness) {
+        return $this->getLatestMurder()->hasSuspicion($witness);
+    }
+
+    public function addSuspicion(Player $suspect, Player $witness) {
+        $this->getLatestMurder()->addSuspicion($suspect, $witness);
+    }
+
+    public function getDurationOfPreliminaryProceedings() {
+        return new \DateInterval("PT{$this->durationOfPreliminaryProceedingsInMinutes}M");
+    }
+
+    public function getRequiredPositiveSuspicionRate() {
+        return $this->requiredPositiveSuspicionRate;
     }
 
     public function finish() {

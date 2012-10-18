@@ -105,7 +105,7 @@ class AdministrationController extends BaseController {
                     $em->remove($account);
                 }
             }
-            $newGame = new Game($photoSet);
+            $newGame = new Game($photoSet, $this->container->getParameter('duration_of_preliminary_proceedings_in_minutes'));
             $em->persist($newGame);
             $em->flush();
         }

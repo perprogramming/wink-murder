@@ -75,22 +75,23 @@ class Player {
 
     public function canMurder(Player $victim) {
         try {
-            $this->checkMurder($victim);
+            $this->game->checkKill($victim, $this);
             return true;
         } catch (\Exception $e) {
             return false;
         }
     }
 
-    public function murder(Player $victim) {
-        $this->checkMurder($victim);
-        $this->game->kill($victim);
+    public function hasSuspicion() {
+        return $this->game->hasSuspicion($this);
     }
 
-    protected function checkMurder(Player $victim) {
-        if (!$this->isMurderer()) throw new \Exception("Player {$this->getName()} is not the murderer.");
-        if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
-        if ($this === $victim) throw new \Exception("Player {$this->getName()} cannot murder himself.");
+    public function suspect(Player $suspect) {
+        $this->game->addSuspicion($suspect, $this);
+    }
+
+    public function murder(Player $victim) {
+        $this->game->kill($victim);
     }
 
 }
