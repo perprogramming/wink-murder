@@ -3,21 +3,23 @@
 {% block pageTitle %}Login{% endblock %}
 
 {% block body %}
-    <h2>Who are you?</h2>
-    <div>
-        {% if unauthenticatedPlayers %}
-            <ul data-role="listview" data-inset="true">
-            {% for player in unauthenticatedPlayers %}
-                <li><a href="{{ path('winkmurder_game_authentication_loginplayer', {id: player.id}) }}" data-ajax="false">
-                    <h3>{{ player.name }}</h3>
-                    <p><img src="{{ player.imageUrl }}" alt="{{ player.name }}" /></p>
-                </a></li>
-            {% endfor %}
-            </ul>
-        {% else %}
-            There are no accounts left to choose. Please ask the referee for an account.
-        {% endif %}
-    </div>
+    {% if game %}
+        <h2>Who are you?</h2>
+        <div>
+            {% if game.unusedPhotos %}
+                <ul data-role="listview" data-inset="true">
+                {% for photo in game.unusedPhotos %}
+                    <li><a href="{{ path('winkmurder_game_authentication_loginphoto', {id: photo.id}) }}" data-ajax="false">
+                        <h3>{{ photo.title }}</h3>
+                        <p><img src="{{ photo.url }}" alt="{{ photo.title }}" /></p>
+                    </a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                There are no accounts left to choose. Please ask the referee for an account.
+            {% endif %}
+        </div>
+    {% endif %}
 
     <h2>Here you go as admin...</h2>
     {% if error %}

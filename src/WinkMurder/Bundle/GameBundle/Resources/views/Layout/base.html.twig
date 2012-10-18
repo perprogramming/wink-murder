@@ -14,24 +14,24 @@
     </head>
     <body>
         <div data-role="page">
-            <div data-role="header">
             {% if app.user %}
-                <div data-role="navbar">
-                    <ul>
-                        <li><a href="{{ path('winkmurder_game_status_show') }}" data-ajax="false">Game</a></li>
-                        <li><a href="{{ path('winkmurder_game_player_index') }}" data-ajax="false">The others</a></li>
-                        <li><a href="{{ path('winkmurder_game_profile_show') }}" data-ajax="false">You</a></li>
-                        <li><a href="{{ path('winkmurder_game_rules_show') }}" data-ajax="false">Rules</a></li>
-                        {% if is_granted('ROLE_ADMIN') %}
-                            <li><a href="{{ path('winkmurder_game_administration_index') }}">Administration</a></li>
-                            <li><a href="{{ path('winkmurder_game_authentication_logout') }}">Logout</a></li>
-                        {% endif %}
-                    </ul>
+                <div data-role="header">
+                    {% if is_granted('ROLE_ADMIN') %}
+                        <h1>Administration</h1>
+                        <a href="{{ path('winkmurder_game_authentication_logout') }}" data-ajax="false" data-role="button" class="ui-btn-right" data-icon="delete">Logout</a>
+                    {% else %}
+                        <div data-role="navbar">
+                            <ul>
+                                <li><a href="{{ path('winkmurder_game_status_show') }}" data-ajax="false">Game</a></li>
+                                <li><a href="{{ path('winkmurder_game_player_index') }}" data-ajax="false">The others</a></li>
+                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-ajax="false">You</a></li>
+                                <li><a href="{{ path('winkmurder_game_rules_show') }}" data-ajax="false">Rules</a></li>
+                            </ul>
+                        </div>
+                    {% endif %}
                 </div>
             {% endif %}
-            </div>
             <div data-role="content">
-                <h1>{{ block('pageTitle') }}</h1>
                 {% block body %}{% endblock %}
             </div>
         </div>

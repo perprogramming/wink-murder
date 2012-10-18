@@ -27,17 +27,17 @@ class AuthenticationController extends BaseController {
         }
 
         return array(
-            'unauthenticatedPlayers' => $this->getPlayerRepository()->findUnauthenticated(),
+            'game' => $this->getCurrentGame(),
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
             'error'         => $error,
         );
     }
 
     /**
-     * @Route("/login/player/")
+     * @Route("/login/photo/")
      * @Method("POST")
      */
-    public function loginPlayerAction($id, Request $request) {
+    public function loginPhotoAction($id, Request $request) {
     }
 
     /**

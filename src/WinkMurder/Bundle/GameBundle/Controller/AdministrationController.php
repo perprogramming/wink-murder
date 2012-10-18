@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use WinkMurder\Bundle\GameBundle\Entity\Account;
+use WinkMurder\Bundle\GameBundle\Entity\Game;
 
 /**
  * @Route("/administration")
@@ -19,85 +20,104 @@ class AdministrationController extends BaseController {
      */
     public function indexAction() {
         return array(
-            'unauthenticatedPlayers' => $this->getPlayerRepository()->findUnauthenticated(),
-            'players' => $this->getPlayerRepository()->findAll(),
-            'accounts' => $this->getAccountRepository()->findForAdministration(),
-            'murderer' => $this->getPlayerRepository()->findMurderer()
+            'game' => $game = $this->getCurrentGame(),
+            'photoSets' => $this->getPhotoSetRepository()->findAll()
         );
     }
 
     /**
      * @Route("/select-murderer/")
-     * @Method("POST")
      */
     public function selectMurdererAction(Request $request) {
-        $players = $this->getPlayerRepository()->findAll();
-        foreach ($players as $player) {
-            if ($player->getId() == $request->get('id')) {
-                $player->setMurderer(true);
-            } else {
-                $player->setMurderer(false);
-            }
-        }
+        $game = $this->getCurrentGame();
+        $game->setMurderer(
+            $game->findPlayer($request->get('id'))
+        );
         $this->getDoctrine()->getEntityManager()->flush();
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
 
     /**
-     * @Route("/toggle-dead/{id}")
+     * @Route("/toggle-dead/{id}/")
      * @Method("POST")
      */
     public function toggleDeadAction($id) {
-        $player = $this->getPlayerRepository()->find($id);
-        $player->setDead(!$player->isDead());
-        $this->getDoctrine()->getEntityManager()->flush();
+        $game = $this->getCurrentGame();
+        $player = $game->findPlayer($id);
+        if ($player->isDead()) {
+            $game->resurrect($player);
+        } else {
+            $game->kill($player);
+        }
+        $this->getEntityManager()->flush();
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
 
     /**
-     * @Route("/unauthenticate/{id}")
+     * @Route("/unauthenticate/{id}/")
      * @Method("POST")
      */
     public function unauthenticateAction($id) {
-        $account = $this->getAccountRepository()->find($id);
-
-        if ($account instanceof Account) {
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->remove($account);
-            $em->flush();
+        if ($player = $this->getCurrentGame()->findPlayer($id)) {
+            if ($account = $this->getAccountRepository()->findByPlayer($player)) {
+                $em = $this->getEntityManager();
+                $em->remove($account->getPlayer());
+                $em->remove($account);
+                $em->flush();
+            }
         }
-
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
 
     /**
-     * @Route("/switch-player/{id}")
+     * @Route("/switch-photo/{id}/")
      * @Method("POST")
      */
-    public function switchPlayerAction($id, Request $request) {
-        $em = $this->getDoctrine()->getEntityManager();
-        $accounts = $this->getAccountRepository()->findAll();
-        $account = $this->getAccountRepository()->find($id);
-        $oldPlayer = $account->getPlayer();
+    public function switchPhotoAction($id, Request $request) {
+        $em = $this->getEntityManager();
+        $game = $this->getCurrentGame();
 
-        $newPlayer = $this->getPlayerRepository()->find($request->get('to'));
+        if ($player = $game->findPlayer($id)) {
+            if ($newPhoto = $game->getPhotoSet()->findPhoto($request->get('photo'))){
+                $oldPhoto = $player->getPhoto();
+                foreach ($game->getPlayers() as $otherPlayer) {
+                    if ($otherPlayer->getPhoto() === $newPhoto) {
+                        $otherPlayer->setPhoto($oldPhoto);
+                    }
+                }
+                $player->setPhoto($newPhoto);
+                $em->flush();
+            }
+        }
+        return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
+    }
 
-        if ($newPlayer) {
-            $account->setPlayer(null);
-            $em->flush();
-
-            foreach ($accounts as $other) {
-                if ($other->getPlayer() === $newPlayer) {
-                    $other->setPlayer($oldPlayer);
-                    break;
+    /**
+     * @Route("/start-new-game/")
+     * @Method("POST")
+     */
+    public function startNewGameAction(Request $request) {
+        if ($photoSet = $this->getPhotoSetRepository()->find($request->get('id'))) {
+            $em = $this->getEntityManager();
+            if ($game = $this->getCurrentGame()) {
+                $game->finish();
+                foreach ($this->getAccountRepository()->findByGame($game) as $account) {
+                    $em->remove($account);
                 }
             }
-            $em->flush();
-
-            $account->setPlayer($newPlayer);
+            $newGame = new Game($photoSet);
+            $em->persist($newGame);
             $em->flush();
         }
+        return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
+    }
 
+    /**
+     * @Route("/synchronize-photosets/")
+     * @Method("POST")
+     */
+    public function synchronizePhotoSetsAction() {
+        $this->get('wink_murder.flickr_synchronization')->synchronize();
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
 

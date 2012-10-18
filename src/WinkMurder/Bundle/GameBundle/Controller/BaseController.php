@@ -7,11 +7,6 @@ use WinkMurder\Bundle\GameBundle\Entity\Account;
 
 abstract class BaseController extends Controller {
 
-    /** @return \WinkMurder\Bundle\GameBundle\Entity\PlayerRepository */
-    protected function getPlayerRepository() {
-        return $this->getDoctrine()->getRepository('WinkMurderGameBundle:Player');
-    }
-
     /** @return \WinkMurder\Bundle\GameBundle\Entity\AccountRepository */
     protected function getAccountRepository() {
         return $this->getDoctrine()->getRepository('WinkMurderGameBundle:Account');
@@ -30,10 +25,30 @@ abstract class BaseController extends Controller {
     }
 
     /** @return \WinkMurder\Bundle\GameBundle\Entity\Player */
-    public function getAuthenticatedPlayer() {
+    protected function getAuthenticatedPlayer() {
         if ($account = $this->getAuthenticatedAccount()) {
             return $account->getPlayer();
         }
+    }
+
+    /** @return \WinkMurder\Bundle\GameBundle\Entity\Game */
+    public function getCurrentGame() {
+        return $this->getGameRepository()->findCurrentOne();
+    }
+
+    /** @return \WinkMurder\Bundle\GameBundle\Entity\GameRepository */
+    protected function getGameRepository() {
+        return $this->getDoctrine()->getRepository('WinkMurderGameBundle:Game');
+    }
+
+    /** @return \Doctrine\ORM\EntityRepository */
+    protected function getPhotoSetRepository() {
+        return $this->getDoctrine()->getRepository('WinkMurderGameBundle:PhotoSet');
+    }
+
+    /** @return \Doctrine\ORM\EntityManager */
+    protected function getEntityManager() {
+        return $this->getDoctrine()->getEntityManager();
     }
 
 }

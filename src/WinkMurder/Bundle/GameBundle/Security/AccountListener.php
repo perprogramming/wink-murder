@@ -30,14 +30,28 @@ class AccountListener extends AbstractAuthenticationListener {
     protected function attemptAuthentication(Request $request) {
         if ($id = $request->get('id')) {
             $em = $this->entityManager;
-            if ($player = $em->getRepository('WinkMurderGameBundle:Player')->findOneUnauthenticated($id)) {
-                $account = new Account($player);
-                $em->persist($account);
-                $em->flush();
-
-                return new AccountToken($account);
+            if ($game = $this->getCurrentGame()) {
+                if ($photo = $this->getPhoto($id)) {
+                    if ($photo->getPhotoSet() === $game->getPhotoSet()) {
+                        $player = $game->addPlayer($photo);
+                        $account = new Account($player);
+                        $em->persist($account);
+                        $em->flush();
+                        return new AccountToken($account);
+                    }
+                }
             }
         }
+    }
+
+    /** @return \WinkMurder\Bundle\GameBundle\Entity\Game */
+    protected function getCurrentGame() {
+        return $this->entityManager->getRepository('WinkMurderGameBundle:Game')->findCurrentOne();
+    }
+
+    /** @return \WinkMurder\Bundle\GameBundle\Entity\Photo */
+    protected function getPhoto($id) {
+        return $this->entityManager->getRepository('WinkMurderGameBundle:Photo')->find($id);
     }
 
 }

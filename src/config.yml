@@ -2,13 +2,9 @@ imports:
     - {resource: "security.yml"}
 
 parameters:
-    roleLabels:
-        ROLE_ADMIN: Admin
-        ROLE_PLAYER: Spieler
-        ROLE_MURDERER: Mörder
     flickr_key: e9863e313c7660001d688030a5080de8
     flickr_secret: 3010cce97ff441c9
-    flickr_photoset: 72157631758032932
+    flickr_username: winkmurder
 
 framework:
     secret: %secret%

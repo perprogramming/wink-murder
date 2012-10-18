@@ -21,6 +21,7 @@ class LogoutHandler implements \Symfony\Component\Security\Http\Logout\LogoutHan
     public function logout(Request $request, Response $response, TokenInterface $token) {
         $account = $token->getUser();
         if ($account instanceof Account) {
+            $this->entityManager->remove($account->getPlayer());
             $this->entityManager->remove($account);
             $this->entityManager->flush();
         }

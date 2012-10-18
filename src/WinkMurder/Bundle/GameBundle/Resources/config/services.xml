@@ -1,24 +1,15 @@
 <?xml version="1.0" ?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
-        <service class="WinkMurder\Bundle\GameBundle\Twig\Extension">
-            <argument>%roleLabels%</argument>
-            <tag name="twig.extension" />
-        </service>
-
         <service id="flickr" class="phpFlickr">
             <argument>%flickr_key%</argument>
             <argument>%flickr_secret%</argument>
         </service>
 
-        <service id="wink_murder.cache" class="Doctrine\Common\Cache\ApcCache" />
-
-        <service id="wink_murder.flickr_synchronization" class="WinkMurder\Bundle\GameBundle\EventListener\FlickrSynchronization">
-            <argument type="service" id="wink_murder.cache" />
+        <service id="wink_murder.flickr_synchronization" class="WinkMurder\Bundle\GameBundle\Flickr\Synchronization">
             <argument type="service" id="flickr" />
             <argument type="service" id="doctrine.orm.entity_manager" />
-            <argument>%flickr_photoset%</argument>
-            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+            <argument>%flickr_username%</argument>
         </service>
 
         <service id="wink_murder.logout_handler" class="WinkMurder\Bundle\GameBundle\Security\LogoutHandler">

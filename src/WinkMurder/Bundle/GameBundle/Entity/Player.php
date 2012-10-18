@@ -3,11 +3,9 @@
 namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\PlayerRepository")
- * @ORM\Table(uniqueConstraints={@ORM\UniqueConstraint(name="flickrId",columns={"flickrId"})})
+ * @ORM\Entity
  */
 class Player {
 
@@ -19,92 +17,80 @@ class Player {
     protected $id;
 
     /**
-     * @ORM\Column
+     * @ORM\ManyToOne(targetEntity="Game", inversedBy="players")
      */
-    protected $flickrId;
+    protected $game;
 
     /**
-     * @ORM\Column
+     * @ORM\ManyToOne(targetEntity="Photo", inversedBy="players")
+     * @ORM\JoinColumn(name="photo_id", referencedColumnName="id", onDelete="CASCADE")
      */
-    protected $name;
+    protected $photo;
 
     /**
-     * @ORM\Column
+     * @ORM\OneToOne(targetEntity="Murder", mappedBy="victim", cascade={"PERSIST"})
      */
-    protected $imageUrl;
+    protected $murder;
 
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $murderer = false;
-
-    /**
-     * @ORM\Column(type="boolean")
-     */
-    protected $dead = false;
-
-    public function __construct($flickrId) {
-        $this->flickrId = $flickrId;
+    public function __construct(Game $game, Photo $photo) {
+        $this->game = $game;
+        $this->photo = $photo;
     }
 
     public function getId() {
         return $this->id;
     }
 
-    public function getFlickrId() {
-        return $this->flickrId;
-    }
-
-    public function setName($name) {
-        $this->name = $name;
+    public function getGame() {
+        return $this->game;
     }
 
     public function getName() {
-        return $this->name;
+        return $this->photo->getTitle();
     }
 
-    public function setImageUrl($imageUrl) {
-        $this->imageUrl = $imageUrl;
+    public function getPhoto() {
+        return $this->photo;
     }
 
-    public function getImageUrl() {
-        return $this->imageUrl;
+    public function setPhoto($photo) {
+        $this->photo = $photo;
     }
 
     public function isMurderer() {
-        return $this->murderer === true;
+        return $this->game->isMurderer($this);
     }
 
-    public function setMurderer($value) {
-        return $this->murderer = (boolean) $value;
+    public function setMurder(Murder $murder = null) {
+        $this->murder = $murder;
+    }
+
+    public function getMurder() {
+        return $this->murder;
     }
 
     public function isDead() {
-        return $this->dead === true;
+        return (boolean) $this->murder;
     }
 
-    public function setDead($value) {
-        $this->dead = $value;
+    public function canMurder(Player $victim) {
+        try {
+            $this->checkMurder($victim);
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
-    public function mayMurder(Player $player) {
-        if (!$this->isMurderer()) return false;
-        if ($player->isMurderer()) return false;
-        if ($player->isDead()) return false;
-        return true;
+    public function murder(Player $victim) {
+        $this->checkMurder($victim);
+        $this->game->kill($victim);
     }
 
-    public function murder(Player $player) {
-        if (!$this->isMurderer())
-            throw new \Exception("{$this->name} is not a murderer.");
-
-        if ($player->isMurderer())
-            throw new \Exception("{$player->name} is a murderer and cannot be killed.");
-
-        if ($player->isDead())
-            throw new \Exception("{$player->name} is already dead.");
-
-        $player->setDead(true);
+    protected function checkMurder(Player $victim) {
+        if (!$this->isMurderer()) throw new \Exception("Player {$this->getName()} is not the murderer.");
+        if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
+        if ($this === $victim) throw new \Exception("Player {$this->getName()} cannot murder himself.");
     }
 
 }

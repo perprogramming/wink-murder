@@ -15,9 +15,7 @@ class PlayerController extends BaseController {
      * @Template
      */
     public function indexAction() {
-        return array('players' => $this->getPlayerRepository()->findForIndex(
-            $this->getAuthenticatedPlayer()
-        ));
+        return array('players' => $this->getCurrentGame()->getPlayers());
     }
 
 }

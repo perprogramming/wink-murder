@@ -6,7 +6,7 @@
     <ul data-role="listview" data-inset="true">
         {% for player in players %}
             <li>
-                {% if is_granted('ROLE_PLAYER') and app.user.player.mayMurder(player) %}
+                {% if app.user.player.canMurder(player) %}
                     <a href="{{ path('winkmurder_game_murder_commit', {id: player.id}) }}" data-ajax="false">
                         {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
                     </a>
