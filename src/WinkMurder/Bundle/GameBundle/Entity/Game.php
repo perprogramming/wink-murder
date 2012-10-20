@@ -96,8 +96,8 @@ class Game {
         return $this->players->toArray();
     }
 
-    public function addPlayer(Photo $photo) {
-        $player = new Player($this, $photo);
+    public function addPlayer(Photo $photo, MannerOfDeath $mannerOfDeath) {
+        $player = new Player($this, $photo, $mannerOfDeath);
         $this->players->add($player);
         return $player;
     }

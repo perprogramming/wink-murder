@@ -32,9 +32,15 @@ class Player {
      */
     protected $murder;
 
-    public function __construct(Game $game, Photo $photo) {
+    /**
+     * @ORM\ManyToOne(targetEntity="MannerOfDeath", inversedBy="players")
+     */
+    protected $mannerOfDeath;
+
+    public function __construct(Game $game, Photo $photo, MannerOfDeath $mannerOfDeath) {
         $this->game = $game;
         $this->photo = $photo;
+        $this->mannerOfDeath = $mannerOfDeath;
     }
 
     public function getId() {
@@ -92,6 +98,14 @@ class Player {
 
     public function murder(Player $victim) {
         $this->game->kill($victim);
+    }
+
+    public function setMannerOfDeath($mannerOfDeath) {
+        $this->mannerOfDeath = $mannerOfDeath;
+    }
+
+    public function getMannerOfDeath() {
+        return $this->mannerOfDeath;
     }
 
 }

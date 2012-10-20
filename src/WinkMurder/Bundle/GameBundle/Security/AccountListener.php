@@ -33,7 +33,7 @@ class AccountListener extends AbstractAuthenticationListener {
             if ($game = $this->getCurrentGame()) {
                 if ($photo = $this->getPhoto($id)) {
                     if ($photo->getPhotoSet() === $game->getPhotoSet()) {
-                        $player = $game->addPlayer($photo);
+                        $player = $game->addPlayer($photo, $this->getMannerOfDeath());
                         $account = new Account($player);
                         $em->persist($account);
                         $em->flush();
@@ -52,6 +52,10 @@ class AccountListener extends AbstractAuthenticationListener {
     /** @return \WinkMurder\Bundle\GameBundle\Entity\Photo */
     protected function getPhoto($id) {
         return $this->entityManager->getRepository('WinkMurderGameBundle:Photo')->find($id);
+    }
+
+    protected function getMannerOfDeath() {
+        return $this->entityManager->getRepository('WinkMurderGameBundle:MannerOfDeath')->findRandomOne();
     }
 
 }
