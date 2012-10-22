@@ -1,6 +1,2 @@
-<div>
-    {{ player.name }}
-</div>
-<div>
-    <img src="{{ player.photo.url }}" alt="{{ player.photo.title }}" />
-</div>
+<img class="player-thumbnail ui-li-thumb" src="{{ player.photo.url }}" alt="{{ player.photo.title }}" />
+<h2 class="inline ui-li-heading">{{ player.name }}</h2>

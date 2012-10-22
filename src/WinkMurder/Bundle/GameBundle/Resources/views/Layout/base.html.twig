@@ -13,27 +13,27 @@
         {% endstylesheets %}
     </head>
     <body>
-        <div data-role="page">
+        <div data-role="page" data-theme="">
+            <div data-role="content">
+                {% block body %}{% endblock %}
+            </div>
             {% if app.user %}
-                <div data-role="header">
+                <div data-role="footer" data-position="fixed" data-id="test">
                     {% if is_granted('ROLE_ADMIN') %}
                         <h1>{{ 'layout.menue.administration' | trans }}</h1>
                         <a href="{{ path('winkmurder_game_authentication_logout') }}" data-ajax="false" data-role="button" class="ui-btn-right" data-icon="delete">{{ 'layout.menue.logout' | trans }}</a>
                     {% else %}
                         <div data-role="navbar">
                             <ul>
-                                <li><a href="{{ path('winkmurder_game_game_status') }}" data-ajax="false">{{ 'layout.menue.game' | trans }}</a></li>
-                                <li><a href="{{ path('winkmurder_game_player_index') }}" data-ajax="false">{{ 'layout.menue.players' | trans }}</a></li>
-                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-ajax="false">{{ 'layout.menue.profile' | trans }}</a></li>
-                                <li><a href="{{ path('winkmurder_game_rules_show') }}" data-ajax="false">{{ 'layout.menue.rules' | trans }}</a></li>
+                                <li><a href="{{ path('winkmurder_game_game_status') }}" data-icon="jack-o-lantern" data-ajax="false">{{ 'layout.menue.game' | trans }}</a></li>
+                                <li><a href="{{ path('winkmurder_game_player_index') }}" data-icon="group" data-ajax="false">{{ 'layout.menue.players' | trans }}</a></li>
+                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-icon="idcard" data-ajax="false">{{ 'layout.menue.profile' | trans }}</a></li>
+                                <li><a href="{{ path('winkmurder_game_rules_show') }}" data-icon="rules" data-ajax="false">{{ 'layout.menue.rules' | trans }}</a></li>
                             </ul>
                         </div>
                     {% endif %}
                 </div>
             {% endif %}
-            <div data-role="content">
-                {% block body %}{% endblock %}
-            </div>
         </div>
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>

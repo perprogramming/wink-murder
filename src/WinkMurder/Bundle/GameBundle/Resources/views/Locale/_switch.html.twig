@@ -1,5 +1,24 @@
-<h2>{{ 'locale.switch.heading' | trans }}</h2>
-<ul>
+<h3>{{ 'locale.switch.heading' | trans }}</h3>
+
+<form action="{{ path('winkmurder_game_locale_set') }}" method="post" data-ajax="false">
+    <fieldset data-role="controlgroup">
+        {% for locale in ['en', 'de'] %}
+
+            {% set label = (('language.' ~ locale) | trans) %}
+            {% if locale == app.session.locale %}
+                <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
+                <label for="radio-choice-1">{{ label }}</label>
+            {% else %}
+                <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
+                <label for="radio-choice-2">{{ label }}</label>
+            {% endif %}
+
+        {% endfor %}
+    </fieldset>
+</form>
+
+
+<!-- <ul>
 {% for locale in ['en', 'de'] %}
     <li>
         {% set label = (('language.' ~ locale) | trans) %}
@@ -11,3 +30,4 @@
     </li>
 {% endfor %}
 </ul>
+-->
