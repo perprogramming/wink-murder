@@ -67,8 +67,8 @@ layout:
         administration: Administration
         logout: Logout
         game: Game
-        players: The Others
-        profile: You
+        players: Players
+        profile: Profile
         rules: Rules
 
 locale:
@@ -93,15 +93,15 @@ mannerofdeath:
 
 player:
     index:
-        pageTitle: The others
+        pageTitle: Players
         dead: This player is dead.
 
 profile:
     show:
-        pageTitle: You
-        heading: You are %name%
+        pageTitle: Profile
+        heading: Hi %name%!
         mannerOfDeath:
-            name: Your manner of death is %name%.
+            name: Your manner of death is:
             briefing: You should die as follows:
 
 rules:

@@ -3,12 +3,22 @@
 {% block pageTitle %}{{ 'profile.show.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
-    <h2>{{ 'profile.show.heading' | trans({'%name%': player.name}) }}</h2>
-    <div><img src="{{ player.photo.url }}" alt="{{ player.photo.title }}" /></div>
-    <div>{{ 'profile.show.mannerOfDeath.name' | trans({'%name%': player.mannerOfDeath.name}) }}</div>
+    <div class="user-profile">
+        <img src="{{ player.photo.url }}" alt="{{ player.photo.title }}" width="50" class="profile-thumb" />
+        <h1>{{ 'profile.show.heading' | trans({'%name%': player.name}) }}</h1>
+
+        <div class="manner-of-death">
+            <div>{{ 'profile.show.mannerOfDeath.name' | trans}}</div>
+            <div class="h2">{{ player.mannerOfDeath.name }}</div>
+        </div>
+
+    {#
     <div>
         {{ 'profile.show.mannerOfDeath.briefing' | trans }}<br />
         {{ player.mannerOfDeath.briefing | nl2br }}
+    </div>
+    #}
+
     </div>
 
     {% include "WinkMurderGameBundle:Locale:_switch.html.twig" %}
