@@ -125,6 +125,7 @@ class Game {
         if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$murderer->getName()} is not the murderer.");
         if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
         if ($murderer && ($murderer === $victim)) throw new \Exception("Player {$murderer->getName()} cannot murder himself.");
+        if ($this->arePreliminaryProceedingsOngoing()) throw new \Exception("The preliminary proceedings of the last murder are still ongoing.");
     }
 
     public function kill(Player $player, Player $murderer = null) {
@@ -152,6 +153,12 @@ class Game {
 
     public function addSuspicion(Player $suspect, Player $witness) {
         $this->getLatestMurder()->addSuspicion($suspect, $witness);
+    }
+
+    public function arePreliminaryProceedingsOngoing() {
+        if ($lastMurder = $this->getLatestMurder()) {
+            return !$lastMurder->arePreliminaryProceedingsDiscontinued();
+        }
     }
 
     public function getDurationOfPreliminaryProceedings() {
