@@ -1,9 +1,15 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}You{% endblock %}
+{% block pageTitle %}{{ 'profile.show.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
-    <div>You are {{ player.name }}</div>
+    <h2>{{ 'profile.show.heading' | trans({'%name%': player.name}) }}</h2>
     <div><img src="{{ player.photo.url }}" alt="{{ player.photo.title }}" /></div>
-    <div>Your manner of death is {{ player.mannerOfDeath.name }}.</div>
+    <div>{{ 'profile.show.mannerOfDeath.name' | trans({'%name%': player.mannerOfDeath.name}) }}</div>
+    <div>
+        {{ 'profile.show.mannerOfDeath.briefing' | trans }}<br />
+        {{ player.mannerOfDeath.briefing | nl2br }}
+    </div>
+
+    {% include "WinkMurderGameBundle:Locale:_switch.html.twig" %}
 {% endblock %}

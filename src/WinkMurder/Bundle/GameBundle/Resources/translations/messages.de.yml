@@ -1,0 +1,116 @@
+language:
+    de: Deutsch
+    en: Englisch
+
+
+administration:
+    index:
+        pageTitle: Administration
+        currentGame:
+            heading: Das aktuelle Spiel
+            theMurderer:
+                heading: Der Mörder
+                status: %name% ist der Mörder.
+                change: Ändern
+                select: Bitte wähle den Mörder:
+                filterPlaceholder: Suchen...
+                noPlayersYet: Du kannst keinen Mörder wählen, solange sich noch keine Spieler eingeloggt haben.
+            players:
+                heading: Spieler
+                noneYet: Es gibt noch keine Spieler.
+                filterPlaceholder: Suchen...
+                unauthenticate: Ausloggen
+                resurrect: Wiederbeleben
+                kill: Umbringen
+                dead: Dieser Spieler ist tot.
+                alive: Dieser Spieler ist noch lebendig.
+                switchPhoto: Photo tauschen
+            unusedPhotos:
+                heading: Unbenutzte Photos
+                filterPlaceholder: Suchen...
+                noneLeft: Es gibt keine unbenutzten Photos.
+        general:
+            heading: Allgemein
+            noPhotosetsOrManners: Du brauchst mindestens eine Photosammlung und eine Todesart, um ein neues Spiel zu starten.
+            startNewGame:
+                heading: Neues Spiel beginnen
+                warning: Achtung! Wenn Du ein neues Spiel beginnst, wird das aktuelle Spiel beendet und alle Spieler ausgeloggt.
+                photoset: Photosammlung
+                submit: Neues Spiel beginnen
+            synchronizePhotosets:
+                heading: Photosammlungen synchronisieren
+                noneYet: Du musst die Datenbank mit Flickr synchronisieren, um ein neues Spiel starten zu können.
+                update: Um Änderungen auf Flickr in die Datenbank zu überführen, musst Du erneut synchronizieren.
+                submit: Mit Flickr synchronisieren
+            mannersOfDeath:
+                heading: Todesarten
+                status: Du hast bisher %count% Todesarten definiert.
+                link: Verwalten
+
+authentication:
+    login:
+        pageTitle: Einloggen
+        playerSelection:
+            heading: Wer bist Du?
+            noPlayersLeft: Es sind keine Zugänge übrig. Bitte den Spielleiter um einen neuen Zugang.
+        adminForm:
+            heading: Hier geht's zur Administration
+            username: Benutzername
+            password: Passwort
+            submit: Einloggen
+
+game:
+    status:
+        pageTitle: Spiel
+
+layout:
+    menue:
+        administration: Administration
+        logout: Ausloggen
+        game: Spiel
+        players: Die Anderen
+        profile: Du
+        rules: Regeln
+
+locale:
+    switch:
+        heading: Wähle Deine Sprache
+
+mannerofdeath:
+    index:
+        heading: Todesarten
+        new: Neue Todesart
+        back: Zurück
+        edit: Bearbeiten
+        delete: Löschen
+        form:
+            english: Englisch
+            name_en: Name
+            briefing_en: Anweisungen
+            german: Deutsch
+            name_de: Name
+            briefing_de: Anweisungen
+            submit: Speichern
+
+player:
+    index:
+        pageTitle: Die Anderen
+        dead: Dieser Spieler ist tot.
+
+profile:
+    show:
+        pageTitle: Du
+        heading: Du bist %name%
+        mannerOfDeath:
+            name: Deine Todesart ist %name%.
+            briefing: Du solltest wie folgt sterben:
+
+rules:
+    show:
+        pageTitle: Regeln
+        heading: Die Regeln
+        rules: |
+            Die Regeln sind wie folgt:
+
+            1. Du solltest nicht...
+            2. Du solltest...

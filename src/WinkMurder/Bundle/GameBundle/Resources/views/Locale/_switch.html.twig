@@ -1,0 +1,13 @@
+<h2>{{ 'locale.switch.heading' | trans }}</h2>
+<ul>
+{% for locale in ['en', 'de'] %}
+    <li>
+        {% set label = (('language.' ~ locale) | trans) %}
+        {% if locale == app.session.locale %}
+            {{ label }}
+        {% else %}
+            <form action="{{ path('winkmurder_game_locale_set', {_locale: locale}) }}" method="post" data-ajax="false"><div><input data-inline="true" type="submit" value="{{ label }}" /></div></form>
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

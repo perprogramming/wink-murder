@@ -21,7 +21,8 @@ class AdministrationController extends BaseController {
     public function indexAction() {
         return array(
             'game' => $game = $this->getCurrentGame(),
-            'photoSets' => $this->getPhotoSetRepository()->findAll()
+            'photoSets' => $this->getPhotoSetRepository()->findAll(),
+            'mannersOfDeath' => $this->getMannerOfDeathRepository()->findAll()
         );
     }
 

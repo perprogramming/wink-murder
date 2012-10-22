@@ -1,20 +1,20 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}Administration{% endblock %}
+{% block pageTitle %}{{ 'administration.index.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
     {% if game %}
-        <h2>The Current Game</h2>
+        <h2>{{ 'administration.index.currentGame.heading' | trans }}</h2>
 
         <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"{% if not game.murderer %} data-collapsed="false"{% endif %}>
-            <h3>The Murderer</h3>
+            <h3>{{ 'administration.index.currentGame.theMurderer.heading' | trans }}</h3>
             <div>
                 {% if game.players %}
                     {% if game.murderer %}
-                        <p>{{ game.murderer.name }} is the murderer. <a href="{{ path('winkmurder_game_administration_selectmurderer') }}" data-ajax="false" data-inline="true" data-mini="true" data-role="button" data-icon="delete">Change</a></p>
+                        <p>{{ 'administration.index.currentGame.theMurderer.status' | trans({'%name%': game.murderer.name}) }} <a href="{{ path('winkmurder_game_administration_selectmurderer') }}" data-ajax="false" data-inline="true" data-mini="true" data-role="button" data-icon="delete">{{ 'administration.index.currentGame.theMurderer.change' | trans }}</a></p>
                     {% else %}
-                        <p>Please elect the murderer:</p>
-                        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search...">
+                        <p>{{ 'administration.index.currentGame.theMurderer.select' | trans }}</p>
+                        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="{{ 'administration.index.currentGame.theMurderer.filterPlaceholder' | trans }}">
                         {% for player in game.players %}
                             <li data-filtertext="{{ player.name }}">
                                 <a href="{{ path('winkmurder_game_administration_selectmurderer', {id: player.id}) }}" data-ajax="false">
@@ -25,16 +25,16 @@
                         </ul>
                     {% endif %}
                 {% else %}
-                    <p>You cannot choose a murderer because there are no players yet.</p>
+                    <p>{{ 'administration.index.currentGame.theMurderer.noPlayersYet' | trans }}</p>
                 {% endif %}
             </div>
         </div>
 
         <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"{% if game.murderer %} data-collapsed="false"{% endif %}>
-            <h3>Players</h3>
+            <h3>{{ 'administration.index.currentGame.players.heading' | trans }}</h3>
             <div>
                 {% if game.players %}
-                    <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search...">
+                    <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="{{ 'administration.index.currentGame.players.filterPlaceholder' | trans }}">
                     {% for player in game.players %}
                         <li data-filtertext="{{ player.name }}">
                             <div class="ui-grid-a">
@@ -42,22 +42,22 @@
                                     {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
                                 </div>
                                 <div class="ui-block-b">
-                                    <form action="{{ path('winkmurder_game_administration_unauthenticate', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="Unauthenticate" /></div></form>
+                                    <form action="{{ path('winkmurder_game_administration_unauthenticate', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.players.unauthenticate' | trans }}" /></div></form>
                                 </div>
 
                                 {% if player.dead %}
                                     <div class="ui-block-a">
-                                        This player is dead.
+                                        {{ 'administration.index.currentGame.players.dead' | trans }}
                                     </div>
                                     <div class="ui-block-b">
-                                        <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="Resurrect" /></div></form>
+                                        <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.players.resurrect' | trans }}" /></div></form>
                                     </div>
                                 {% else %}
                                     <div class="ui-block-a">
-                                        This player is still alive.
+                                        {{ 'administration.index.currentGame.players.alive' | trans }}
                                     </div>
                                     <div class="ui-block-b">
-                                        <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="Kill" /></div></form>
+                                        <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.players.kill' | trans }}" /></div></form>
                                     </div>
                                 {% endif %}
                             </div>
@@ -75,7 +75,7 @@
                                         </select>
                                     </div>
                                     <div class="ui-block-b">
-                                        <input type="submit" value="Switch photo" />
+                                        <input type="submit" value="{{ 'administration.index.currentGame.players.switchPhoto' | trans }}" />
                                     </div>
                                 </div>
                             </form>
@@ -83,16 +83,16 @@
                     {% endfor %}
                     </ul>
                 {% else %}
-                    There are no players yet.
+                    {{ 'administration.index.currentGame.players.noneYet' | trans }}
                 {% endif %}
             </div>
         </div>
 
         <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
-            <h3>Unused Photos</h3>
+            <h3>{{ 'administration.index.currentGame.unusedPhotos.heading' | trans }}</h3>
             <div>
                 {% if game.unusedPhotos %}
-                    <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="Search...">
+                    <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="{{ 'administration.index.currentGame.unusedPhotos.filterPlaceholder' | trans }}">
                     {% for photo in game.unusedPhotos %}
                         <li data-filtertext="{{ photo.title }}">
                             <div>
@@ -105,22 +105,22 @@
                     {% endfor %}
                     </ul>
                 {% else %}
-                    There are no unused photos.
+                    {{ 'administration.index.currentGame.unusedPhotos.noneLeft' | trans }}
                 {% endif %}
             </div>
         </div>
 
-        <h2>General</h2>
+        <h2>{{ 'administration.index.general.heading' | trans }}</h2>
     {% endif %}
 
-    {% if photoSets %}
-        <div data-role="collapsible" data-expanded-icon="add" data-collapsed-icon="add"{% if not game %} data-collapsed="false"{% endif %}>
-            <h3>Start New Game</h3>
-            <div>
-                {% if game %}<p>Attention! When creating a new game, the current game will finish and all players will be logged out.</p>{% endif %}
+    <div data-role="collapsible" data-expanded-icon="add" data-collapsed-icon="add"{% if not game %} data-collapsed="false"{% endif %}>
+        <h3>{{ 'administration.index.general.startNewGame.heading' | trans }}</h3>
+        <div>
+            {% if photoSets and mannersOfDeath %}
+                {% if game %}<p>{{ 'administration.index.general.startNewGame.warning' | trans }}</p>{% endif %}
                 <form action="{{ path('winkmurder_game_administration_startnewgame') }}" method="post" data-ajax="false">
                     <div data-role="fieldcontain">
-                        <label for="photoSet">Photoset</label>
+                        <label for="photoSet">{{ 'administration.index.general.startNewGame.photoset' | trans }}</label>
                         <select name="id" id="photoSet">
                             <option></option>
                             {% for photoSet in photoSets %}
@@ -129,26 +129,40 @@
                         </select>
                     </div>
                     <div>
-                        <input type="submit" value="Start new game" data-inline="true" />
+                        <input type="submit" value="{{ 'administration.index.general.startNewGame.submit' | trans }}" data-inline="true" />
                     </div>
                 </form>
-            </div>
+            {% else %}
+                {{ 'administration.index.general.noPhotosetsOrManners' | trans }}
+            {% endif %}
         </div>
-    {% endif %}
+    </div>
 
-    <div data-role="collapsible" data-expanded-icon="refresh" data-collapsed-icon="refresh"{% if not photoSets %} data-collapsed="false"{% endif %}>
-        <h3>Synchronize Photosets</h3>
+    <div data-role="collapsible" data-expanded-icon="refresh" data-collapsed-icon="refresh">
+        <h3>{{ 'administration.index.general.synchronizePhotosets.heading' | trans }}</h3>
         <div>
             {% if not photoSets %}
-                <p>You have to synchronize with Flickr to find photosets that you can start a game with.</p>
+                <p>{{ 'administration.index.general.synchronizePhotosets.noneYet' | trans }}</p>
             {% else %}
-                <p>Whenever you modify something on Flickr, synchronize again to get the latest changes.</p>
+                <p>{{ 'administration.index.general.synchronizePhotosets.update' | trans }}</p>
             {% endif %}
             <form action="{{ path('winkmurder_game_administration_synchronizephotosets') }}" method="post" data-ajax="false">
                 <div>
-                    <input type="submit" value="Synchronize with Flickr" data-inline="true" />
+                    <input type="submit" value="{{ 'administration.index.general.synchronizePhotosets.submit' | trans }}" data-inline="true" />
                 </div>
             </form>
         </div>
+    </div>
+
+    <div data-role="collapsible" data-expanded-icon="refresh" data-collapsed-icon="refresh">
+        <h3>{{ 'administration.index.general.mannersOfDeath.heading' | trans }}</h3>
+        <div>
+            <div>{{ 'administration.index.general.mannersOfDeath.status' | trans({'%count%': mannersOfDeath | length }) }}</div>
+            <div><a href="{{ path('winkmurder_game_mannerofdeath_index') }}" data-role="button" data-ajax="false" data-inline="true">{{ 'administration.index.general.mannersOfDeath.link' | trans }}</a></div>
+        </div>
+    </div>
+
+    <div data-role="collapsible" data-expanded-icon="gear" data-collapsed-icon="gear">
+        {% include "WinkMurderGameBundle:Locale:_switch.html.twig" %}
     </div>
 {% endblock %}

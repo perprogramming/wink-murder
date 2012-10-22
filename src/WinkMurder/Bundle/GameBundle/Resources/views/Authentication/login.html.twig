@@ -1,10 +1,11 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}Login{% endblock %}
+{% block pageTitle %}{{ 'authentication.login.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
+    {% include "WinkMurderGameBundle:Locale:_switch.html.twig" %}
     {% if game %}
-        <h2>Who are you?</h2>
+        <h2>{{ 'authentication.login.playerSelection.heading' | trans }}</h2>
         <div>
             {% if game.unusedPhotos %}
                 <ul data-role="listview" data-inset="true">
@@ -16,27 +17,27 @@
                 {% endfor %}
                 </ul>
             {% else %}
-                There are no accounts left to choose. Please ask the referee for an account.
+                {{ 'authentication.login.playerSelect.noPlayersLeft' | trans }}
             {% endif %}
         </div>
     {% endif %}
 
-    <h2>Here you go as admin...</h2>
+    <h2>{{ 'authentication.login.adminForm.heading' | trans }}</h2>
     {% if error %}
         <div>{{ error.message }}</div>
     {% endif %}
 
     <form action="{{ path('winkmurder_game_authentication_logincheck') }}" data-ajax="false" method="post">
         <div data-role="fieldcontain">
-            <label for="username">Username:</label>
+            <label for="username">{{ 'authentication.login.adminForm.username' | trans }}</label>
             <input type="text" id="username" name="_username" value="{{ last_username }}" />
         </div>
 
         <div data-role="fieldcontain">
-            <label for="password">Password:</label>
+            <label for="password">{{ 'authentication.login.adminForm.password' | trans }}</label>
             <input type="password" id="password" name="_password" />
         </div>
 
-        <input type="submit" value="Login" data-inline="true" />
+        <input type="submit" value="{{ 'authentication.login.adminForm.submit' | trans }}" data-inline="true" />
     </form>
 {% endblock %}

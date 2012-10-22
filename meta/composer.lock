@@ -1,5 +1,5 @@
 {
-    "hash": "1ad8bd8cf0a1944f44f91d7ff02867ed",
+    "hash": "a2a53b441e3acfeb9d984bc3197f09dd",
     "packages": [
         {
             "package": "doctrine/common",
@@ -12,6 +12,10 @@
         {
             "package": "doctrine/orm",
             "version": "2.1.7"
+        },
+        {
+            "package": "gedmo/doctrine-extensions",
+            "version": "v2.2.3"
         },
         {
             "package": "jlong/sass-twitter-bootstrap",
@@ -36,6 +40,12 @@
             "commit-date": "1343372444"
         },
         {
+            "package": "stof/doctrine-extensions-bundle",
+            "version": "1.0.x-dev",
+            "source-reference": "1.0.2",
+            "commit-date": "1334857730"
+        },
+        {
             "package": "swiftmailer/swiftmailer",
             "version": "v4.2.1"
         },
@@ -51,7 +61,7 @@
         },
         {
             "package": "twig/twig",
-            "version": "v1.10.2"
+            "version": "v1.10.3"
         },
         {
             "package": "webfactory/assetdependenciesbugfix-bundle",
@@ -73,6 +83,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "symfony/assetic-bundle": 20,
-        "sensio/framework-extra-bundle": 20
+        "sensio/framework-extra-bundle": 20,
+        "stof/doctrine-extensions-bundle": 20
     }
 }

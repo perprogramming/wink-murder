@@ -8,17 +8,23 @@ class MannerOfDeathRepository extends EntityRepository {
 
     public function findRandomOne() {
         $queryBuilder = $this->createDefaultQueryBuilder();
-        $manners = $queryBuilder->getQuery()->getResult();
-        $firstManner = reset($manners);
-        return $firstManner['0'];
+        $queryBuilder->addSelect('SIZE(manner.players) as usage');
+        $queryBuilder->addOrderBy('usage', 'ASC');
+        $result = $queryBuilder->getQuery()->getResult();
+        $possibleManners = array();
+        $usage = false;
+        foreach ($result as $row) {
+            if (($usage !== false) && ($usage < $row['usage'])) {
+                break;
+            }
+            $usage = $row['usage'];
+            $possibleManners[] = $row['0'];
+        }
+        return $possibleManners[array_rand($possibleManners)];
     }
 
     protected function createDefaultQueryBuilder() {
         $queryBuilder = $this->createQueryBuilder('manner');
-        $queryBuilder->leftJoin('manner.players', 'player');
-        $queryBuilder->addSelect('COUNT(player) as usage');
-        $queryBuilder->addGroupBy('manner.id');
-        $queryBuilder->addOrderBy('usage', 'ASC');
         return $queryBuilder;
     }
 

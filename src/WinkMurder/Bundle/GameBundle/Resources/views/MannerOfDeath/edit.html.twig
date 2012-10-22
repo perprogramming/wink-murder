@@ -1,0 +1,28 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}{{ 'mannerofdeath.index.heading' | trans }}{% endblock %}
+
+{% block body %}
+    <form action="{{ path('winkmurder_game_mannerofdeath_update', {id: manner.id}) }}" method="post" data-ajax="false">
+        <div>
+            <h2>{{ 'mannerofdeath.index.form.english' | trans }}</h2>
+            <div data-role="fieldcontain">
+                {{ form_row(form.name_en) }}
+            </div>
+            <div data-role="fieldcontain">
+                {{ form_row(form.briefing_en) }}
+            </div>
+        </div>
+        <div>
+            <h2>{{ 'mannerofdeath.index.form.german' | trans }}</h2>
+            <div data-role="fieldcontain">
+                {{ form_row(form.name_de) }}
+            </div>
+            <div data-role="fieldcontain">
+                {{ form_row(form.briefing_de) }}
+            </div>
+        </div>
+        <input type="submit" value="{{ 'mannerofdeath.index.form.submit' | trans }}" data-inline="true" />
+    </form>
+    <div><a href="{{ path('winkmurder_game_mannerofdeath_index') }}" data-role="button" data-ajax="false" data-inline="true">{{ 'mannerofdeath.index.back' | trans }}</a></div>
+{% endblock %}

@@ -24,6 +24,7 @@ security:
         - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/, roles: ROLE_ADMIN }
+        - { path: ^/set-locale/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/$, roles: [ROLE_PLAYER, ROLE_ADMIN] }
         - { path: ^/, roles: ROLE_PLAYER }
 

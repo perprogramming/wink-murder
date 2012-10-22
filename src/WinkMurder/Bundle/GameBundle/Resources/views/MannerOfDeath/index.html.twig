@@ -1,0 +1,28 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+{% block pageTitle %}{{ 'mannerofdeath.index.heading' | trans }}{% endblock %}
+
+{% block body %}
+    <ul data-role="listview" data-inset="true">
+        {% for manner in mannersOfDeath %}
+            <li>
+                <div class="ui-grid-a">
+                    <div class="ui-block-a">
+                        <h2>{{ manner.name }}</h2>
+                    </div>
+                    <div class="ui-block-b">
+                        <form action="{{ path('winkmurder_game_mannerofdeath_delete', {id: manner.id}) }}" method="post" data-ajax="false">
+                            <div data-role="controlgroup" data-type="horizontal">
+                                <a href="{{ path('winkmurder_game_mannerofdeath_edit', {id: manner.id}) }}" data-role="button" data-inline="true" data-ajax="false">{{ 'mannerofdeath.index.edit' | trans }}</a>
+                                <input type="submit" value="{{ 'mannerofdeath.index.delete' | trans }}" data-inline="true" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <div><a href="{{ path('winkmurder_game_mannerofdeath_new') }}" data-role="button" data-ajax="false" data-inline="true">{{ 'mannerofdeath.index.new' | trans }}</a></div>
+    <div><a href="{{ path('winkmurder_game_administration_index') }}" data-role="button" data-ajax="false" data-inline="true">{{ 'mannerofdeath.index.back' | trans }}</a></div>
+{% endblock %}

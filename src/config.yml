@@ -14,9 +14,9 @@ framework:
     router:          { resource: "%kernel.root_dir%/routing.yml" }
     form:            true
     templating:      { engines: ['twig'] }
-    translator:      { fallback: de }
+    translator:      { fallback: en }
     session:
-        default_locale: de
+        default_locale: en
     esi:             { enabled: true }
     validation:      { enable_annotations: true }
 
@@ -56,3 +56,9 @@ swiftmailer:
 webfactory_exceptions:
     bundle: WinkMurderGameBundle
     force: false
+
+stof_doctrine_extensions:
+    default_locale: en
+    orm:
+        default:
+            translatable: true

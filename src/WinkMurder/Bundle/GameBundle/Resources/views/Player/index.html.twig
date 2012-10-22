@@ -1,6 +1,6 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
-{% block pageTitle %}The others{% endblock %}
+{% block pageTitle %}{{ 'player.index.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
     <ul data-role="listview" data-inset="true">
@@ -13,7 +13,7 @@
                 {% else %}
                     {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
                     {% if player.dead %}
-                        <div>This player is dead.</div>
+                        <div>{{ 'player.index.dead' | trans }}</div>
                     {% endif %}
                 {% endif %}
             </li>

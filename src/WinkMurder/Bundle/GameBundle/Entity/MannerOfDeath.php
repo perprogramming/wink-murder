@@ -4,7 +4,7 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use Symfony\Component\Validator\Constraints as Assert;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\MannerOfDeathRepository")
@@ -25,14 +25,20 @@ class MannerOfDeath {
 
     /**
      * @ORM\Column
-     * @Assert\NotBlank
+     * @Gedmo\Translatable
      */
     protected $name = '';
+
     /**
      * @ORM\Column(type="text")
-     * @Assert\NotBlank
+     * @Gedmo\Translatable
      */
     protected $briefing = '';
+
+    /**
+     * @Gedmo\Locale
+     */
+    protected $locale;
 
     public function __construct() {
         $this->players = new ArrayCollection();
@@ -64,6 +70,10 @@ class MannerOfDeath {
 
     public function getName() {
         return $this->name;
+    }
+
+    public function setTranslatableLocale($locale) {
+        $this->locale = $locale;
     }
 
 }

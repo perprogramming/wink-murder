@@ -41,9 +41,18 @@ abstract class BaseController extends Controller {
         return $this->getDoctrine()->getRepository('WinkMurderGameBundle:Game');
     }
 
+    /** @return \WinkMurder\Bundle\GameBundle\Entity\MannerOfDeathRepository */
+    protected function getMannerOfDeathRepository() {
+        return $this->getDoctrine()->getRepository('WinkMurderGameBundle:MannerOfDeath');
+    }
+
     /** @return \Doctrine\ORM\EntityRepository */
     protected function getPhotoSetRepository() {
         return $this->getDoctrine()->getRepository('WinkMurderGameBundle:PhotoSet');
+    }
+
+    protected function getTranslationRepository() {
+        return $this->getDoctrine()->getRepository('Stof\DoctrineExtensionsBundle\Entity\Translation');
     }
 
     /** @return \Doctrine\ORM\EntityManager */

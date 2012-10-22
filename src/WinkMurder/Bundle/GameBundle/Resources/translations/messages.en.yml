@@ -1,0 +1,115 @@
+language:
+    de: German
+    en: English
+
+administration:
+    index:
+        pageTitle: Administration
+        currentGame:
+            heading: The Current Game
+            theMurderer:
+                heading: The Murderer
+                status: %name% is the murderer.
+                change: Change
+                select: Please elect the murderer:
+                filterPlaceholder: Search...
+                noPlayersYet: You cannot choose a murderer because there are no players yet.
+            players:
+                heading: Players
+                noneYet: There are no players yet.
+                filterPlaceholder: Search...
+                unauthenticate: Unauthenticate
+                resurrect: Resurrect
+                kill: Kill
+                dead: This player is dead.
+                alive: This player is still alive.
+                switchPhoto: Switch photo
+            unusedPhotos:
+                heading: Unused Photos
+                filterPlaceholder: Search...
+                noneLeft: There are no unused photos.
+        general:
+            heading: General
+            noPhotosetsOrManners: You need to have at least one photoset and one manner of death to start a new game.
+            startNewGame:
+                heading: Start New Game
+                warning: Attention! When creating a new game, the current game will finish and all players will be logged out.
+                photoset: Photoset
+                submit: Start new game
+            synchronizePhotosets:
+                heading: Synchronize Photosets
+                noneYet: You have to synchronize with Flickr to find photosets that you can start a game with.
+                update: Whenever you modify something on Flickr, synchronize again to get the latest changes.
+                submit: Synchronize with Flickr
+            mannersOfDeath:
+                heading: Manners of Death
+                status: You have %count% manners of death so far.
+                link: Administrate
+
+authentication:
+    login:
+        pageTitle: Login
+        playerSelection:
+            heading: Who are you?
+            noPlayersLeft: There are no accounts left to choose. Please ask the referee for an account.
+        adminForm:
+            heading: Here you go as admin...
+            username: Username
+            password: Password
+            submit: Login
+
+game:
+    status:
+        pageTitle: Game
+
+layout:
+    menue:
+        administration: Administration
+        logout: Logout
+        game: Game
+        players: The Others
+        profile: You
+        rules: Rules
+
+locale:
+    switch:
+        heading: Select your language
+
+mannerofdeath:
+    index:
+        heading: Manners Of Death
+        new: Create new manner
+        back: Back
+        edit: Edit
+        delete: Delete
+        form:
+            english: English
+            name_en: Name
+            briefing_en: Briefing
+            german: German
+            name_de: Name
+            briefing_de: Briefing
+            submit: Save
+
+player:
+    index:
+        pageTitle: The others
+        dead: This player is dead.
+
+profile:
+    show:
+        pageTitle: You
+        heading: You are %name%
+        mannerOfDeath:
+            name: Your manner of death is %name%.
+            briefing: You should die as follows:
+
+rules:
+    show:
+        pageTitle: Rules
+        heading: The Rules
+        rules: |
+            The rules are the following:
+
+            1. You should not...
+            2. You should...

@@ -122,9 +122,9 @@ class Game {
     }
 
     public function checkKill(Player $victim, Player $murderer = null) {
-        if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$this->getName()} is not the murderer.");
+        if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$murderer->getName()} is not the murderer.");
         if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
-        if ($murderer && ($murderer === $victim)) throw new \Exception("Player {$this->getName()} cannot murder himself.");
+        if ($murderer && ($murderer === $victim)) throw new \Exception("Player {$murderer->getName()} cannot murder himself.");
     }
 
     public function kill(Player $player, Player $murderer = null) {
