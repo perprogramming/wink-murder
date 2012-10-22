@@ -37,11 +37,6 @@ class Murder {
      */
     protected $timeOfOffense;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    protected $endOfPreliminaryProceedings;
-
     public function __construct(Game $game, Player $victim, \DateTime $timeOfOffense) {
         $victim->setMurder($this);
         $this->game = $game;
