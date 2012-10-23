@@ -5,27 +5,43 @@
 {% block body %}
     {% if game.latestMurder %}
         <div class="centered">
-        {% if game.latestMurder.victim is sameas(app.user.player) %}
-            <p class="imfellsc type-big">{{ 'game.status.latestMurder.headingVictim' | trans }}</p>
-        {% else %}
-            <p class="imfellsc type-big">{{ 'game.status.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
-            <div class="jollylodger type-huge">{{ game.latestMurder.victim.mannerOfDeath.name }}</div>
+        {% if not game.latestMurder.isClearedUp %}
+            {% if game.latestMurder.victim is sameas(app.user.player) %}
+                <p class="imfellsc type-big mrgn-btm-12">{{ 'game.status.latestMurder.headingVictim' | trans }}</p>
+                <p>{{ 'game.status.latestMurder.noSuspicionByDead' | trans }}</p>
+                <p class="mrgn-top-24 mrgn-btm-24">— • —</p>
+            {% else %}
+                <img src="{{ game.latestMurder.victim.photo.url }}" alt="{{ game.latestMurder.victim.photo.title }}" width="60" class="profile-thumb" />
+                <p class="imfellsc type-big mrgn-btm-24">{{ 'game.status.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
+                <p>{{ 'game.status.latestMurder.mannerOfDeathLeading' | trans }}</p>
+                <div class="jollylodger type-huge mrgn-btm-36">{{ game.latestMurder.victim.mannerOfDeath.name }}</div>
+            {% endif %}
         {% endif %}
         </div>
+
         {% if game.latestMurder.arePreliminaryProceedingsDiscontinued %}
-            <p>{{ 'game.status.latestMurder.preliminaryProceedingsDiscontinued' | trans }}</p>
+            {# brauchen wir m. M. nach nicht -sb
+                <p>{{ 'game.status.latestMurder.preliminaryProceedingsDiscontinued' | trans }}</p>
+            #}
+
             {% if game.latestMurder.isClearedUp %}
-                <p>{{ 'game.status.latestMurder.clearedUp' | trans({'%murderer%': game.murderer.name}) }}</p>
+                <div class="centered">
+                    <p class="type-big imfellsc mrgn-top-24 mrgn-btm-36">{{ 'game.status.latestMurder.clearedUp.heading' | trans }}</p>
+                    <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
+                    <p class="type-huge jollylodger">{{ 'game.status.latestMurder.clearedUp.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
+                </div>
             {% else %}
-                <p>{{ 'game.status.latestMurder.notClearedUp' | trans }}</p>
+                <h1 class="centered">{{ 'game.status.latestMurder.notClearedUp' | trans }}</h1>
             {% endif %}
         {% else %}
-            <p data-end-of-preliminary-proceedings="{{ game.endOfPreliminaryProceedings.format('U') }}" class="fx-end-of-preliminary-proceedings">{{ 'game.status.latestMurder.endOfPreliminaryProceedings' | trans({'%end%': game.endOfPreliminaryProceedings.format('d.m.Y H:i:s')}) }}</p>
-            {% if app.user.player.dead %}
-                <p>{{ 'game.status.latestMurder.noSuspicionByDead' | trans }}</p>
-            {% else %}
+            {% if game.latestMurder.victim is not sameas(app.user.player) %}
+                <div class="centered mrgn-btm-36">
+                    <p data-end-of-preliminary-proceedings="{{ game.endOfPreliminaryProceedings.format('U') }}" class="fx-end-of-preliminary-proceedings">
+                        <span class="type-big imfellsc">{{ 'game.status.latestMurder.endOfPreliminaryProceedings' | trans({'%end%': game.endOfPreliminaryProceedings.format('d.m.Y H:i:s')}) }}</span>
+                    </p>
+                </div>
                 {% if app.user.player.hasSuspicion %}
-                    <p>{{ 'game.status.latestMurder.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>
+                    <p class="centered type-medium">{{ 'game.status.latestMurder.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>
                 {% else %}
                     {% if game.aliveOtherPlayers(app.user.player) %}
                         <p>{{ 'game.status.latestMurder.selectSuspect' | trans }}</p>
