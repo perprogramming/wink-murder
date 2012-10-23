@@ -72,9 +72,9 @@ class Murder {
 
     public function addSuspicion(Player $suspect, Player $witness) {
         if (!$this->hasSuspicion($witness)) {
-            if ($witness->isDead()) {
+            if (!$witness->isDead()) {
                 $suspicion = new Suspicion($this, $suspect, $witness);
-                if (!$this->arePreliminaryProceedingsDiscontinued($suspect->getTimestamp())) {
+                if (!$this->arePreliminaryProceedingsDiscontinued($suspicion->getTimestamp())) {
                     $this->suspicions->add($suspicion);
                 } else {
                     throw new \Exception("The preliminary proceedings were discontinued.");
@@ -88,12 +88,15 @@ class Murder {
     }
 
     public function hasSuspicion(Player $witness) {
+        return (boolean) $this->getSuspicion($witness);
+    }
+
+    public function getSuspicion(Player $witness) {
         foreach ($this->suspicions as $suspicion) {
             if ($suspicion->getWitness() === $witness) {
-                return true;
+                return $suspicion;
             }
         }
-        return false;
     }
 
     public function arePreliminaryProceedingsDiscontinued(\DateTime $time = null) {
@@ -104,14 +107,24 @@ class Murder {
         return $time > $this->timeOfOffense;
     }
 
+    public function getEndOfPreliminaryProceedings() {
+        $endOfPreliminaryProceedings = clone $this->timeOfOffense;
+        $endOfPreliminaryProceedings->add($this->game->getDurationOfPreliminaryProceedings());
+        return $endOfPreliminaryProceedings;
+    }
+
     public function isClearedUp() {
-        $numberOfCorrectSuspicions = 0;
-        foreach ($this->suspicions as $suspicion) {
-            if ($suspicion->isCorrect()) {
-                $numberOfCorrectSuspicions++;
+        if (count($this->suspicions)) {
+            $numberOfCorrectSuspicions = 0;
+            foreach ($this->suspicions as $suspicion) {
+                if ($suspicion->isCorrect()) {
+                    $numberOfCorrectSuspicions++;
+                }
             }
+            return ($numberOfCorrectSuspicions / count($this->suspicions)) >= $this->game->getRequiredPositiveSuspicionRate();
+        } else {
+            return false;
         }
-        return ($numberOfCorrectSuspicions / count($this->suspicions)) > $this->game->getRequiredCorrectSuspicionRate();
     }
 
 }

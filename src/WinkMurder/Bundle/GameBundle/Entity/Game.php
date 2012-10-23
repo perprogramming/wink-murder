@@ -69,19 +69,15 @@ class Game {
     }
 
     public function getUnusedPhotos() {
-        $unusedPhotos = array();
-        foreach ($this->photoSet->getPhotos() as $photo) {
-            $found = false;
-            foreach ($this->players as $player) {
+        $players = $this->players;
+        return array_filter($this->photoSet->getPhotos(), function(Photo $photo) use ($players) {
+            foreach ($players as $player) {
                 if ($player->getPhoto() === $photo) {
-                    $found = true;
-                    break;
+                    return false;
                 }
             }
-            if (!$found)
-                $unusedPhotos[] = $photo;
-        }
-        return $unusedPhotos;
+            return true;
+        });
     }
 
     public function findPlayer($id) {
@@ -129,6 +125,12 @@ class Game {
         return false;
     }
 
+    public function getAliveOtherPlayers(Player $player) {
+        return array_filter($this->players->toArray(), function(Player $other) use ($player) {
+            return (!$other->isDead() && ($other !== $player));
+        });
+    }
+
     public function checkKill(Player $victim, Player $murderer = null) {
         if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$murderer->getName()} is not the murderer.");
         if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
@@ -161,6 +163,10 @@ class Game {
         return $this->getLatestMurder()->hasSuspicion($witness);
     }
 
+    public function getSuspicion(Player $witness) {
+        return $this->getLatestMurder()->getSuspicion($witness);
+    }
+
     public function addSuspicion(Player $suspect, Player $witness) {
         $this->getLatestMurder()->addSuspicion($suspect, $witness);
     }
@@ -177,6 +183,10 @@ class Game {
             return !$latestMurder->arePreliminaryProceedingsDiscontinued();
         }
         return false;
+    }
+
+    public function getEndOfPreliminaryProceedings() {
+        return $this->getLatestMurder()->getEndOfPreliminaryProceedings();
     }
 
     public function getDurationOfPreliminaryProceedings() {

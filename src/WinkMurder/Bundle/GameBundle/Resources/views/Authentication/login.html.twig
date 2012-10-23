@@ -1,5 +1,6 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
 
+
 {% block pageTitle %}{{ 'authentication.login.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
@@ -17,7 +18,7 @@
                 {% endfor %}
                 </ul>
             {% else %}
-                {{ 'authentication.login.playerSelect.noPlayersLeft' | trans }}
+                {{ 'authentication.login.playerSelection.noPlayersLeft' | trans }}
             {% endif %}
         </div>
     {% endif %}

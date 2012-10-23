@@ -15,7 +15,7 @@ class GameController extends BaseController {
      * @Template
      */
     public function statusAction() {
-        return array();
+        return array('game' => $this->getCurrentGame());
     }
 
     /**

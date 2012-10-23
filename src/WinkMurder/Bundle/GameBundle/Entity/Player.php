@@ -92,6 +92,10 @@ class Player {
         return $this->game->hasSuspicion($this);
     }
 
+    public function getSuspicion() {
+        return $this->game->getSuspicion($this);
+    }
+
     public function suspect(Player $suspect) {
         $this->game->addSuspicion($suspect, $this);
     }
