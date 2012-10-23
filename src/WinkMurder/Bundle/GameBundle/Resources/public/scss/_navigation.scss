@@ -2,6 +2,7 @@
 .ui-footer .ui-navbar .ui-btn-text {
     @extend .type-medium;
     @extend .jollylodger;
+    font-weight: normal;
 }
 .ui-navbar li .ui-btn .ui-btn-inner { padding-top: 27px; padding-bottom: 5px; }
 
