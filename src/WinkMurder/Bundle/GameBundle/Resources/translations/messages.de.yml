@@ -102,7 +102,7 @@ profile:
         pageTitle: Profil
         heading: Hi %name%!
         mannerOfDeath:
-            name: Deine Todesart ist %name%.
+            name: Deine Todesart ist:
             briefing: Du solltest wie folgt sterben:
 
 rules:
