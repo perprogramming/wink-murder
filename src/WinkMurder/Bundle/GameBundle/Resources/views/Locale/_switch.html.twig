@@ -1,33 +1,11 @@
 <h3>{{ 'locale.switch.heading' | trans }}</h3>
 
-<form action="{{ path('winkmurder_game_locale_set') }}" method="post" data-ajax="false">
+<form action="{{ path('winkmurder_game_locale_set') }}" method="post" data-ajax="false" class="fx-autosubmit">
     <fieldset data-role="controlgroup">
         {% for locale in ['en', 'de'] %}
-
             {% set label = (('language.' ~ locale) | trans) %}
-            {% if locale == app.session.locale %}
-                <input type="radio" name="radio-choice" id="radio-choice-1" value="choice-1" checked="checked" />
-                <label for="radio-choice-1">{{ label }}</label>
-            {% else %}
-                <input type="radio" name="radio-choice" id="radio-choice-2" value="choice-2"  />
-                <label for="radio-choice-2">{{ label }}</label>
-            {% endif %}
-
+            <input type="radio" name="locale" id="locale-{{ locale }}" value="{{ locale }}"{% if locale == app.session.locale %} checked="checked"{% endif %} />
+            <label for="locale-{{ locale }}">{{ label }}</label>
         {% endfor %}
     </fieldset>
 </form>
-
-
-<!-- <ul>
-{% for locale in ['en', 'de'] %}
-    <li>
-        {% set label = (('language.' ~ locale) | trans) %}
-        {% if locale == app.session.locale %}
-            {{ label }}
-        {% else %}
-            <form action="{{ path('winkmurder_game_locale_set', {_locale: locale}) }}" method="post" data-ajax="false"><div><input data-inline="true" type="submit" value="{{ label }}" /></div></form>
-        {% endif %}
-    </li>
-{% endfor %}
-</ul>
--->
