@@ -11,6 +11,7 @@ security:
             remember_me:
                 key: %secret%
                 always_remember_me: true
+                lifetime: 31536000
             account:
                 check_path: /login/photo/
                 always_use_default_target_path: true
