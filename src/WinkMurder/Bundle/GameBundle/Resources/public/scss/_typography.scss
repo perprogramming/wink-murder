@@ -17,8 +17,9 @@ img { line-height: 1; }
 .type-small { font-size: 12px; }
 
 h1 {
-    @extend .type-huge;
-    @extend .jollylodger;
+    @extend .type-big;
+    @extend .imfellsc;
+    font-weight: normal;
     margin-bottom: 20px;
 }
 
@@ -33,3 +34,8 @@ h3 {
 
 .inline { display: inline-block; }
 .centered { text-align: center; }
+.mrgn-top-12 { margin-top: 12px; }
+.mrgn-top-24 { margin-top: 24px; }
+.mrgn-btm-12 { margin-bottom: 12px; }
+.mrgn-btm-24 { margin-bottom: 24px; }
+.mrgn-btm-36 { margin-bottom: 36px; }
