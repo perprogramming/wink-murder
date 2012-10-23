@@ -65,16 +65,19 @@ game:
             heading: The murderer did not murder yet.
             text: Be careful...
         latestMurder:
-            heading: %victim% has just been killed!
+            heading: %victim% is the latest murder victim!
             headingVictim: You have just been killed!
+            mannerOfDeathLeading: She suffered a most gruesome death:
             noSuspicionByDead: As you are dead, you can no longer suspect the murderer, as you obvisouly know who it is.
             preliminaryProceedingsDiscontinued: The preliminary proceedings were discontinued.
-            notClearedUp: The murder has not been cleared up. The murderer is still out there...
+            notClearedUp: The case has not been solved. The murderer is still at large!
             selectSuspect: Who do you suspect?
             noSuspectLeft: There are no players to suspect. You must be the murderer...
             suspicion: You suspect %suspect% to be the murderer.
-            clearedUp: The murderer has been caught! It is %murderer%!
-            endOfPreliminaryProceedings: The preliminaryProceedings will end on %end%.
+            clearedUp:
+                heading: The case has been solved!
+                convict: The murderer is %murderer%!
+            endOfPreliminaryProceedings: The preliminaryProceedings will end in:
 
 layout:
     menue:
