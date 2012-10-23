@@ -18,16 +18,19 @@ class Suspicion {
 
     /**
      * @ORM\ManyToOne(targetEntity="Murder", inversedBy="suspicions")
+     * @ORM\JoinColumn(name="murder_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $murder;
 
     /**
      * @ORM\ManyToOne(targetEntity="Player")
+     * @ORM\JoinColumn(name="suspect_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $suspect;
 
     /**
      * @ORM\ManyToOne(targetEntity="Player")
+     * @ORM\JoinColumn(name="witness_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $witness;
 

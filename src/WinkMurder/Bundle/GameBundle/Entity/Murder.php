@@ -24,6 +24,7 @@ class Murder {
 
     /**
      * @ORM\OneToOne(targetEntity="Player", inversedBy="murder")
+     * @ORM\JoinColumn(name="victim_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $victim;
 
