@@ -9,7 +9,7 @@ $(function() {
 
     $('.fx-end-of-preliminary-proceedings').each(function() {
         var source = $(this);
-        var display = source.after('<p></p>').next();
+        var display = source.after('<p class="type-huge jollylodger mrgn-top-12 mrgn-btm-12"></p>').next();
         var endOfPreliminaryProceedings = parseInt(source.attr('data-end-of-preliminary-proceedings'));
 
         var timerInterval;
