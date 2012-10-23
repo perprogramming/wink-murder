@@ -4,11 +4,14 @@
 
 {% block body %}
     {% if game.latestMurder %}
+        <div class="centered">
         {% if game.latestMurder.victim is sameas(app.user.player) %}
-            <h2>{{ 'game.status.latestMurder.headingVictim' | trans }}</h2>
+            <p class="imfellsc type-big">{{ 'game.status.latestMurder.headingVictim' | trans }}</p>
         {% else %}
-            <h2>{{ 'game.status.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</h2>
+            <p class="imfellsc type-big">{{ 'game.status.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
+            <div class="jollylodger type-huge">{{ game.latestMurder.victim.mannerOfDeath.name }}</div>
         {% endif %}
+        </div>
         {% if game.latestMurder.arePreliminaryProceedingsDiscontinued %}
             <p>{{ 'game.status.latestMurder.preliminaryProceedingsDiscontinued' | trans }}</p>
             {% if game.latestMurder.isClearedUp %}
@@ -42,7 +45,7 @@
             {% endif %}
         {% endif %}
     {% else %}
-        <h2>{{ 'game.status.noMurderYet.heading' | trans }}</h2>
+        <h1>{{ 'game.status.noMurderYet.heading' | trans }}</h1>
         <p>{{ 'game.status.noMurderYet.text' | trans }}</p>
     {% endif %}
 {% endblock %}

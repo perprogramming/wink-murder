@@ -1,5 +1,11 @@
 .user-profile {
-    text-align: center;
+    @extend .centered;
+}
+
+.salutation {
+    @extend .type-medium;
+    @extend .imfellsc;
+    margin-bottom: 20px;
 }
 
 .profile-thumb {
@@ -9,8 +15,4 @@
 
 .manner-of-death {
     margin-bottom: 36px;
-}
-
-.manner-of-death .h2 {
-    font-size: 36px;
 }

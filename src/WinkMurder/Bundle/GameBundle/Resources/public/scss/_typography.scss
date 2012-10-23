@@ -1,35 +1,35 @@
 
 body, form, input, label {
-    font-family: 'Inconsolata', Arial, sans-serif;
+    font-family: 'IM Fell English', Garamond, Cambria, Georgia, sans-serif;
 }
 
 * { margin: 0; padding: 0; }
 img { line-height: 1; }
 
-.h2,
-.h3,
-.ui-footer .ui-navbar .ui-btn-text {
-    font-family: 'Jolly Lodger', Arial, sans-serif;
-}
+.imfell { font-family: 'IM Fell English', Garamond, Cambria, Georgia, sans-serif; }
+.imfellsc { font-family: 'IM Fell English SC', Garamond, Cambria, Georgia, sans-serif; }
+.jollylodger { font-family: 'Jolly Lodger', Arial, sans-serif; }
+
+.type-huge { font-size: 36px; }
+.type-big { font-size: 24px; }
+.type-medium { font-size: 20px; }
+.type-default { font-size: 14px; }
+.type-small { font-size: 12px; }
 
 h1 {
-    font-size: 20px;
+    @extend .type-huge;
+    @extend .jollylodger;
     margin-bottom: 20px;
 }
 
-h2,
-.h2 {
-    font-weight: bold;
-    font-size: 18px;
+h2 {
+    @extend .type-medium;
     margin: 4px 0;
 }
 
 h3 {
-    font-size: 1em;
+    @extend .type-default;
 }
 
-.ui-footer .ui-navbar .ui-btn-text { font-size: 18px; }
-
-.inline {
-    display: inline-block;
-}
+.inline { display: inline-block; }
+.centered { text-align: center; }

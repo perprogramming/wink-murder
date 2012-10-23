@@ -1,3 +1,11 @@
+/* Custom navbar typography and layout */
+.ui-footer .ui-navbar .ui-btn-text {
+    @extend .type-medium;
+    @extend .jollylodger;
+}
+.ui-navbar li .ui-btn .ui-btn-inner { padding-top: 27px; padding-bottom: 5px; }
+
+/* Custom navbar icons via glyphish.com */
 .ui-icon-jack-o-lantern { background-image: url("../img/jackolantern.png"); }
 .ui-icon-idcard { background-image: url("../img/123-id-card.png"); }
 .ui-icon-group { background-image: url("../img/112-group.png"); }
