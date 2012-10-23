@@ -53,12 +53,14 @@
                                         <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.players.resurrect' | trans }}" /></div></form>
                                     </div>
                                 {% else %}
-                                    <div class="ui-block-a">
-                                        {{ 'administration.index.currentGame.players.alive' | trans }}
-                                    </div>
-                                    <div class="ui-block-b">
-                                        <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.players.kill' | trans }}" /></div></form>
-                                    </div>
+                                    {% if game.canBeKilled(player) %}
+                                        <div class="ui-block-a">
+                                            {{ 'administration.index.currentGame.players.alive' | trans }}
+                                        </div>
+                                        <div class="ui-block-b">
+                                            <form action="{{ path('winkmurder_game_administration_toggledead', {id: player.id}) }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.players.kill' | trans }}" /></div></form>
+                                        </div>
+                                    {% endif %}
                                 {% endif %}
                             </div>
 

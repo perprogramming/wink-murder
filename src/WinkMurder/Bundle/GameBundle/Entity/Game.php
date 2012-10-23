@@ -121,10 +121,19 @@ class Game {
         return $this->murderer === $player;
     }
 
+    public function canBeKilled(Player $victim) {
+        try {
+            $this->checkKill($victim);
+            return true;
+        } catch (\Exception $e) {}
+        return false;
+    }
+
     public function checkKill(Player $victim, Player $murderer = null) {
         if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$murderer->getName()} is not the murderer.");
         if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
         if ($murderer && ($murderer === $victim)) throw new \Exception("Player {$murderer->getName()} cannot murder himself.");
+        if ($victim->isMurderer()) throw new \Exception("The Murderer cannot be killed.");
         if ($this->arePreliminaryProceedingsOngoing()) throw new \Exception("The preliminary proceedings of the last murder are still ongoing.");
         if ($this->isMurdererIdentified()) throw new \Exception("The murderer is identified.");
     }
