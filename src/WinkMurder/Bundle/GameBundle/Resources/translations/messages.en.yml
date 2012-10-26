@@ -2,7 +2,20 @@ language:
     de: German
     en: English
 
+account:
+    login:
+        pageTitle: Login
+        heading: Who are you?
+        noPlayersLeft: There are no accounts left to choose. Please ask the referee for an account.
+
 administration:
+    login:
+        pageTitle: Login
+        heading: Here you go as admin...
+        adminForm:
+            username: Username
+            password: Password
+            submit: Login
     index:
         pageTitle: Administration
         currentGame:
@@ -45,18 +58,6 @@ administration:
                 heading: Manners of Death
                 status: You have %count% manners of death so far.
                 link: Administrate
-
-authentication:
-    login:
-        pageTitle: Login
-        playerSelection:
-            heading: Who are you?
-            noPlayersLeft: There are no accounts left to choose. Please ask the referee for an account.
-        adminForm:
-            heading: Here you go as admin...
-            username: Username
-            password: Password
-            submit: Login
 
 game:
     status:
@@ -126,3 +127,7 @@ rules:
 
             1. You should not...
             2. You should...
+
+start:
+    index:
+        pageTitle: Welcome

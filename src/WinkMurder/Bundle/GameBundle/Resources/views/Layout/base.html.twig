@@ -22,7 +22,7 @@
                     {% if is_granted('ROLE_ADMIN') %}
                         {% include "WinkMurderGameBundle:Locale:_button.html.twig" %}
                         <h1>{{ 'layout.menue.administration' | trans }}</h1>
-                        <a href="{{ path('winkmurder_game_authentication_logout') }}" data-ajax="false" data-role="button" class="ui-btn-right" data-icon="delete">{{ 'layout.menue.logout' | trans }}</a>
+                        <a href="{{ path('winkmurder_game_administration_logout') }}" data-ajax="false" data-role="button" class="ui-btn-right" data-icon="delete">{{ 'layout.menue.logout' | trans }}</a>
                     {% else %}
                         <div data-role="navbar">
                             <ul>

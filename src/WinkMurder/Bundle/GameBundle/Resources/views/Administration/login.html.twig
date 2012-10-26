@@ -1,0 +1,24 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+
+{% block pageTitle %}{{ 'administration.login.pageTitle' | trans }}{% endblock %}
+
+{% block body %}
+    <h2>{{ 'administration.login.heading' | trans }}</h2>
+    {% if error %}
+        <div>{{ error.message }}</div>
+    {% endif %}
+    <form action="{{ path('winkmurder_game_administration_logincheck') }}" data-ajax="false" method="post">
+        <div data-role="fieldcontain">
+            <label for="username">{{ 'authentication.login.adminForm.username' | trans }}</label>
+            <input type="text" id="username" name="_username" value="{{ last_username }}" />
+        </div>
+
+        <div data-role="fieldcontain">
+            <label for="password">{{ 'authentication.login.adminForm.password' | trans }}</label>
+            <input type="password" id="password" name="_password" />
+        </div>
+
+        <input type="submit" value="{{ 'authentication.login.adminForm.submit' | trans }}" data-inline="true" />
+    </form>
+{% endblock %}

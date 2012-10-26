@@ -14,8 +14,9 @@ class RefreshController extends BaseController {
      * @Route("/")
      */
     public function hashAction() {
+        $game = $this->getCurrentGame();
         return new Response(
-            $this->getCurrentGame()->getHash(),
+            $game ? $game->getHash() : md5('no-game'),
             200,
             array('Content-Type' => 'text/plain')
         );

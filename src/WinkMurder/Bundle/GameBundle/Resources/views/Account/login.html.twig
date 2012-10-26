@@ -1,0 +1,24 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+
+
+{% block pageTitle %}{{ 'account.login.pageTitle' | trans }}{% endblock %}
+
+{% block body %}
+    {% if game %}
+        <h2>{{ 'account.login.heading' | trans }}</h2>
+        <div>
+            {% if game.unusedPhotos %}
+                <ul data-role="listview" data-inset="true">
+                {% for photo in game.unusedPhotos %}
+                    <li><a href="{{ path('winkmurder_game_account_logincheck', {id: photo.id}) }}" data-ajax="false">
+                        <h3>{{ photo.title }}</h3>
+                        <p><img src="{{ photo.url }}" alt="{{ photo.title }}" /></p>
+                    </a></li>
+                {% endfor %}
+                </ul>
+            {% else %}
+                {{ 'account.login.noPlayersLeft' | trans }}
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}

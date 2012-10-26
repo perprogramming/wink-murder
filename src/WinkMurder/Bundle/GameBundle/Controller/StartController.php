@@ -12,12 +12,11 @@ class StartController extends BaseController {
      * @Template
      */
     public function indexAction() {
-        if ($this->get('security.context')->isGranted('ROLE_ADMIN')) {
-            $redirectTo = $this->generateUrl('winkmurder_game_administration_index');
+        if ($this->getCurrentGame()) {
+            return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
         } else {
-            $redirectTo = $this->generateUrl('winkmurder_game_profile_show');
+            return array();
         }
-        return $this->redirect($redirectTo);
     }
 
 }

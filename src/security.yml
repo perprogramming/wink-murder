@@ -1,19 +1,34 @@
 security:
     firewalls:
-        main:
-            pattern:    ^/
+        admin:
+            pattern: ^/administration/
+            provider: admin
             anonymous: ~
             form_login:
-                login_path: /login/
-                check_path: /login/check/
+                login_path: /administration/login/
+                check_path: /administration/login/check/
                 always_use_default_target_path: true
-                default_target_path: /
+                default_target_path: /administration/
             remember_me:
+                name: WinkMurderAdministrator
+                key: %secret%
+                always_remember_me: true
+                lifetime: 31536000
+            logout:
+                path: /administration/logout/
+                target: /administration/login/
+        accounts:
+            pattern: ^/
+            provider: accounts
+            anonymous: ~
+            remember_me:
+                name: WinkMurderPlayer
                 key: %secret%
                 always_remember_me: true
                 lifetime: 31536000
             account:
-                check_path: /login/photo/
+                login_path: /login/
+                check_path: /login/check/
                 always_use_default_target_path: true
                 default_target_path: /
             logout:
@@ -23,16 +38,19 @@ security:
 
     access_control:
         - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        - { path: ^/administration/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/, roles: ROLE_ADMIN }
+
+        - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/set-locale/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/$, roles: [ROLE_PLAYER, ROLE_ADMIN] }
+
+        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/refresh/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/, roles: ROLE_PLAYER }
 
     providers:
-        chain_provider:
-            providers: [in_memory, accounts]
-        in_memory:
+        admin:
             users:
                 admin: { password: '5b1e4104ab5eda1b3388a68a4621aa04bc5934c1', roles: ROLE_ADMIN }
         accounts:
