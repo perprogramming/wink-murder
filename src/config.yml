@@ -7,6 +7,7 @@ parameters:
     flickr_username: winkmurder
     duration_of_preliminary_proceedings_in_minutes: 10
     required_positive_suspicion_rate: 0.5
+    numberOfAvailable404s: 17
 
 framework:
     secret: %secret%

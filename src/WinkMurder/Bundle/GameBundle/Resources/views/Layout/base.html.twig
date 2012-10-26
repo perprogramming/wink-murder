@@ -12,28 +12,34 @@
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}" media="screen" />
         {% endstylesheets %}
     </head>
-    <body>
+    <body{% block autorefresh %}{% endblock %}>
         <div data-role="page" data-theme="">
             <div data-role="content">
                 {% block body %}{% endblock %}
             </div>
-            {% if app.user %}
-                <div data-role="footer" data-position="fixed" data-id="test">
+            <div data-role="footer" data-position="fixed" data-id="test">
+                {% if app.user %}
                     {% if is_granted('ROLE_ADMIN') %}
+                        {% include "WinkMurderGameBundle:Locale:_button.html.twig" %}
                         <h1>{{ 'layout.menue.administration' | trans }}</h1>
-                        <a href="{{ path('winkmurder_game_authentication_logout') }}" data-ajax="false" data-role="button" class="ui-btn-right" data-icon="delete">{{ 'layout.menue.logout' | trans }}</a>
+                        <a href="{{ path('winkmurder_game_administration_logout') }}" data-ajax="false" data-role="button" class="ui-btn-right" data-icon="delete">{{ 'layout.menue.logout' | trans }}</a>
                     {% else %}
                         <div data-role="navbar">
                             <ul>
+                                <li>{% include "WinkMurderGameBundle:Locale:_button.html.twig" %}</li>
+                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-icon="idcard" data-ajax="false">{{ 'layout.menue.profile' | trans }}</a></li>
                                 <li><a href="{{ path('winkmurder_game_game_status') }}" data-icon="jack-o-lantern" data-ajax="false">{{ 'layout.menue.game' | trans }}</a></li>
                                 <li><a href="{{ path('winkmurder_game_player_index') }}" data-icon="group" data-ajax="false">{{ 'layout.menue.players' | trans }}</a></li>
-                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-icon="idcard" data-ajax="false">{{ 'layout.menue.profile' | trans }}</a></li>
                                 <li><a href="{{ path('winkmurder_game_rules_show') }}" data-icon="rules" data-ajax="false">{{ 'layout.menue.rules' | trans }}</a></li>
                             </ul>
                         </div>
                     {% endif %}
-                </div>
-            {% endif %}
+                {% else %}
+                    <div data-role="navbar">
+                        <ul><li>{% include "WinkMurderGameBundle:Locale:_button.html.twig" %}</li></ul>
+                    </div>
+                {% endif %}
+            </div>
         </div>
         <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>

@@ -2,8 +2,20 @@ language:
     de: Deutsch
     en: Englisch
 
+account:
+    login:
+        pageTitle: Einloggen
+        heading: Wer bist Du?
+        noPlayersLeft: Es sind keine Zugänge übrig. Bitte den Spielleiter um einen neuen Zugang.
 
 administration:
+    login:
+        pageTitle: Einloggen
+        heading: Hier geht's zur Administration
+        adminForm:
+            username: Benutzername
+            password: Passwort
+            submit: Einloggen
     index:
         pageTitle: Administration
         currentGame:
@@ -47,18 +59,6 @@ administration:
                 status: Du hast bisher %count% Todesarten definiert.
                 link: Verwalten
 
-authentication:
-    login:
-        pageTitle: Einloggen
-        playerSelection:
-            heading: Wer bist Du?
-            noPlayersLeft: Es sind keine Zugänge übrig. Bitte den Spielleiter um einen neuen Zugang.
-        adminForm:
-            heading: Hier geht's zur Administration
-            username: Benutzername
-            password: Passwort
-            submit: Einloggen
-
 game:
     status:
         pageTitle: Spiel
@@ -101,12 +101,8 @@ mannerofdeath:
         edit: Bearbeiten
         delete: Löschen
         form:
-            english: Englisch
-            name_en: Name
-            briefing_en: Anweisungen
-            german: Deutsch
-            name_de: Name
-            briefing_de: Anweisungen
+            name_en: Name (Englisch)
+            name_de: Name (Deutsch)
             submit: Speichern
 
 player:
@@ -131,3 +127,7 @@ rules:
 
             1. Du solltest nicht...
             2. Du solltest...
+
+start:
+    index:
+        pageTitle: Willkommen
