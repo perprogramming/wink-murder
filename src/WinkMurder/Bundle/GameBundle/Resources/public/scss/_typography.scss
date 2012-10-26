@@ -1,6 +1,7 @@
 
 body, form, input, label {
     font-family: 'IM Fell English', Garamond, Cambria, Georgia, sans-serif;
+    @extend .type-default;
 }
 
 * { margin: 0; padding: 0; }
@@ -10,10 +11,10 @@ img { line-height: 1; }
 .imfellsc { font-family: 'IM Fell English SC', Garamond, Cambria, Georgia, sans-serif; }
 .jollylodger { font-family: 'Jolly Lodger', Arial, sans-serif; }
 
-.type-huge { font-size: 36px; }
-.type-big { font-size: 24px; }
+.type-huge { font-size: 36px; line-height: 1.1; }
+.type-big { font-size: 28px; line-height: 1.2; }
 .type-medium { font-size: 20px; }
-.type-default { font-size: 14px; }
+.type-default { font-size: 18px; }
 .type-small { font-size: 12px; }
 
 h1 {
