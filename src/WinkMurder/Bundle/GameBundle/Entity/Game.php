@@ -4,11 +4,13 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
+use WinkMurder\Bundle\GameBundle\Entity\Hash\Hash;
 
 /**
  * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\GameRepository")
  */
-class Game {
+class Game implements Hashable {
 
     /**
      * @ORM\Id
@@ -126,8 +128,14 @@ class Game {
     }
 
     public function getAliveOtherPlayers(Player $player) {
-        return array_filter($this->players->toArray(), function(Player $other) use ($player) {
-            return (!$other->isDead() && ($other !== $player));
+        return array_filter($this->getAlivePlayers(), function(Player $other) use ($player) {
+            return $other !== $player;
+        });
+    }
+
+    public function getAlivePlayers() {
+        return array_filter($this->players->toArray(), function(Player $player) {
+            return !$player->isDead();
         });
     }
 
@@ -197,8 +205,40 @@ class Game {
         return $this->requiredPositiveSuspicionRate;
     }
 
+    public function isFinished() {
+        return $this->finished;
+    }
+
     public function finish() {
         $this->finished = true;
+    }
+
+    public function getStatus() {
+        if ($latestMurder = $this->getLatestMurder()) {
+            if ($latestMurder->arePreliminaryProceedingsDiscontinued()) {
+                return 'proceedingsDiscontinued';
+            } else {
+                return 'proceedingsOngoing';
+            }
+        } else {
+            return 'noMurderYet';
+        }
+    }
+
+    public function getHash() {
+        return new Hash($this);
+    }
+
+    public function getHashValues() {
+        return array(
+            'id' => $this->id,
+            'photoSet' => $this->photoSet,
+            'players' => $this->players,
+            'murderer' => $this->murderer,
+            'murders' => $this->murders,
+            'requiredPositiveSuspicionRate' => $this->requiredPositiveSuspicionRate,
+            'durationOfPreliminaryProceedingsInMinutes' => $this->durationOfPreliminaryProceedingsInMinutes
+        );
     }
 
 }

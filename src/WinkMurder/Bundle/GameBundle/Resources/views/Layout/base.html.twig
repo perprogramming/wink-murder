@@ -12,7 +12,7 @@
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}" media="screen" />
         {% endstylesheets %}
     </head>
-    <body>
+    <body{% block autorefresh %}{% endblock %}>
         <div data-role="page" data-theme="">
             <div data-role="content">
                 {% block body %}{% endblock %}

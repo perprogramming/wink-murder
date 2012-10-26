@@ -3,11 +3,12 @@
 namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class Suspicion {
+class Suspicion implements Hashable {
 
     /**
      * @ORM\Id
@@ -17,7 +18,7 @@ class Suspicion {
     protected $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Murder", inversedBy="suspicions")
+     * @ORM\ManyToOne(targetEntity="Murder", inversedBy="suspicions", fetch="LAZY")
      * @ORM\JoinColumn(name="murder_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $murder;
@@ -64,6 +65,16 @@ class Suspicion {
 
     public function isCorrect() {
         return $this->suspect->isMurderer();
+    }
+
+    public function getHashValues() {
+        return array(
+            'id' => $this->id,
+            'murder' => $this->murder,
+            'suspect' => $this->suspect,
+            'witness' => $this->witness,
+            'timestamp' => $this->timestamp
+        );
     }
 
 }

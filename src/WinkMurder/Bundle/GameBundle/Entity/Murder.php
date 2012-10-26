@@ -4,11 +4,12 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class Murder {
+class Murder implements Hashable {
 
     /**
      * @ORM\Id
@@ -100,6 +101,26 @@ class Murder {
     }
 
     public function arePreliminaryProceedingsDiscontinued(\DateTime $time = null) {
+        // Die Ermittlungen enden auf jeden Fall, wenn das Spiel beendet wurde
+        if ($this->game->isFinished())
+            return true;
+
+        // Die Ermittlungen enden mit dem nächsten Mord (kann nur durch Admin ausgelöst werden)
+        if ($this !== $this->game->getLatestMurder())
+            return true;
+
+        // Die Ermittlungen enden, wenn alle lebenden Spieler einen Verdacht geäußert haben
+        if (count($this->suspicions) == count($this->game->getAlivePlayers()))
+            return true;
+
+        // Die Ermittlungen enden auch, wenn alle lebenden Spieler außer dem Mörder einen Verdacht geäußert haben
+        if (count($this->suspicions) == count($this->game->getAliveOtherPlayers($this->game->getMurderer()))) {
+            if (!$this->hasSuspicion($this->game->getMurderer())) {
+                return true;
+            }
+        }
+
+        // Sonst enden die Ermittlungen, sobald die grundsätzlich eingestellte Zeitspanne abgelaufen ist
         if (!$time)
             $time = new \DateTime('now');
         $time = clone $time;
@@ -125,6 +146,17 @@ class Murder {
         } else {
             return false;
         }
+    }
+
+    public function getHashValues() {
+        return array(
+            'id' => $this->id,
+            'game' => $this->game,
+            'victim' => $this->victim,
+            'suspicions' => $this->suspicions,
+            'timeOfOffense' => $this->timeOfOffense,
+            'endOfPreliminaryProceedings' => $this->arePreliminaryProceedingsDiscontinued()
+        );
     }
 
 }

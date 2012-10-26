@@ -1,4 +1,5 @@
 {% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+{% use "WinkMurderGameBundle:Layout:autorefresh.html.twig" %}
 
 {% block pageTitle %}{{ 'game.status.pageTitle' | trans }}{% endblock %}
 
@@ -32,6 +33,22 @@
                 </div>
             {% else %}
                 <h1 class="centered">{{ 'game.status.latestMurder.notClearedUp' | trans }}</h1>
+
+                {% swtich latestMurder.id % numberOfAvailable404s %}
+
+                    kein opfer geufnden...
+
+
+                    bdfjobsdg
+
+
+                    dsfdsfdsf
+
+
+                    sdfasdf
+
+
+
             {% endif %}
         {% else %}
             {% if game.latestMurder.victim is not sameas(app.user.player) %}
