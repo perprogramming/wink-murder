@@ -8,10 +8,17 @@ account:
         heading: Who are you?
         noPlayersLeft: There are no accounts left to choose. Please ask the referee for an account.
 
+authentication:
+    login:
+        adminForm:
+            username: Username
+            password: Password
+            submit: Log in
+
 administration:
     login:
         pageTitle: Login
-        heading: Here you go as admin...
+        heading: Backend access
         adminForm:
             username: Username
             password: Password
@@ -131,3 +138,12 @@ rules:
 start:
     index:
         pageTitle: Welcome
+        heading: Winkmurderer still on the loose
+        leadin: Two more „winkmurderer“ victims found dead in the city of Bonn. Police desperate.
+        text: |
+          <p class="mrgn-btm-24"><strong>Bonn</strong> — For over a week an unknown murderer has brought fear amongst the citizens of Bonn. While the police recently arrested a suspect, it now seems clear that the man can‘t be the one everyone had hoped to catch.</p>
+          <p class="mrgn-btm-24">As a police spokesman said this afternoon, two more victims, a 22 years old female biology student and a computer science student (male, 24) were found dead today close to the Bonner Alt- and Weststadt.</p>
+          <p class="mrgn-btm-24">As with the other deaths there is no clue so far on how the students died. „It really seems as if the victims had no injuries at all“, said Horst Schroff from the SOKO Bonn. „We will need to wait for the autopsy results to clarify what lead to these tragic deaths.“</p>
+          <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in  dark clothes, immediately before they died. The media therefore termed the stranger „winkmurderer“. The term „winkmurderer“ is derived from a  popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
+          <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
+          <p class="mrgn-btm-24 centered type-small">&#9830;</p>
