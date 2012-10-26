@@ -100,12 +100,8 @@ mannerofdeath:
         edit: Edit
         delete: Delete
         form:
-            english: English
-            name_en: Name
-            briefing_en: Briefing
-            german: German
-            name_de: Name
-            briefing_de: Briefing
+            name_en: Name (English)
+            name_de: Name (German)
             submit: Save
 
 player:

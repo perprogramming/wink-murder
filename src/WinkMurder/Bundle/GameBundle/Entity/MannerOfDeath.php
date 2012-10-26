@@ -31,12 +31,6 @@ class MannerOfDeath implements Hashable {
     protected $name = '';
 
     /**
-     * @ORM\Column(type="text")
-     * @Gedmo\Translatable
-     */
-    protected $briefing = '';
-
-    /**
      * @Gedmo\Locale
      */
     protected $locale;
@@ -57,14 +51,6 @@ class MannerOfDeath implements Hashable {
         $this->players->add($player);
     }
 
-    public function setBriefing($briefing) {
-        $this->briefing = $briefing;
-    }
-
-    public function getBriefing() {
-        return $this->briefing;
-    }
-
     public function setName($name) {
         $this->name = $name;
     }
@@ -80,8 +66,7 @@ class MannerOfDeath implements Hashable {
     public function getHashValues() {
         return array(
             'id' => $this->id,
-            'name' => $this->name,
-            'briefing' => $this->briefing,
+            'name' => $this->name
         );
     }
 

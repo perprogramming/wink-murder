@@ -48,12 +48,10 @@ class MannerOfDeathController extends BaseController {
 
         $manner->setTranslatableLocale('en');
         $manner->setName($data['name_en']);
-        $manner->setBriefing($data['briefing_en']);
         $entityManager->flush();
 
         $manner->setTranslatableLocale('de');
         $manner->setName($data['name_de']);
-        $manner->setBriefing($data['briefing_de']);
         $entityManager->flush();
 
         return $this->redirect($this->generateUrl('winkmurder_game_mannerofdeath_index'));
@@ -71,12 +69,10 @@ class MannerOfDeathController extends BaseController {
         $manner->setTranslatableLocale('en');
         $entityManager->refresh($manner);
         $data['name_en'] = $manner->getName();
-        $data['briefing_en'] = $manner->getBriefing();
 
         $manner->setTranslatableLocale('de');
         $entityManager->refresh($manner);
         $data['name_de'] = $manner->getName();
-        $data['briefing_de'] = $manner->getBriefing();
 
         $form = $this->createForm(new MannerOfDeathForm(), $data);
         return array(
@@ -99,12 +95,10 @@ class MannerOfDeathController extends BaseController {
 
         $manner->setTranslatableLocale('en');
         $manner->setName($data['name_en']);
-        $manner->setBriefing($data['briefing_en']);
         $entityManager->flush();
 
         $manner->setTranslatableLocale('de');
         $manner->setName($data['name_de']);
-        $manner->setBriefing($data['briefing_de']);
         $entityManager->flush();
 
         return $this->redirect($this->generateUrl('winkmurder_game_mannerofdeath_index'));

@@ -101,12 +101,8 @@ mannerofdeath:
         edit: Bearbeiten
         delete: Löschen
         form:
-            english: Englisch
-            name_en: Name
-            briefing_en: Anweisungen
-            german: Deutsch
-            name_de: Name
-            briefing_de: Anweisungen
+            name_en: Name (Englisch)
+            name_de: Name (Deutsch)
             submit: Speichern
 
 player:
