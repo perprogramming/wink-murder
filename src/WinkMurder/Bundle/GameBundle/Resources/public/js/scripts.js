@@ -12,7 +12,7 @@ $(function() {
                     window.location.reload();
                 }
             });
-        }, 3000);
+        }, 60000);
     })
 
     $('.fx-autosubmit').each(function() {
