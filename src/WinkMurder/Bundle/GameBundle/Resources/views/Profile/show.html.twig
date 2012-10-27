@@ -14,7 +14,7 @@
 
         <div class="profile-lang-switch">
             <h3 class="pdng-top-12 mrgn-btm-12">{{ 'locale.switch.heading' | trans }}</h3>
-            {% include "WinkMurderGameBundle:Locale:_button.html.twig" %}
+            <a href="{{ path('winkmurder_game_locale_set', {'locale': otherLocale}) }}" data-ajax="false" class="lang-switch">{{ ('language.' ~ otherLocale) | trans }}</a>
         </div>
     </div>
 {% endblock %}
