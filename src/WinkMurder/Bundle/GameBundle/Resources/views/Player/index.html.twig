@@ -14,7 +14,7 @@
                 {% else %}
                     {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
                     {% if player.dead %}
-                        <p class="ui-li-desc pdng-top-6">{{ 'player.index.dead' | trans }}</p>
+                        <p class="ui-li-desc pdng-top-6">{{ 'player.index.dead' | trans({'%tod%': player.mannerOfDeath.name}) }}</p>
                     {% endif %}
                 {% endif %}
             </li>
