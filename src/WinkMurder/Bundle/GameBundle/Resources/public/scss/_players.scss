@@ -1,2 +1,47 @@
-.player-thumbnail {
+.player-list {
+    list-style-type: none;
+}
+
+.player {
+    float: left;
+    width: 100%;
+    margin-bottom: 10px;
+    border: 1px solid #222;
+}
+
+.player a:active {
+    background: #f89406;
+}
+
+.player-wrapper {
+    float: left;
+    width: 97%;
+    background: url(../img/glyphicons_217_circle_arrow_right.png) no-repeat right center;
+}
+
+.player-name {
+    padding-top: 11px;
+    @extend .type-medium;
+}
+
+.player-thumb {
+    float: left;
+    margin-right: 10px;
+}
+
+.player-dead {
+    background-color: #eee;
+}
+
+.player-dead .player-thumb {
+    border: 5px solid #000;
+    width: 40px;
+}
+
+.player-dead .player-name {
+    padding-top: 5px;
+}
+
+.player-dead p {
+    margin-bottom: 0;
 }

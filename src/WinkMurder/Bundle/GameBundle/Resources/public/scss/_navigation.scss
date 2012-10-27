@@ -5,6 +5,9 @@
     font-weight: normal;
 }
 .ui-navbar li .ui-btn .ui-btn-inner { padding-top: 27px; padding-bottom: 5px; }
+.ui-navbar li .lang-switch .ui-btn-inner { padding-top: 3px; padding-bottom: 3px; }
+
+.ui-navbar .lang-switch { float: right; }
 
 /* Custom navbar icons via glyphish.com */
 .ui-icon-jack-o-lantern { background-image: url("../img/jackolantern.png"); }

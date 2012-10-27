@@ -3,9 +3,10 @@
 {% block pageTitle %}{{ 'player.index.pageTitle' | trans }}{% endblock %}
 
 {% block body %}
-    <ul data-role="listview" data-inset="true">
+    <h1>{{ 'player.index.heading' | trans }}</h1>
+    <ul class="player-list">
         {% for player in players %}
-            <li>
+            <li class="player {% if player.dead %}player-dead{% endif %}">
                 {% if app.user.player.canMurder(player) %}
                     <a href="{{ path('winkmurder_game_game_commitmurder', {id: player.id}) }}" data-ajax="false">
                         {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
@@ -13,7 +14,7 @@
                 {% else %}
                     {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
                     {% if player.dead %}
-                        <p class="ui-li-desc">{{ 'player.index.dead' | trans }}</p>
+                        <p class="ui-li-desc pdng-top-6">{{ 'player.index.dead' | trans }}</p>
                     {% endif %}
                 {% endif %}
             </li>
