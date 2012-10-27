@@ -1,5 +1,5 @@
 language:
-    de: Deutsch
+    de: Deutsche Version
     en: Switch to English
 
 account:
@@ -97,10 +97,6 @@ game:
             heading: Der Fall wurde gelöst!
             convict: %murderer% ist der Mörder!
         endOfPreliminaryProceedings: Die aktuellen Ermittlungen enden in:
-
-locale:
-    switch:
-        heading: Spracheinstellungen
 
 mannerofdeath:
     index:

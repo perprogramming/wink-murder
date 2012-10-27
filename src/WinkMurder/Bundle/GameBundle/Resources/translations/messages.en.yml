@@ -1,6 +1,6 @@
 language:
-    de: German
-    en: English
+    de: Deutsche Version
+    en: Switch to English
 
 account:
     login:
@@ -95,10 +95,6 @@ game:
             heading: The case has been solved!
             convict: The murderer is %murderer%!
         endOfPreliminaryProceedings: The preliminaryProceedings will end in:
-
-locale:
-    switch:
-        heading: Language settings
 
 mannerofdeath:
     index:
