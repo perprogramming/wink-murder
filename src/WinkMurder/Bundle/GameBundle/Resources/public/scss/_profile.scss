@@ -16,3 +16,17 @@
 .manner-of-death {
     margin-bottom: 36px;
 }
+
+.profile-lang-switch a {
+    color: #fff;
+    background: #000;
+    padding: 4px 8px 3px;
+    border-radius: 10px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.profile-lang-switch a:active {
+    background: #f89406;
+    color: #000;
+}
