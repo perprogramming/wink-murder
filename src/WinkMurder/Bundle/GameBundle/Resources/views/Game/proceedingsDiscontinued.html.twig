@@ -2,22 +2,14 @@
 
 {% block content %}
     {{ parent() }}
-    {% if not game.latestMurder.isClearedUp %}
-        {% set templates = [
-            "WinkMurderGameBundle:Game:notClearedUpReasons/_atLarge.html.twig",
-            "WinkMurderGameBundle:Game:notClearedUpReasons/_404.html.twig"
-        ] %}
+    {% set templates = [
+        "WinkMurderGameBundle:Game:notClearedUpReasons/_atLarge.html.twig",
+        "WinkMurderGameBundle:Game:notClearedUpReasons/_404.html.twig"
+    ] %}
 
-        {% set which = game.latestMurder.id %} {# Für jeden Spieler je Tod ein neuer Grund #}
-        {# {% set which = 0 %} {# Zum Testen: ein bestimtes #}
-        {# {% set which = random(templates | length) %} {# Zum Testen: ein zufälliges #}
+    {% set which = game.latestMurder.id %} {# Für jeden Spieler je Tod ein neuer Grund #}
+    {# {% set which = 0 %} {# Zum Testen: ein bestimtes #}
+    {# {% set which = random(templates | length) %} {# Zum Testen: ein zufälliges #}
 
-        {% include cycle(templates, which) %}
-    {% else %}
-        <div class="centered">
-            <p class="type-big imfellsc mrgn-top-24 mrgn-btm-24">{{ 'game.latestMurder.clearedUp.heading' | trans }}</p>
-            <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
-            <p class="type-huge jollylodger">{{ 'game.latestMurder.clearedUp.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
-        </div>
-    {% endif %}
+    {% include cycle(templates, which) %}
 {% endblock %}

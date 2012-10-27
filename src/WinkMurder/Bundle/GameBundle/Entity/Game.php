@@ -42,13 +42,19 @@ class Game implements Hashable {
     protected $murders;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="integer")
      */
-    protected $requiredPositiveSuspicionRate;
+    protected $requiredPositiveSuspicionRate = 50   ;
+
     /**
      * @ORM\Column(type="integer")
      */
-    protected $durationOfPreliminaryProceedingsInMinutes;
+    protected $durationOfPreliminaryProceedingsInMinutes = 10;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    protected $requiredMurders = 15;
 
     /**
      * @ORM\Column(type="boolean")
@@ -60,10 +66,8 @@ class Game implements Hashable {
      */
     protected $started = false;
 
-    public function __construct(PhotoSet $photoSet, $durationOfPreliminaryProceedingsInMinutes, $requiredPositiveSuspicionRate) {
+    public function __construct(PhotoSet $photoSet) {
         $this->photoSet = $photoSet;
-        $this->durationOfPreliminaryProceedingsInMinutes = $durationOfPreliminaryProceedingsInMinutes;
-        $this->requiredPositiveSuspicionRate = $requiredPositiveSuspicionRate;
         $this->players = new ArrayCollection();
         $this->murders = new ArrayCollection();
     }
@@ -151,6 +155,7 @@ class Game implements Hashable {
     }
 
     public function checkKill(Player $victim, Player $murderer = null) {
+        if ($this->hasMurdererWon()) throw new \Exception("The murderer has already won.");
         if ($murderer && !$murderer->isMurderer()) throw new \Exception("Player {$murderer->getName()} is not the murderer.");
         if ($victim->isDead()) throw new \Exception("Player {$victim->getName()} is already dead.");
         if ($murderer && ($murderer === $victim)) throw new \Exception("Player {$murderer->getName()} cannot murder himself.");
@@ -232,9 +237,27 @@ class Game implements Hashable {
         $this->finished = true;
     }
 
+    public function hasMurdererWon() {
+        $numberOfUnsolvedMurders = 0;
+        foreach ($this->murders as $murder) {
+            if ($murder->isUnsolved()) {
+                $numberOfUnsolvedMurders++;
+            }
+        }
+        return $numberOfUnsolvedMurders >= $this->requiredMurders;
+    }
+
+    public function hasMurdererLost() {
+        return $this->getLatestMurder()->isClearedUp();
+    }
+
     public function getStatus() {
         if ($latestMurder = $this->getLatestMurder()) {
-            if ($latestMurder->arePreliminaryProceedingsDiscontinued()) {
+            if ($this->hasMurdererWon()) {
+                return 'murdererWon';
+            } elseif ($this->hasMurdererLost()) {
+                return 'murdererLost';
+            } elseif ($latestMurder->arePreliminaryProceedingsDiscontinued()) {
                 return 'proceedingsDiscontinued';
             } else {
                 return 'proceedingsOngoing';
@@ -257,9 +280,30 @@ class Game implements Hashable {
             'murders' => $this->murders,
             'requiredPositiveSuspicionRate' => $this->requiredPositiveSuspicionRate,
             'durationOfPreliminaryProceedingsInMinutes' => $this->durationOfPreliminaryProceedingsInMinutes,
+            'requiredMurders' => $this->requiredMurders,
             'started' => $this->started,
             'finished' => $this->finished
         );
+    }
+
+    public function setDurationOfPreliminaryProceedingsInMinutes($durationOfPreliminaryProceedingsInMinutes) {
+        $this->durationOfPreliminaryProceedingsInMinutes = $durationOfPreliminaryProceedingsInMinutes;
+    }
+
+    public function getDurationOfPreliminaryProceedingsInMinutes() {
+        return $this->durationOfPreliminaryProceedingsInMinutes;
+    }
+
+    public function setRequiredMurders($requiredMurders) {
+        $this->requiredMurders = $requiredMurders;
+    }
+
+    public function getRequiredMurders() {
+        return $this->requiredMurders;
+    }
+
+    public function setRequiredPositiveSuspicionRate($requiredPositiveSuspicionRate) {
+        $this->requiredPositiveSuspicionRate = $requiredPositiveSuspicionRate;
     }
 
 }

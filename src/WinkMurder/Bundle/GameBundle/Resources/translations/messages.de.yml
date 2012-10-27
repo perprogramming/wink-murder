@@ -54,6 +54,13 @@ administration:
                 heading: Spiel starten
                 submit: Spiel starten
                 alreadyStarted: Du hast das Spiel bereits gestartet.
+            settings:
+                heading: Einstellungen
+                form:
+                    requiredPositiveSuspicionRate: Erforderliche Rate an positiven Verdächtigungen (%)
+                    durationOfPreliminaryProceedingsInMinutes: Dauer der Ermittlungsverfahren (Minuten)
+                    requiredMurders: Erforderliche Morde
+                    submit: Update
             delete:
                 heading: Spiel löschen
                 warning: Achtung! Wenn Du dieses Spiel löscht, werden alle Spieler ausgeloggt und alle Morde und Verdächtigungen sind unwiderruflich verloren.
@@ -92,10 +99,13 @@ game:
         selectSuspect: Wen verdächtigst du?
         noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
         suspicion: Dein Verdacht ist auf %suspect% gefallen.
-        clearedUp:
-            heading: Der Fall wurde gelöst!
-            convict: %murderer% ist der Mörder!
         endOfPreliminaryProceedings: Die aktuellen Ermittlungen enden in:
+    murdererLost:
+        heading: Der Fall wurde gelöst!
+        convict: %murderer% ist der Mörder!
+    murdererWon:
+        heading: Der Mörder hat gewonnen!
+        convict: %murderer% ist der Mörder!
 
 mannerofdeath:
     index:

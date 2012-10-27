@@ -1,0 +1,10 @@
+{% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
+
+{% block content %}
+    {{ parent() }}
+    <div class="centered">
+        <p class="type-big imfellsc mrgn-top-24 mrgn-btm-24">{{ 'game.murdererWon.heading' | trans }}</p>
+        <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
+        <p class="type-huge jollylodger">{{ 'game.murdererWon.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
+    </div>
+{% endblock %}

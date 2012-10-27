@@ -5,8 +5,6 @@ parameters:
     flickr_key: e9863e313c7660001d688030a5080de8
     flickr_secret: 3010cce97ff441c9
     flickr_username: winkmurder
-    duration_of_preliminary_proceedings_in_minutes: 10
-    required_positive_suspicion_rate: 0.5
 
 framework:
     secret: %secret%

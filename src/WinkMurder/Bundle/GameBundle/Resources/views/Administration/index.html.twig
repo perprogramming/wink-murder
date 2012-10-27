@@ -119,6 +119,16 @@
         </div>
 
         <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+            <h3>{{ 'administration.index.currentGame.settings.heading' | trans }}</h3>
+            <div>
+                <form action="{{ path('winkmurder_game_administration_updatesettings') }}" method="post" data-ajax="false">
+                    {{ form_widget(settingsForm) }}
+                    <div><input type="submit" value="{{ 'administration.index.currentGame.settings.form.submit' | trans }}" data-inline="true" /></div>
+                </form>
+            </div>
+        </div>
+
+        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
             <h3>{{ 'administration.index.currentGame.delete.heading' | trans }}</h3>
             <div>
                 <p>{{ 'administration.index.currentGame.delete.warning' | trans }}</p>

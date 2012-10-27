@@ -53,6 +53,13 @@ administration:
                 heading: Start Game
                 submit: Start this game
                 alreadyStarted: You already startet this game.
+            settings:
+                heading: Settings
+                form:
+                    requiredPositiveSuspicionRate: Required positive suspicion rate (%)
+                    durationOfPreliminaryProceedingsInMinutes: Duration of preliminary proceedings (minutes)
+                    requiredMurders: Required murders
+                    submit: Update
             delete:
                 heading: Delete Game
                 warning: Attention! When deleting the current game, all players will be logged out and all murders and suspicions are lost beyond recall.
@@ -90,10 +97,13 @@ game:
         selectSuspect: Who do you suspect?
         noSuspectLeft: There are no players to suspect. You must be the murderer...
         suspicion: You suspect %suspect% to be the murderer.
-        clearedUp:
-            heading: The case has been solved!
-            convict: The murderer is %murderer%!
         endOfPreliminaryProceedings: The preliminaryProceedings will end in:
+    murdererLost:
+        heading: The case has been solved!
+        convict: The murderer is %murderer%!
+    murdererWon:
+        heading: The murderer won!
+        convict: The murderer is %murderer%!
 
 mannerofdeath:
     index:

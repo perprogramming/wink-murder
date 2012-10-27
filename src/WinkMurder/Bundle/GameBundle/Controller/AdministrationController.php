@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Component\HttpFoundation\Request;
 use WinkMurder\Bundle\GameBundle\Entity\Game;
 use Symfony\Component\Security\Core\SecurityContext;
+use WinkMurder\Bundle\GameBundle\Form\GameForm;
 
 /**
  * @Route("/administration")
@@ -51,8 +52,11 @@ class AdministrationController extends BaseController {
      * @Template
      */
     public function indexAction() {
+        $game = $this->getCurrentGame();
+        $settingsForm = $this->createForm(new GameForm(), $game);
         return array(
-            'game' => $game = $this->getCurrentGame(),
+            'game' => $game,
+            'settingsForm' => $settingsForm->createView(),
             'photoSets' => $this->getPhotoSetRepository()->findAll(),
             'mannersOfDeath' => $this->getMannerOfDeathRepository()->findAll()
         );
@@ -149,6 +153,19 @@ class AdministrationController extends BaseController {
     }
 
     /**
+     * @Route("/update-settings/")
+     * @Method("POST")
+     */
+    public function updateSettingsAction(Request $request) {
+        $em = $this->getEntityManager();
+        $game = $this->getCurrentGame();
+        $settingsForm = $this->createForm(new GameForm(), $game);
+        $settingsForm->bindRequest($request);
+        $em->flush();
+        return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
+    }
+
+    /**
      * @Route("/create-new-game/")
      * @Method("POST")
      */
@@ -161,11 +178,7 @@ class AdministrationController extends BaseController {
                     $em->remove($account);
                 }
             }
-            $newGame = new Game(
-                $photoSet,
-                $this->container->getParameter('duration_of_preliminary_proceedings_in_minutes'),
-                $this->container->getParameter('required_positive_suspicion_rate')
-            );
+            $newGame = new Game($photoSet);
             $em->persist($newGame);
             $em->flush();
         }

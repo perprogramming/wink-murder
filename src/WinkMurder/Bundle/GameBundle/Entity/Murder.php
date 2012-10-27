@@ -145,10 +145,17 @@ class Murder implements Hashable {
                     $numberOfCorrectSuspicions++;
                 }
             }
-            return ($numberOfCorrectSuspicions / count($this->suspicions)) >= $this->game->getRequiredPositiveSuspicionRate();
+            return ($numberOfCorrectSuspicions / count($this->suspicions)) >= ($this->game->getRequiredPositiveSuspicionRate() / 100);
         } else {
             return false;
         }
+    }
+
+    public function isUnsolved() {
+        if (!$this->arePreliminaryProceedingsDiscontinued())
+            return false;
+
+        return !$this->isClearedUp();
     }
 
     public function getHashValues() {
