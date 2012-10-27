@@ -33,6 +33,15 @@ h3 {
     @extend .type-default;
 }
 
+p {
+    @extend .mrgn-btm-24;
+}
+
+a {
+    text-decoration: none;
+    color: #222;
+}
+
 .inline { display: inline-block; }
 .centered { text-align: center; }
 .mrgn-top-12 { margin-top: 12px; }
@@ -40,3 +49,5 @@ h3 {
 .mrgn-btm-12 { margin-bottom: 12px; }
 .mrgn-btm-24 { margin-bottom: 24px; }
 .mrgn-btm-36 { margin-bottom: 36px; }
+.pdng-top-6 { padding-top: 6px; }
+.pdng-top-12 { padding-top: 12px; }
