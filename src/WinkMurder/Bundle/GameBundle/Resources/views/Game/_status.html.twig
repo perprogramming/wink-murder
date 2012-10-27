@@ -10,11 +10,11 @@
                 <p class="imfellsc type-big mrgn-btm-12">{{ 'game.latestMurder.headingVictim' | trans }}</p>
             {% else %}
                 <img src="{{ game.latestMurder.victim.photo.url }}" alt="{{ game.latestMurder.victim.photo.title }}" width="60" class="profile-thumb" />
-                <p class="imfellsc type-big mrgn-btm-24">{{ 'game.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
-                <p>{{ 'game.latestMurder.mannerOfDeathLeading' | trans }}</p>
-                <div class="jollylodger type-huge">{{ game.latestMurder.victim.mannerOfDeath.name }}</div>
+                <p class="imfellsc type-big mrgn-btm-12">{{ 'game.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
+                <p class="mrgn-btm-12">{{ 'game.latestMurder.mannerOfDeathLeading' | trans }}</p>
+                <div class="jollylodger type-big">{{ game.latestMurder.victim.mannerOfDeath.name }}</div>
             {% endif %}
-            <p class="mrgn-top-24 mrgn-btm-24">— • —</p>
+            <p class="mrgn-top-12 mrgn-btm-24 centered type-small">&#9830;</p>
         </div>
     {% endif %}
 {% endblock %}
