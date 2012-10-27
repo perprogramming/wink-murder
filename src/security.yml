@@ -1,7 +1,7 @@
 security:
     firewalls:
         admin:
-            pattern: ^/administration/
+            pattern: ^/administration
             provider: admin
             anonymous: ~
             form_login:
