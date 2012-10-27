@@ -12,8 +12,7 @@
             <div class="jollylodger type-huge">{{ player.mannerOfDeath.name }}</div>
         </div>
 
-        <div class="profile-lang-switch">
-            <h3 class="pdng-top-12 mrgn-btm-12">{{ 'locale.switch.heading' | trans }}</h3>
+        <div class="profile-lang-switch mrgn-btm-24">
             <a href="{{ path('winkmurder_game_locale_set', {'locale': otherLocale}) }}" data-ajax="false" class="lang-switch">{{ ('language.' ~ otherLocale) | trans }}</a>
         </div>
     </div>
