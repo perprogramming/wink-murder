@@ -1,0 +1,9 @@
+{% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="centered">
+        <h1>{{ 'game.noMurderYet.heading' | trans }}</h1>
+        <p>{{ 'game.noMurderYet.text' | trans }}</p>
+    </div>
+{% endblock %}

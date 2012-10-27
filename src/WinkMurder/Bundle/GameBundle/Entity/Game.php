@@ -26,6 +26,7 @@ class Game implements Hashable {
 
     /**
      * @ORM\OneToMany(targetEntity="Player", mappedBy="game", cascade={"PERSIST", "REMOVE"}, orphanRemoval=true)
+     * @ORM\OrderBy({"id" = "ASC"})
      */
     protected $players;
 

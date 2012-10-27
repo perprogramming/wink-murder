@@ -135,6 +135,9 @@ class Murder implements Hashable {
     }
 
     public function isClearedUp() {
+        if (!$this->arePreliminaryProceedingsDiscontinued())
+            return false;
+
         if (count($this->suspicions)) {
             $numberOfCorrectSuspicions = 0;
             foreach ($this->suspicions as $suspicion) {
@@ -155,7 +158,8 @@ class Murder implements Hashable {
             'victim' => $this->victim,
             'suspicions' => $this->suspicions,
             'timeOfOffense' => $this->timeOfOffense,
-            'endOfPreliminaryProceedings' => $this->arePreliminaryProceedingsDiscontinued()
+            'endOfPreliminaryProceedings' => $this->arePreliminaryProceedingsDiscontinued(),
+            'clearedUp' => $this->isClearedUp()
         );
     }
 

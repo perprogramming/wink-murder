@@ -1,0 +1,32 @@
+{% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+    <div class="centered mrgn-btm-36">
+        <p data-end-of-preliminary-proceedings="{{ game.endOfPreliminaryProceedings.format('U') }}" class="fx-end-of-preliminary-proceedings">
+            <span class="type-big imfellsc">{{ 'game.latestMurder.endOfPreliminaryProceedings' | trans({'%end%': game.endOfPreliminaryProceedings.format('d.m.Y H:i:s')}) }}</span>
+        </p>
+    </div>
+    {% if app.user.player.dead %}
+        <p class="type-medium centered">{{ 'game.latestMurder.noSuspicionByDead' | trans }}</p>
+    {% else %}
+        {% if app.user.player.hasSuspicion %}
+            <p class="centered type-medium">{{ 'game.latestMurder.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>
+        {% else %}
+            {% if game.aliveOtherPlayers(app.user.player) %}
+                <p>{{ 'game.latestMurder.selectSuspect' | trans }}</p>
+                <ul data-role="listview" data-inset="true">
+                    {% for player in game.aliveOtherPlayers(app.user.player) %}
+                        <li>
+                            <a href="{{ path('winkmurder_game_game_suspect', {id: player.id}) }}" data-ajax="false">
+                                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p>{{ 'game.latestMurder.noSuspectLeft' | trans }}</p>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endblock %}

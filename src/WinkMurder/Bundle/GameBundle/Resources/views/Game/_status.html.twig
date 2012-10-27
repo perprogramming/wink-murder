@@ -1,0 +1,20 @@
+{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+{% use "WinkMurderGameBundle:Layout:autorefresh.html.twig" %}
+
+{% block pageTitle %}{{ 'game.status.pageTitle' | trans }}{% endblock %}
+
+{% block body %}
+    {% if game.latestMurder and not game.latestMurder.isClearedUp %}
+        <div class="centered">
+            {% if game.latestMurder.victim is sameas(app.user.player) %}
+                <p class="imfellsc type-big mrgn-btm-12">{{ 'game.latestMurder.headingVictim' | trans }}</p>
+            {% else %}
+                <img src="{{ game.latestMurder.victim.photo.url }}" alt="{{ game.latestMurder.victim.photo.title }}" width="60" class="profile-thumb" />
+                <p class="imfellsc type-big mrgn-btm-24">{{ 'game.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
+                <p>{{ 'game.latestMurder.mannerOfDeathLeading' | trans }}</p>
+                <div class="jollylodger type-huge">{{ game.latestMurder.victim.mannerOfDeath.name }}</div>
+            {% endif %}
+            <p class="mrgn-top-24 mrgn-btm-24">— • —</p>
+        </div>
+    {% endif %}
+{% endblock %}

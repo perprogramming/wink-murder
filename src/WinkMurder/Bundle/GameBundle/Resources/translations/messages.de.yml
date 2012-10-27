@@ -62,23 +62,23 @@ administration:
 game:
     status:
         pageTitle: Spiel
-        noMurderYet:
-            heading: Noch ist niemand gestorben..
-            text: aber es könnte jeden Moment ein Mord geschehen. Pass auf dich auf!
-        latestMurder:
-            heading: %victim% ist das letzte Mordopfer!
-            headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
-            mannerOfDeathLeading: Sie starb einen furchtbaren Tod:
-            noSuspicionByDead: Da du tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
-            preliminaryProceedingsDiscontinued: Die Ermittlungen gegen ausgewählte Verdächtige sind abgeschlossen.
-            notClearedUp: Der Mörder wurde nicht gefasst und ist weiterhin auf freiem Fuß.
-            selectSuspect: Wen verdächtigst du?
-            noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
-            suspicion: Dein Verdacht ist auf %suspect% gefallen.
-            clearedUp:
-                heading: Der Fall wurde gelöst!
-                convict: %murderer% ist der Mörder!
-            endOfPreliminaryProceedings: Die aktuellen Ermittlungen enden in:
+    noMurderYet:
+        heading: Noch ist niemand gestorben..
+        text: aber es könnte jeden Moment ein Mord geschehen. Pass auf dich auf!
+    latestMurder:
+        heading: %victim% ist das letzte Mordopfer!
+        headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
+        mannerOfDeathLeading: Sie starb einen furchtbaren Tod:
+        noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
+        preliminaryProceedingsDiscontinued: Die Ermittlungen gegen ausgewählte Verdächtige sind abgeschlossen.
+        notClearedUp: Der Mörder wurde nicht gefasst und ist weiterhin auf freiem Fuß.
+        selectSuspect: Wen verdächtigst du?
+        noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
+        suspicion: Dein Verdacht ist auf %suspect% gefallen.
+        clearedUp:
+            heading: Der Fall wurde gelöst!
+            convict: %murderer% ist der Mörder!
+        endOfPreliminaryProceedings: Die aktuellen Ermittlungen enden in:
 
 layout:
     menue:

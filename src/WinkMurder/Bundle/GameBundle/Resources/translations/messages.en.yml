@@ -62,23 +62,23 @@ administration:
 game:
     status:
         pageTitle: Game
-        noMurderYet:
-            heading: The murderer did not murder yet.
-            text: Be careful...
-        latestMurder:
-            heading: %victim% is the latest murder victim!
-            headingVictim: You have just been killed!
-            mannerOfDeathLeading: She suffered a most gruesome death:
-            noSuspicionByDead: As you are dead, you can no longer suspect the murderer, as you obvisouly know who it is.
-            preliminaryProceedingsDiscontinued: The preliminary proceedings were discontinued.
-            notClearedUp: The case has not been solved. The murderer is still at large!
-            selectSuspect: Who do you suspect?
-            noSuspectLeft: There are no players to suspect. You must be the murderer...
-            suspicion: You suspect %suspect% to be the murderer.
-            clearedUp:
-                heading: The case has been solved!
-                convict: The murderer is %murderer%!
-            endOfPreliminaryProceedings: The preliminaryProceedings will end in:
+    noMurderYet:
+        heading: The murderer did not murder yet.
+        text: Be careful...
+    latestMurder:
+        heading: %victim% is the latest murder victim!
+        headingVictim: You have just been killed!
+        mannerOfDeathLeading: She suffered a most gruesome death:
+        noSuspicionByDead: As you are already dead, you can no longer suspect the murderer, as you obvisouly know who it is.
+        preliminaryProceedingsDiscontinued: The preliminary proceedings were discontinued.
+        notClearedUp: The case has not been solved. The murderer is still at large!
+        selectSuspect: Who do you suspect?
+        noSuspectLeft: There are no players to suspect. You must be the murderer...
+        suspicion: You suspect %suspect% to be the murderer.
+        clearedUp:
+            heading: The case has been solved!
+            convict: The murderer is %murderer%!
+        endOfPreliminaryProceedings: The preliminaryProceedings will end in:
 
 layout:
     menue:

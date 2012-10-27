@@ -1,0 +1,14 @@
+{% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
+
+{% block body %}
+    {{ parent() }}
+    {% if not game.latestMurder.isClearedUp %}
+        <h1 class="centered">{{ 'game.latestMurder.notClearedUp' | trans }}</h1>
+    {% else %}
+        <div class="centered">
+            <p class="type-big imfellsc mrgn-top-24 mrgn-btm-36">{{ 'game.latestMurder.clearedUp.heading' | trans }}</p>
+            <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
+            <p class="type-huge jollylodger">{{ 'game.latestMurder.clearedUp.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
+        </div>
+    {% endif %}
+{% endblock %}
