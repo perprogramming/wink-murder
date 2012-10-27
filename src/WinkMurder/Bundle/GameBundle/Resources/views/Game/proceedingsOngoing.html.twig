@@ -14,13 +14,15 @@
             <p class="centered type-medium">{{ 'game.latestMurder.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>
         {% else %}
             {% if game.aliveOtherPlayers(app.user.player) %}
-                <p>{{ 'game.latestMurder.selectSuspect' | trans }}</p>
-                <ul data-role="listview" data-inset="true">
+                <p class="mrgn-btm-12">{{ 'game.latestMurder.selectSuspect' | trans }}</p>
+                <ul class="player-list">
                     {% for player in game.aliveOtherPlayers(app.user.player) %}
-                        <li>
-                            <a href="{{ path('winkmurder_game_game_suspect', {id: player.id}) }}" data-ajax="false">
-                                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
-                            </a>
+                        <li class="player">
+                            <div class="player-wrapper">
+                                <a href="{{ path('winkmurder_game_game_suspect', {id: player.id}) }}" data-ajax="false">
+                                    {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                                </a>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>
