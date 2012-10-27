@@ -75,7 +75,7 @@ game:
     latestMurder:
         heading: %victim% is the latest murder victim!
         headingVictim: Whoops! You have been killed. Now that's embarrassing.
-        mannerOfDeathLeading: She suffered a most gruesome death:
+        mannerOfDeathLeading: It was a most gruesome death:
         noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
         preliminaryProceedingsDiscontinued: The preliminary proceedings were discontinued.
         notClearedUp: The case has not been solved. The murderer is still at large!

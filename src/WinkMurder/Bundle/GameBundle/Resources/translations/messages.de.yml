@@ -75,7 +75,7 @@ game:
     latestMurder:
         heading: %victim% ist das letzte Mordopfer!
         headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
-        mannerOfDeathLeading: Sie starb einen furchtbaren Tod:
+        mannerOfDeathLeading: Es war ein furchtbarer Tod:
         noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
         preliminaryProceedingsDiscontinued: Die Ermittlungen gegen ausgewählte Verdächtige sind abgeschlossen.
         notClearedUp: Der Mörder wurde nicht gefasst und ist weiterhin auf freiem Fuß.
