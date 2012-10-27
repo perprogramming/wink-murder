@@ -87,7 +87,6 @@ game:
         mannerOfDeathLeading: It was a most gruesome death:
         noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
         preliminaryProceedingsDiscontinued: The preliminary proceedings were discontinued.
-        notClearedUp: The case has not been solved. The murderer is still at large!
         selectSuspect: Who do you suspect?
         noSuspectLeft: There are no players to suspect. You must be the murderer...
         suspicion: You suspect %suspect% to be the murderer.
