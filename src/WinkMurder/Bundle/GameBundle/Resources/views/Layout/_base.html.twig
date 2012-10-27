@@ -14,7 +14,7 @@
             <link rel="stylesheet" type="text/css" href="{{ asset_url }}" media="screen" />
         {% endstylesheets %}
     </head>
-    <body{% block autorefresh %}{% endblock %} class="{% block bodyclass %}{% endblock %}">
+    <body{% block autorefresh %}{% endblock %}>
         {% set otherLocale = app.session.locale == 'de' ? 'en' : 'de' %}
         <div data-role="page" data-theme="">
             {% block header %}{% endblock %}
