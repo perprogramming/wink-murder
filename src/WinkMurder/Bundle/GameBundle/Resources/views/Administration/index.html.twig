@@ -6,31 +6,27 @@
     {% if game %}
         <h2>{{ 'administration.index.currentGame.heading' | trans }}</h2>
 
-        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"{% if not game.murderer %} data-collapsed="false"{% endif %}>
+        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"{% if not game.murdererPhoto %} data-collapsed="false"{% endif %}>
             <h3>{{ 'administration.index.currentGame.theMurderer.heading' | trans }}</h3>
             <div>
-                {% if game.players %}
-                    {% if game.murderer %}
-                        <p>{{ 'administration.index.currentGame.theMurderer.status' | trans({'%name%': game.murderer.name}) }} <a href="{{ path('winkmurder_game_administration_selectmurderer') }}" data-ajax="false" data-inline="true" data-mini="true" data-role="button" data-icon="delete">{{ 'administration.index.currentGame.theMurderer.change' | trans }}</a></p>
-                    {% else %}
-                        <p>{{ 'administration.index.currentGame.theMurderer.select' | trans }}</p>
-                        <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="{{ 'administration.index.currentGame.theMurderer.filterPlaceholder' | trans }}">
-                        {% for player in game.players %}
-                            <li data-filtertext="{{ player.name }}">
-                                <a href="{{ path('winkmurder_game_administration_selectmurderer', {id: player.id}) }}" data-ajax="false">
-                                    {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
-                                </a>
-                            </li>
-                        {% endfor %}
-                        </ul>
-                    {% endif %}
+                {% if game.murdererPhoto %}
+                    <p>{{ 'administration.index.currentGame.theMurderer.status' | trans({'%name%': game.murdererPhoto.title}) }} <a href="{{ path('winkmurder_game_administration_selectmurderer') }}" data-ajax="false" data-inline="true" data-mini="true" data-role="button" data-icon="delete">{{ 'administration.index.currentGame.theMurderer.change' | trans }}</a></p>
                 {% else %}
-                    <p>{{ 'administration.index.currentGame.theMurderer.noPlayersYet' | trans }}</p>
+                    <p>{{ 'administration.index.currentGame.theMurderer.select' | trans }}</p>
+                    <ul data-role="listview" data-inset="true" data-filter="true" data-filter-placeholder="{{ 'administration.index.currentGame.theMurderer.filterPlaceholder' | trans }}">
+                    {% for photo in game.photoSet.photos %}
+                        <li data-filtertext="{{ photo.title }}">
+                            <a href="{{ path('winkmurder_game_administration_selectmurderer', {id: photo.id}) }}" data-ajax="false">
+                                {% include "WinkMurderGameBundle:Photo:_teaser.html.twig" %}
+                            </a>
+                        </li>
+                    {% endfor %}
+                    </ul>
                 {% endif %}
             </div>
         </div>
 
-        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"{% if game.murderer %} data-collapsed="false"{% endif %}>
+        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d"{% if game.murdererPhoto %} data-collapsed="false"{% endif %}>
             <h3>{{ 'administration.index.currentGame.players.heading' | trans }}</h3>
             <div>
                 {% if game.players %}
@@ -109,6 +105,25 @@
                 {% else %}
                     {{ 'administration.index.currentGame.unusedPhotos.noneLeft' | trans }}
                 {% endif %}
+            </div>
+        </div>
+
+        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+            <h3>{{ 'administration.index.currentGame.start.heading' | trans }}</h3>
+            {% if game.started %}
+                <p>{{ 'administration.index.currentGame.start.alreadyStarted' | trans }}</p>
+            {% else %}
+                <div>
+                    <form action="{{ path('winkmurder_game_administration_startgame') }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.start.submit' | trans }}" data-inline="true" /></div></form>
+                </div>
+            {% endif %}
+        </div>
+
+        <div data-role="collapsible" data-collapsed-icon="arrow-r" data-expanded-icon="arrow-d">
+            <h3>{{ 'administration.index.currentGame.delete.heading' | trans }}</h3>
+            <div>
+                <p>{{ 'administration.index.currentGame.delete.warning' | trans }}</p>
+                <form action="{{ path('winkmurder_game_administration_deletegame') }}" method="post" data-ajax="false"><div><input type="submit" value="{{ 'administration.index.currentGame.delete.submit' | trans }}" data-inline="true" /></div></form>
             </div>
         </div>
 

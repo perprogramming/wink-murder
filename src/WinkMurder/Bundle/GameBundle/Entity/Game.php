@@ -31,9 +31,9 @@ class Game implements Hashable {
     protected $players;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Player")
+     * @ORM\ManyToOne(targetEntity="Photo")
      */
-    protected $murderer;
+    protected $murdererPhoto;
 
     /**
      * @ORM\OneToMany(targetEntity="Murder", mappedBy="game", cascade={"PERSIST", "REMOVE"}, orphanRemoval=true)
@@ -54,6 +54,11 @@ class Game implements Hashable {
      * @ORM\Column(type="boolean")
      */
     protected $finished = false;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    protected $started = false;
 
     public function __construct(PhotoSet $photoSet, $durationOfPreliminaryProceedingsInMinutes, $requiredPositiveSuspicionRate) {
         $this->photoSet = $photoSet;
@@ -105,19 +110,24 @@ class Game implements Hashable {
         $this->players->removeElement($player);
     }
 
-    public function setMurderer(Player $player = null) {
-        if ($player && ($player->getGame() !== $this))
-            throw new \Exception("Only players of a specific game can become murderer within it.");
+    public function setMurdererPhoto(Photo $photo = null) {
+        $this->murdererPhoto = $photo;
+    }
 
-        $this->murderer = $player;
+    public function getMurdererPhoto() {
+        return $this->murdererPhoto;
     }
 
     public function getMurderer() {
-        return $this->murderer;
+        foreach ($this->players as $player) {
+            if ($player->getPhoto() == $this->murdererPhoto) {
+                return $player;
+            }
+        }
     }
 
     public function isMurderer(Player $player) {
-        return $this->murderer === $player;
+        return $this->getMurderer() === $player;
     }
 
     public function canBeKilled(Player $victim) {
@@ -206,8 +216,16 @@ class Game implements Hashable {
         return $this->requiredPositiveSuspicionRate;
     }
 
+    public function isStarted() {
+        return $this->started;
+    }
+
     public function isFinished() {
         return $this->finished;
+    }
+
+    public function start() {
+        $this->started = true;
     }
 
     public function finish() {
@@ -235,10 +253,12 @@ class Game implements Hashable {
             'id' => $this->id,
             'photoSet' => $this->photoSet,
             'players' => $this->players,
-            'murderer' => $this->murderer,
+            'murdererPhoto' => $this->murdererPhoto,
             'murders' => $this->murders,
             'requiredPositiveSuspicionRate' => $this->requiredPositiveSuspicionRate,
-            'durationOfPreliminaryProceedingsInMinutes' => $this->durationOfPreliminaryProceedingsInMinutes
+            'durationOfPreliminaryProceedingsInMinutes' => $this->durationOfPreliminaryProceedingsInMinutes,
+            'started' => $this->started,
+            'finished' => $this->finished
         );
     }
 

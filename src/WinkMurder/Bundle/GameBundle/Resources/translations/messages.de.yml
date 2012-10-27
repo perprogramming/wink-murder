@@ -48,6 +48,14 @@ administration:
                 heading: Unbenutzte Photos
                 filterPlaceholder: Suchen...
                 noneLeft: Es gibt keine unbenutzten Photos.
+            start:
+                heading: Spiel starten
+                submit: Spiel starten
+            delete:
+                heading: Spiel löschen
+                warning: Achtung! Wenn Du dieses Spiel löscht, werden alle Spieler ausgeloggt und alle Morde und Verdächtigungen sind unwiderruflich verloren.
+                submit: Spiel entgültig löschen
+
         general:
             heading: Allgemein
             noPhotosetsOrManners: Du brauchst mindestens eine Photosammlung und eine Todesart, um ein neues Spiel zu starten.

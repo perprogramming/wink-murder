@@ -8,7 +8,7 @@
         </p>
     </div>
     {% if app.user.player.dead %}
-        <p class="type-medium centered">{{ 'game.latestMurder.noSuspicionByDead' | trans }}</p>
+        <p class="type-medium centered">{{ 'game.latestMurder.noSuspicionByDead' | trans }}</>
     {% else %}
         {% if app.user.player.hasSuspicion %}
             <p class="centered type-medium">{{ 'game.latestMurder.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>

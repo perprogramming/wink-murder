@@ -12,7 +12,8 @@ class StartController extends BaseController {
      * @Template
      */
     public function indexAction() {
-        if ($this->getCurrentGame()) {
+        $game = $this->getCurrentGame();
+        if ($game && $game->isStarted()) {
             return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
         } else {
             return array();

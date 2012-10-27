@@ -63,8 +63,8 @@ class AdministrationController extends BaseController {
      */
     public function selectMurdererAction(Request $request) {
         $game = $this->getCurrentGame();
-        $game->setMurderer(
-            $game->findPlayer($request->get('id'))
+        $game->setMurdererPhoto(
+            $game->getPhotoSet()->findPhoto($request->get('id'))
         );
         $this->getDoctrine()->getEntityManager()->flush();
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
@@ -83,6 +83,29 @@ class AdministrationController extends BaseController {
             $game->kill($player);
         }
         $this->getEntityManager()->flush();
+        return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
+    }
+
+    /**
+     * @Route("/start-game/")
+     * @Method("POST")
+     */
+    public function startGameAction() {
+        $game = $this->getCurrentGame();
+        $game->start();
+        $this->getEntityManager()->flush();
+        return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
+    }
+
+    /**
+     * @Route("/delete-game/")
+     * @Method("POST")
+     */
+    public function deleteGameAction() {
+        $game = $this->getCurrentGame();
+        $em = $this->getEntityManager();
+        $em->remove($game);
+        $em->flush();
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
 

@@ -33,7 +33,6 @@ administration:
                 change: Change
                 select: Please elect the murderer:
                 filterPlaceholder: Search...
-                noPlayersYet: You cannot choose a murderer because there are no players yet.
             players:
                 heading: Players
                 noneYet: There are no players yet.
@@ -48,6 +47,13 @@ administration:
                 heading: Unused Photos
                 filterPlaceholder: Search...
                 noneLeft: There are no unused photos.
+            start:
+                heading: Start Game
+                submit: Start this game
+            delete:
+                heading: Delete Game
+                warning: Attention! When deleting the current game, all players will be logged out and all murders and suspicions are lost beyond recall.
+                submit: Delete this game forever
         general:
             heading: General
             noPhotosetsOrManners: You need to have at least one photoset and one manner of death to start a new game.

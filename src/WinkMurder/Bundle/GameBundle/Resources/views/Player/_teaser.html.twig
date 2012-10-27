@@ -1,2 +1,1 @@
-<img class="player-thumb" src="{{ player.photo.url }}" alt="{{ player.photo.title }}" width="50" />
-<h3 class="player-name">{{ player.name }}</h3>
+{% include "WinkMurderGameBundle:Photo:_teaser.html.twig" with {photo: player.photo} %}
