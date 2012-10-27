@@ -19,7 +19,7 @@ class AccountController extends BaseController {
             return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
         } else {
             $game = $this->getCurrentGame();
-            if ($game->isStarted()) {
+            if ($game && $game->isStarted()) {
                 return array('game' => $this->getCurrentGame());
             } else {
                 return $this->redirect($this->generateUrl('winkmurder_game_start_index'));
