@@ -35,6 +35,7 @@ class Player implements Hashable {
 
     /**
      * @ORM\ManyToOne(targetEntity="MannerOfDeath", inversedBy="players")
+     * @ORM\JoinColumn(name="mannerOfDeath_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $mannerOfDeath;
 
