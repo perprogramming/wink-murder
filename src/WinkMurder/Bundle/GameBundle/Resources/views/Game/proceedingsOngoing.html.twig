@@ -4,7 +4,7 @@
     {{ parent() }}
     <div class="centered mrgn-btm-36">
         <p data-end-of-preliminary-proceedings="{{ game.endOfPreliminaryProceedings.format('U') }}" class="fx-end-of-preliminary-proceedings">
-            <span class="type-big imfellsc">{{ 'game.latestMurder.endOfPreliminaryProceedings' | trans({'%end%': game.endOfPreliminaryProceedings.format('d.m.Y H:i:s')}) }}</span>
+            <span class="type-medium">{{ 'game.latestMurder.endOfPreliminaryProceedings' | trans({'%end%': game.endOfPreliminaryProceedings.format('d.m.Y H:i:s')}) }}</span>
         </p>
     </div>
     {% if app.user.player.dead %}
