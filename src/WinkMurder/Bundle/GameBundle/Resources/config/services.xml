@@ -12,10 +12,6 @@
             <argument>%flickr_username%</argument>
         </service>
 
-        <service id="wink_murder.logout_handler" class="WinkMurder\Bundle\GameBundle\Security\LogoutHandler">
-            <argument type="service" id="doctrine.orm.entity_manager" />
-        </service>
-
         <service id="wink_murder.security.account_listener"
              class="WinkMurder\Bundle\GameBundle\Security\AccountListener"
              parent="security.authentication.listener.abstract"
