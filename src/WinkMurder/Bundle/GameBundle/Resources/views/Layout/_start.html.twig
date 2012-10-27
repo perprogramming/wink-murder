@@ -1,0 +1,14 @@
+{% extends "WinkMurderGameBundle:Layout:_base.html.twig" %}
+{% use "WinkMurderGameBundle:Layout:_autorefresh.html.twig" %}
+
+{% block bodyclass %}body-game{% endblock %}
+
+{% block footer %}
+    <div data-role="footer" data-id="player" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="{{ path('winkmurder_game_locale_set', {locale: otherLocale}) }}" data-ajax="false" class="lang-switch">{{ ('language.' ~ otherLocale) | trans }}</a></li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}

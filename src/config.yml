@@ -17,7 +17,7 @@ framework:
     templating:      { engines: ['twig'] }
     translator:      { fallback: en }
     session:
-        default_locale: en
+        default_locale: de
     esi:             { enabled: true }
     validation:      { enable_annotations: true }
 
