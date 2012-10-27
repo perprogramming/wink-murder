@@ -131,13 +131,13 @@
     {% endif %}
 
     <div data-role="collapsible" data-expanded-icon="add" data-collapsed-icon="add"{% if not game %} data-collapsed="false"{% endif %}>
-        <h3>{{ 'administration.index.general.startNewGame.heading' | trans }}</h3>
+        <h3>{{ 'administration.index.general.createNewGame.heading' | trans }}</h3>
         <div>
             {% if photoSets and mannersOfDeath %}
-                {% if game %}<p>{{ 'administration.index.general.startNewGame.warning' | trans }}</p>{% endif %}
-                <form action="{{ path('winkmurder_game_administration_startnewgame') }}" method="post" data-ajax="false">
+                {% if game %}<p>{{ 'administration.index.general.createNewGame.warning' | trans }}</p>{% endif %}
+                <form action="{{ path('winkmurder_game_administration_createnewgame') }}" method="post" data-ajax="false">
                     <div data-role="fieldcontain">
-                        <label for="photoSet">{{ 'administration.index.general.startNewGame.photoset' | trans }}</label>
+                        <label for="photoSet">{{ 'administration.index.general.createNewGame.photoset' | trans }}</label>
                         <select name="id" id="photoSet">
                             <option></option>
                             {% for photoSet in photoSets %}
@@ -146,7 +146,7 @@
                         </select>
                     </div>
                     <div>
-                        <input type="submit" value="{{ 'administration.index.general.startNewGame.submit' | trans }}" data-inline="true" />
+                        <input type="submit" value="{{ 'administration.index.general.createNewGame.submit' | trans }}" data-inline="true" />
                     </div>
                 </form>
             {% else %}

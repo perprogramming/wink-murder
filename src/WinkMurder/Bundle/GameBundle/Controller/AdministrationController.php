@@ -149,10 +149,10 @@ class AdministrationController extends BaseController {
     }
 
     /**
-     * @Route("/start-new-game/")
+     * @Route("/create-new-game/")
      * @Method("POST")
      */
-    public function startNewGameAction(Request $request) {
+    public function createNewGameAction(Request $request) {
         if ($photoSet = $this->getPhotoSetRepository()->find($request->get('id'))) {
             $em = $this->getEntityManager();
             if ($game = $this->getCurrentGame()) {

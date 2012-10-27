@@ -57,11 +57,11 @@ administration:
         general:
             heading: General
             noPhotosetsOrManners: You need to have at least one photoset and one manner of death to start a new game.
-            startNewGame:
-                heading: Start New Game
+            createNewGame:
+                heading: Create New Game
                 warning: Attention! When creating a new game, the current game will finish and all players will be logged out.
                 photoset: Photoset
-                submit: Start new game
+                submit: Create new game
             synchronizePhotosets:
                 heading: Synchronize Photosets
                 noneYet: You have to synchronize with Flickr to find photosets that you can start a game with.

@@ -59,11 +59,11 @@ administration:
         general:
             heading: Allgemein
             noPhotosetsOrManners: Du brauchst mindestens eine Photosammlung und eine Todesart, um ein neues Spiel zu starten.
-            startNewGame:
-                heading: Neues Spiel beginnen
-                warning: Achtung! Wenn Du ein neues Spiel beginnst, wird das aktuelle Spiel beendet und alle Spieler ausgeloggt.
+            createNewGame:
+                heading: Neues Spiel anlegen
+                warning: Achtung! Wenn Du ein neues Spiel anlegst, wird das aktuelle Spiel beendet und alle Spieler ausgeloggt.
                 photoset: Photosammlung
-                submit: Neues Spiel beginnen
+                submit: Neues Spiel anlegen
             synchronizePhotosets:
                 heading: Photosammlungen synchronisieren
                 noneYet: Du musst die Datenbank mit Flickr synchronisieren, um ein neues Spiel starten zu können.
