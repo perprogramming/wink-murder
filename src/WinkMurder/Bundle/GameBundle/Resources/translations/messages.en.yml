@@ -97,7 +97,7 @@ game:
         selectSuspect: Who do you suspect?
         noSuspectLeft: There are no players to suspect. You must be the murderer...
         suspicion: You suspect %suspect% to be the murderer.
-        endOfPreliminaryProceedings: The preliminaryProceedings will end in:
+        endOfPreliminaryProceedings: The investigations end in:
     murdererLost:
         heading: The case has been solved!
         convict: The murderer is %murderer%!

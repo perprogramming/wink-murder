@@ -99,7 +99,7 @@ game:
         selectSuspect: Wen verdächtigst du?
         noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
         suspicion: Dein Verdacht ist auf %suspect% gefallen.
-        endOfPreliminaryProceedings: Die aktuellen Ermittlungen enden in:
+        endOfPreliminaryProceedings: Die Ermittlungen enden in:
     murdererLost:
         heading: Der Fall wurde gelöst!
         convict: %murderer% ist der Mörder!
