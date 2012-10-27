@@ -19,6 +19,10 @@
     background: url(../img/glyphicons_217_circle_arrow_right.png) no-repeat right center;
 }
 
+.players-player-wrapper {
+    padding-right: 45px;
+}
+
 .player-name {
     padding-top: 11px;
     @extend .type-medium;
@@ -31,6 +35,7 @@
 
 .player-dead {
     background-color: #eee;
+    background: url(../img/22-skull-n-bones.png) no-repeat 95% center;
 }
 
 .player-dead .player-thumb {
