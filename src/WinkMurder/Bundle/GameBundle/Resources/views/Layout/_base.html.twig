@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{% block pageTitle %}{% endblock %} - Wink Murder</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+        {% stylesheets
+            'bundles/winkmurdergame/scss/screen.scss'
+            filter="compass,cssrewrite"
+            output="css/screen.css"
+        %}
+            <link rel="stylesheet" type="text/css" href="{{ asset_url }}" media="screen" />
+        {% endstylesheets %}
+    </head>
+    <body{% block autorefresh %}{% endblock %}>
+        {% set otherLocale = app.session.locale == 'de' ? 'en' : 'de' %}
+        <div data-role="page" data-theme="">
+            {% block header %}{% endblock %}
+            <div data-role="content">
+                {% block content %}{% endblock %}
+            </div>
+            {% block footer %}{% endblock %}
+        </div>
+        <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+        <script src="{{ asset('bundles/winkmurdergame/js/scripts.js') }}"></script>
+    </body>
+</html>

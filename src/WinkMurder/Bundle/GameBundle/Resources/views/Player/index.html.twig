@@ -1,8 +1,8 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
 
 {% block pageTitle %}{{ 'player.index.pageTitle' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>{{ 'player.index.heading' | trans }}</h1>
     <ul class="player-list">
         {% for player in players %}

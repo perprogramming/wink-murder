@@ -1,8 +1,8 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
 
 {% block pageTitle %}{{ 'rules.show.pageTitle' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>{{ 'rules.show.heading' | trans }}</h1>
     <div>{{ 'rules.show.rules' | trans | raw }}</div>
 {% endblock %}

@@ -1,8 +1,8 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_administration.html.twig" %}
 
 {% block pageTitle %}{{ 'mannerofdeath.index.heading' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <ul data-role="listview" data-inset="true">
         {% for manner in mannersOfDeath %}
             <li>

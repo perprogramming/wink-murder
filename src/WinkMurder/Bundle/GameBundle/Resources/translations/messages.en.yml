@@ -16,6 +16,8 @@ authentication:
             submit: Log in
 
 administration:
+    header:
+        heading: Administration
     login:
         pageTitle: Login
         heading: Backend access
@@ -50,6 +52,7 @@ administration:
             start:
                 heading: Start Game
                 submit: Start this game
+                alreadyStarted: You already startet this game.
             delete:
                 heading: Delete Game
                 warning: Attention! When deleting the current game, all players will be logged out and all murders and suspicions are lost beyond recall.
@@ -93,15 +96,6 @@ game:
             convict: The murderer is %murderer%!
         endOfPreliminaryProceedings: The preliminaryProceedings will end in:
 
-layout:
-    menue:
-        administration: Administration
-        logout: Logout
-        game: Game
-        players: Players
-        profile: Profile
-        rules: Rules
-
 locale:
     switch:
         heading: Language settings
@@ -117,6 +111,16 @@ mannerofdeath:
             name_en: Name (English)
             name_de: Name (German)
             submit: Save
+
+navbar:
+    administration:
+        heading: Administration
+        logout: Logout
+    player:
+        game: Game
+        players: Players
+        profile: Profile
+        rules: Rules
 
 player:
     index:

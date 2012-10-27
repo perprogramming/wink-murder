@@ -1,6 +1,6 @@
 {% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
 
-{% block body %}
+{% block content %}
     {{ parent() }}
     {% if not game.latestMurder.isClearedUp %}
         <h1 class="centered">{{ 'game.latestMurder.notClearedUp' | trans }}</h1>

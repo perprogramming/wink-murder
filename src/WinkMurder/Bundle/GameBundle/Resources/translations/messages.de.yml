@@ -16,6 +16,8 @@ authentication:
             submit: Anmelden
 
 administration:
+    header:
+        heading: Administration
     login:
         pageTitle: Einloggen
         heading: Ab ins Backend
@@ -51,6 +53,7 @@ administration:
             start:
                 heading: Spiel starten
                 submit: Spiel starten
+                alreadyStarted: Du hast das Spiel bereits gestartet.
             delete:
                 heading: Spiel löschen
                 warning: Achtung! Wenn Du dieses Spiel löscht, werden alle Spieler ausgeloggt und alle Morde und Verdächtigungen sind unwiderruflich verloren.
@@ -95,15 +98,6 @@ game:
             convict: %murderer% ist der Mörder!
         endOfPreliminaryProceedings: Die aktuellen Ermittlungen enden in:
 
-layout:
-    menue:
-        administration: Administration
-        logout: Ausloggen
-        game: Spiel
-        players: Mitspieler
-        profile: Profil
-        rules: Regeln
-
 locale:
     switch:
         heading: Spracheinstellungen
@@ -119,6 +113,16 @@ mannerofdeath:
             name_en: Name (Englisch)
             name_de: Name (Deutsch)
             submit: Speichern
+
+navbar:
+    administration:
+        heading: Administration
+        logout: Ausloggen
+    player:
+        game: Spiel
+        players: Mitspieler
+        profile: Profil
+        rules: Regeln
 
 player:
     index:

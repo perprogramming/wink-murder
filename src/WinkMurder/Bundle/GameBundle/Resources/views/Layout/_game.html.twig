@@ -1,0 +1,41 @@
+{% extends "WinkMurderGameBundle:Layout:_base.html.twig" %}
+{% use "WinkMurderGameBundle:Layout:_autorefresh.html.twig" %}
+
+{% block footer %}
+    <div data-role="footer" data-id="player" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="{{ path('winkmurder_game_locale_set', {locale: otherLocale}) }}" data-ajax="false" data-icon="gear">{{ ('language.' ~ otherLocale) | trans }}</a></li>
+                {% if app.user %}
+                    {% set navbarItems = [
+                        {
+                            'route': 'winkmurder_game_game_status',
+                            'icon': 'jack-o-lantern',
+                            'label': 'navbar.player.game'
+                        },
+                        {
+                            'route': 'winkmurder_game_player_index',
+                            'icon': 'group',
+                            'label': 'navbar.player.players'
+                        },
+                        {
+                            'route': 'winkmurder_game_profile_show',
+                            'icon': 'idcard',
+                            'label': 'navbar.player.profile'
+                        },
+                        {
+                            'route': 'winkmurder_game_rules_show',
+                            'icon': 'rules',
+                            'label': 'navbar.player.rules'
+                        }
+                    ] %}
+                    {% for item in navbarItems %}
+                        {% set url = path(item.route) %}
+                        {% set active = (app.request.pathInfo == url) %}
+                        <li><a href="{{ url }}" data-icon="{{ item.icon }}" data-transition="slide" data-prefetch{% if active %} class="ui-btn-active ui-state-persist"{% endif %}>{{ item.label | trans }}</a></li>
+                    {% endfor %}
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+{% endblock %}

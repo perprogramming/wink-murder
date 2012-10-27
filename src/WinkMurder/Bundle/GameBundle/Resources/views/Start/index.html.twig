@@ -1,14 +1,9 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
-{% use "WinkMurderGameBundle:Layout:autorefresh.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
 
 {% block pageTitle %}{{ 'start.index.pageTitle' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h1>{{ 'start.index.heading' | trans }}</h1>
     <p class="leadin type-medium mrgn-btm-24"><em>{{ 'start.index.leadin' | trans }}</em></p>
     <div>{{ 'start.index.text' | trans | raw }}</div>
-{% endblock %}
-
-{% block locale %}
-    <li>{% include "WinkMurderGameBundle:Locale:_button.html.twig" %}</li>
 {% endblock %}

@@ -1,9 +1,8 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
-
+{% extends "WinkMurderGameBundle:Layout:_administration.html.twig" %}
 
 {% block pageTitle %}{{ 'administration.login.pageTitle' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <h2>{{ 'administration.login.heading' | trans }}</h2>
     {% if error %}
         <div>{{ error.message }}</div>

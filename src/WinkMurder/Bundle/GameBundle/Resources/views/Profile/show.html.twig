@@ -1,8 +1,8 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
 
 {% block pageTitle %}{{ 'profile.show.pageTitle' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     <div class="user-profile">
         <img src="{{ player.photo.url }}" alt="{{ player.photo.title }}" width="60" class="profile-thumb" />
         <p class="salutation">{{ 'profile.show.heading' | trans({'%name%': player.name}) }}</p>

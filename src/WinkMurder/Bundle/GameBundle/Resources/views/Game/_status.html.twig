@@ -1,9 +1,8 @@
-{% extends "WinkMurderGameBundle:Layout:base.html.twig" %}
-{% use "WinkMurderGameBundle:Layout:autorefresh.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
 
 {% block pageTitle %}{{ 'game.status.pageTitle' | trans }}{% endblock %}
 
-{% block body %}
+{% block content %}
     {% if game.latestMurder and not game.latestMurder.isClearedUp %}
         <div class="centered">
             {% if game.latestMurder.victim is sameas(app.user.player) %}
