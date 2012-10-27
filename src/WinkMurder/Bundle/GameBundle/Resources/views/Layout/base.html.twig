@@ -3,6 +3,8 @@
     <head>
         <title>{% block pageTitle %}{% endblock %} - Wink Murder</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black" />
         <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
         {% stylesheets
             'bundles/winkmurdergame/scss/screen.scss'
@@ -26,10 +28,10 @@
                     {% else %}
                         <div data-role="navbar">
                             <ul>
-                                <li>{% include "WinkMurderGameBundle:Locale:_button.html.twig" %}</li>
-                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-icon="idcard" data-ajax="false">{{ 'layout.menue.profile' | trans }}</a></li>
+                                {% block locale %}{% endblock %}
                                 <li><a href="{{ path('winkmurder_game_game_status') }}" data-icon="jack-o-lantern" data-ajax="false">{{ 'layout.menue.game' | trans }}</a></li>
                                 <li><a href="{{ path('winkmurder_game_player_index') }}" data-icon="group" data-ajax="false">{{ 'layout.menue.players' | trans }}</a></li>
+                                <li><a href="{{ path('winkmurder_game_profile_show') }}" data-icon="idcard" data-ajax="false">{{ 'layout.menue.profile' | trans }}</a></li>
                                 <li><a href="{{ path('winkmurder_game_rules_show') }}" data-icon="rules" data-ajax="false">{{ 'layout.menue.rules' | trans }}</a></li>
                             </ul>
                         </div>

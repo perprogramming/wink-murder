@@ -8,3 +8,7 @@
     <p class="leadin type-medium mrgn-btm-24"><em>{{ 'start.index.leadin' | trans }}</em></p>
     <div>{{ 'start.index.text' | trans | raw }}</div>
 {% endblock %}
+
+{% block locale %}
+    <li>{% include "WinkMurderGameBundle:Locale:_button.html.twig" %}</li>
+{% endblock %}

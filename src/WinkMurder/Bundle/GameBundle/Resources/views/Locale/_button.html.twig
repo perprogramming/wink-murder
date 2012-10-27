@@ -1,2 +1,2 @@
 {% set targetLocale = app.session.locale == 'de' ? 'en' : 'de' %}
-<a href="{{ path('winkmurder_game_locale_set', {'locale': targetLocale}) }}" data-ajax="false" data-role="button" data-icon="gear">{{ ('language.' ~ targetLocale) | trans }}</a>
+<a href="{{ path('winkmurder_game_locale_set', {'locale': targetLocale}) }}" data-ajax="false" class="lang-switch">{{ ('language.' ~ targetLocale) | trans }}</a>
