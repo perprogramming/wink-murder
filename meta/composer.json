@@ -29,7 +29,9 @@
         "webfactory/exceptions-bundle": "1.0.*",
         "jlong/sass-twitter-bootstrap": "2.1.0",
         "stof/doctrine-extensions-bundle": "1.0.x-dev",
-        "phpflickr/phpflickr": "3.1.*"
+        "phpflickr/phpflickr": "3.1.*",
+        "doctrine/doctrine-migrations-bundle": "2.0.x-dev",
+        "doctrine/migrations": "dev-master"
     },
 
     "autoload": {
