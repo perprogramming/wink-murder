@@ -122,7 +122,7 @@ player:
     index:
         pageTitle: Players
         heading: Players
-        dead: This player is dead.
+        dead: Manner of death: %tod%
 
 profile:
     show:

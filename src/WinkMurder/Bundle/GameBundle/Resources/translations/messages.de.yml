@@ -124,7 +124,7 @@ player:
     index:
         pageTitle: Mitspieler
         heading: Mitspieler
-        dead: Dieser Spieler ist tot.
+        dead: Todesart: %tod%
 
 profile:
     show:
