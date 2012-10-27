@@ -31,7 +31,7 @@
                     {% for item in navbarItems %}
                         {% set url = path(item.route) %}
                         {% set active = (app.request.pathInfo == url) %}
-                        <li><a href="{{ url }}" data-icon="{{ item.icon }}" data-transition="slide" data-prefetch{% if active %} class="ui-btn-active ui-state-persist"{% endif %}>{{ item.label | trans }}</a></li>
+                        <li><a href="{{ url }}" data-icon="{{ item.icon }}" data-transition="fade" data-prefetch{% if active %} class="ui-btn-active ui-state-persist"{% endif %}>{{ item.label | trans }}</a></li>
                     {% endfor %}
                 {% endif %}
             </ul>

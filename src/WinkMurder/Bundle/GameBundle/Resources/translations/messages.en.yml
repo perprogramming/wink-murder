@@ -1,6 +1,6 @@
 language:
-    de: German
-    en: English
+    de: Deutsche Version
+    en: Switch to English
 
 account:
     login:
@@ -95,10 +95,6 @@ game:
             convict: The murderer is %murderer%!
         endOfPreliminaryProceedings: The preliminaryProceedings will end in:
 
-locale:
-    switch:
-        heading: Language settings
-
 mannerofdeath:
     index:
         heading: Manners Of Death
@@ -125,7 +121,7 @@ player:
     index:
         pageTitle: Players
         heading: Players
-        dead: This player is dead.
+        dead: Manner of death: %tod%
 
 profile:
     show:
