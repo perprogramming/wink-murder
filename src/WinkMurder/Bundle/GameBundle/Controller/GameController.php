@@ -25,10 +25,13 @@ class GameController extends BaseController {
      * @Route("/commit-murder/{id}")
      */
     public function commitMurderAction($id) {
-        $this->getAuthenticatedPlayer()->murder(
-            $this->getCurrentGame()->findPlayer($id)
-        );
-        $this->getEntityManager()->flush();
+        try {
+            $this->getAuthenticatedPlayer()->murder(
+                $this->getCurrentGame()->findPlayer($id)
+            );
+            $this->getEntityManager()->flush();
+        } catch (\Exceptions $e) {
+        }
         return $this->redirect($this->generateUrl('winkmurder_game_game_status'));
     }
 
@@ -36,10 +39,13 @@ class GameController extends BaseController {
      * @Route("/suspect/{id}/")
      */
     public function suspectAction($id) {
-        $this->getAuthenticatedPlayer()->suspect(
-            $this->getCurrentGame()->findPlayer($id)
-        );
-        $this->getEntityManager()->flush();
+        try {
+            $this->getAuthenticatedPlayer()->suspect(
+                $this->getCurrentGame()->findPlayer($id)
+            );
+            $this->getEntityManager()->flush();
+        } catch (\Exception $e) {
+        }
         return $this->redirect($this->generateUrl('winkmurder_game_game_status'));
     }
 
