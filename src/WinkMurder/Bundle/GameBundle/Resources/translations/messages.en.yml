@@ -101,7 +101,7 @@ game:
         endOfPreliminaryProceedings: The investigations end in:
     murdererLost:
         heading: The case has been solved!
-        convict: The murderer is %murderer%!
+        convict: %murderer% is the murderer!
     murdererWon:
         heading: The murderer won!
         convict: The murderer is %murderer%!
