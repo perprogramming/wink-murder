@@ -27,6 +27,5 @@
 }
 
 .profile-lang-switch a:active {
-    background: #f89406;
-    color: #000;
+    @extend .active-gradient;
 }

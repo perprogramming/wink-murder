@@ -14,3 +14,9 @@
 .ui-icon-idcard { background-image: url("../img/123-id-card.png"); }
 .ui-icon-group { background-image: url("../img/112-group.png"); }
 .ui-icon-rules { background-image: url("../img/92-test-tube.png"); }
+
+/* Custom navbar actvive state */
+.ui-btn-active {
+    @extend .active-gradient;
+    border-color: $darkOrange;
+}
