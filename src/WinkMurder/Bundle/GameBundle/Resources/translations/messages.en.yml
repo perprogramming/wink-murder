@@ -87,8 +87,8 @@ game:
         pageTitle: Game
         mostPopularDeath: The most popular death was that by %name%.
     noMurderYet:
-        heading: The murderer did not murder yet.
-        text: Be careful...
+        heading: All is quiet, nobody died.. yet.
+        text: Be careful, there's a murderer stalking these parts.
     latestMurder:
         heading: %victim% is the latest murder victim!
         headingVictim: Whoops! You have been killed. Now that's embarrassing.
@@ -159,7 +159,7 @@ rules:
 
             <h4>How to die</h4>
             <p>Once a player has been killed, he has X minutes to die.</p>
-            <p>The victims are supposed to die as given to them. They are </p>free to choose how dramatic their death is going to be but the more dramatic, the better. At the end of the game all participants will be able to choose the „best death of the night“ and the chosen player will win a great prize!</p>
+            <p>The victims are supposed to die as given to them. They are free to choose how dramatic their death is going to be but the more dramatic, the better. At the end of the game all participants will be able to choose the „best death of the night“ and the chosen player will win a great prize!</p>
 
             <h4>Voting</h4>
             <p>After each death, there will be a vote. The participants now have X minutes to choose the one party guest they consider to be the murderer. If a participant fails to vote in this time slot, his vote can not be count for the current round but he will be able to vote again in the following rounds.</p>
