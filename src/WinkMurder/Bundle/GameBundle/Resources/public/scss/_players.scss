@@ -16,6 +16,7 @@
     &:active,
     &:focus {
         @extend .active-gradient;
+        color: #fff;
     }
 }
 
@@ -55,4 +56,6 @@
 
 .player-dead p {
     margin-bottom: 0;
+    font-style: italic;
+    @extend .type-small;
 }
