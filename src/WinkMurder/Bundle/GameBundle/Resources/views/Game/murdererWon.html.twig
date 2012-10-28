@@ -7,4 +7,5 @@
         <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
         <p class="type-huge jollylodger">{{ 'game.murdererWon.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
     </div>
+    {% include "WinkMurderGameBundle:Game:_mostPopularDeath.html.twig" %}
 {% endblock %}

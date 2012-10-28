@@ -39,6 +39,12 @@ class Player implements Hashable {
      */
     protected $mannerOfDeath;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Murder", inversedBy="likes")
+     * @ORM\JoinColumn(name="favoriteMurder_id", referencedColumnName="id", onDelete="CASCADE")
+     */
+    protected $favoriteMurder;
+
     public function __construct(Game $game, Photo $photo, MannerOfDeath $mannerOfDeath) {
         $this->game = $game;
         $this->photo = $photo;
@@ -106,6 +112,18 @@ class Player implements Hashable {
         $this->game->kill($victim);
     }
 
+    public function likesMurder(Player $player) {
+        return $this->favoriteMurder && ($this->favoriteMurder->getVictim() === $player);
+    }
+
+    public function likeMurder(Player $player) {
+        $this->favoriteMurder = $this->game->findMurderByPlayer($player);
+    }
+
+    public function canLikeMurder(Player $player) {
+        return ($player->isDead() && !$this->likesMurder($player));
+    }
+
     public function setMannerOfDeath($mannerOfDeath) {
         $this->mannerOfDeath = $mannerOfDeath;
     }
@@ -114,13 +132,18 @@ class Player implements Hashable {
         return $this->mannerOfDeath;
     }
 
+    public function getFavoriteMurder() {
+        return $this->favoriteMurder;
+    }
+
     public function getHashValues() {
         return array(
             'id' => $this->id,
             'game' => $this->game,
             'photo' => $this->photo,
             'murder' => $this->murder,
-            'mannerOfDeath' => $this->mannerOfDeath
+            'mannerOfDeath' => $this->mannerOfDeath,
+            'favoriteMurder' => $this->favoriteMurder
         );
     }
 

@@ -85,6 +85,7 @@ administration:
 game:
     status:
         pageTitle: Game
+        mostPopularDeath: The most popular death was that by %name%.
     noMurderYet:
         heading: The murderer did not murder yet.
         text: Be careful...
@@ -132,6 +133,7 @@ player:
         pageTitle: Players
         heading: Players
         dead: Manner of death: %tod%
+        likeMurder: You liked this murder most.
 
 profile:
     show:

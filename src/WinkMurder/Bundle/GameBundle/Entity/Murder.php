@@ -35,6 +35,11 @@ class Murder implements Hashable {
     protected $suspicions;
 
     /**
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="favoriteMurder")
+     */
+    protected $likes;
+
+    /**
      * @ORM\Column(type="datetime")
      */
     protected $timeOfOffense;
@@ -44,6 +49,7 @@ class Murder implements Hashable {
         $this->game = $game;
         $this->victim = $victim;
         $this->suspicions = new ArrayCollection();
+        $this->likes = new ArrayCollection();
         $this->timeOfOffense = $timeOfOffense;
     }
 
@@ -164,10 +170,15 @@ class Murder implements Hashable {
             'game' => $this->game,
             'victim' => $this->victim,
             'suspicions' => $this->suspicions,
+            'likes' => $this->likes,
             'timeOfOffense' => $this->timeOfOffense,
             'endOfPreliminaryProceedings' => $this->arePreliminaryProceedingsDiscontinued(),
             'clearedUp' => $this->isClearedUp()
         );
+    }
+
+    public function getLikes() {
+        return $this->likes->toArray();
     }
 
 }

@@ -101,6 +101,14 @@ class Game implements Hashable {
         }
     }
 
+    public function findMurderByPlayer(Player $player) {
+        foreach ($this->murders as $murder) {
+            if ($murder->getVictim() == $player) {
+                return $murder;
+            }
+        }
+    }
+
     public function getPlayers() {
         return $this->players->toArray();
     }
@@ -305,6 +313,18 @@ class Game implements Hashable {
 
     public function setRequiredPositiveSuspicionRate($requiredPositiveSuspicionRate) {
         $this->requiredPositiveSuspicionRate = $requiredPositiveSuspicionRate;
+    }
+
+    public function getMostPopularDeath() {
+        $mostPopularDeath = null;
+        foreach ($this->murders as $murder) {
+            if ($numberOfLikes = count($murder->getLikes())) {
+                if (!$mostPopularDeath || ($numberOfLikes > count($mostPopularDeath->getLikes()))) {
+                    $mostPopularDeath = $murder;
+                }
+            }
+        }
+        return $mostPopularDeath;
     }
 
 }

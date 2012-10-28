@@ -9,15 +9,26 @@
             <li class="player {% if player.dead %}player-dead{% endif %}">
                 {% if app.user.player.canMurder(player) %}
                     <a href="{{ path('winkmurder_game_game_commitmurder', {id: player.id}) }}" data-ajax="false">
-                        {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                        {{ _self.teaser(player) }}
+                    </a>
+                {% elseif app.user.player.canLikeMurder(player) %}
+                    <a href="{{ path('winkmurder_game_game_likemurder', {id: player.id}) }}" data-ajax="false">
+                        {{ _self.teaser(player) }}
                     </a>
                 {% else %}
-                    {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
-                    {% if player.dead %}
-                        <p class="ui-li-desc pdng-top-6">{{ player.mannerOfDeath.name }}</p>
-                    {% endif %}
+                    {{ _self.teaser(player) }}
                 {% endif %}
             </li>
         {% endfor %}
     </ul>
 {% endblock %}
+
+{% macro teaser(player) %}
+    {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+    {% if player.dead %}
+        <p class="ui-li-desc pdng-top-6">{{ player.mannerOfDeath.name }}</p>
+    {% endif %}
+    {% if app.user.player.likesMurder(player) %}
+        <p class="ui-li-desc pdng-top-6">{{ 'player.index.likeMurder' | trans }}</p>
+    {% endif %}
+{% endmacro %}

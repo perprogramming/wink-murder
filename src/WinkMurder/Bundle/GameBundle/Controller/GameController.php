@@ -49,4 +49,18 @@ class GameController extends BaseController {
         return $this->redirect($this->generateUrl('winkmurder_game_game_status'));
     }
 
+    /**
+     * @Route("/like-murder/{id}/")
+     */
+    public function likeMurderAction($id) {
+        try {
+            $this->getAuthenticatedPlayer()->likeMurder(
+                $this->getCurrentGame()->findPlayer($id)
+            );
+            $this->getEntityManager()->flush();
+        } catch (\Exception $e) {
+        }
+        return $this->redirect($this->generateUrl('winkmurder_game_player_index'));
+    }
+
 }
