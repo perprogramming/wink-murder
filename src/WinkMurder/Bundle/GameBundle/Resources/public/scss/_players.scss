@@ -2,6 +2,11 @@
     list-style-type: none;
 }
 
+.player-list .ul-li-desc {
+    overflow: auto;
+    white-space: normal;
+}
+
 .player {
     @extend .clearfix;
     margin-bottom: 10px;
