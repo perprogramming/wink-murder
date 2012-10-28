@@ -132,7 +132,7 @@ player:
     index:
         pageTitle: Players
         heading: Players
-        dead: Manner of death: %tod%
+        mannerOfDeath: Manner of death: "%death%"
         likeMurder: You liked this murder most.
 
 profile:
@@ -188,3 +188,9 @@ start:
           <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in  dark clothes, immediately before they died. The media therefore termed the stranger „winkmurderer“. The term „winkmurderer“ is derived from a  popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
           <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
           <p class="mrgn-btm-24 centered type-small">&#9830;</p>
+
+exception:
+    error:
+        pageTitle: Error horror
+        heading: You should not be here.
+        text: Go home, little human.

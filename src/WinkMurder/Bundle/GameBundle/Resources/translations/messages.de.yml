@@ -134,7 +134,7 @@ player:
     index:
         pageTitle: Mitspieler
         heading: Mitspieler
-        dead: Todesart: %tod%
+        mannerOfDeath: Todesart: "%death%"
         likeMurder: Du fandest diesen Tod am besten.
 
 profile:
@@ -189,3 +189,9 @@ start:
             <p>Zu den genauen Todesumständen sind wie auch bei den vorangegangenen Fällen keine Details bekannt. „Es scheint auch hier auf den ersten Blick, als fehle den Opfern rein gar nichts“, äußerte sich Horst Schroff, Leiter der Sonderkommission am Nachmittag zu den aktuellen Vorfällen. „Eine Autopsie wird klären müssen, was zu dem tragischen Tod der beiden jungen Leute geführt hat“. Zeugen der vergangenen Morde hatten berichtet, dass die Opfer anscheinend grundlos in sich zusammen sackten. Die Zeugenaussagen stimmen jedoch darin überein, dass die Opfer kurz vor ihrem Tode stets von einer dunkel gekleideten Gestalt passiert wurden. Der Täter oder die Täterin wurde in den Medien daraufhin als „Blinzelmörder“ bezeichnet. Der Begriff „Blinzelmörder“ bezieht sich dabei auf das populäre, auch als „Winkmurder“ bekannt gewordene Partyspiel, bei dem ein ausgewählter Mörder seine Opfer durch Zuzwinkern „ermordet“.</p>
             <p>Gerade in der Nacht zu Halloween, so befürchtet die Kripo, könnte es zu weiteren Todesfällen kommen. Die örtlichen Behörden bitten die Bevölkerung daher um erhöhte Aufmerksamkeit und Vorsicht.</p>
             <p class="centered type-small">&#9830;</p>
+
+exception:
+    error:
+        pageTitle: Error Horror
+        heading: Du solltest hier nicht sein.
+        text: Geh nach Hause, Menschlein!

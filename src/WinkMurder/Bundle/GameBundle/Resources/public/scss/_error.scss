@@ -1,0 +1,9 @@
+.error {
+    color: $brightOrange;
+    background: #000 url(../img/404pumpkin.jpg) no-repeat center 25px;
+}
+
+.error h1 {
+    margin-top: 190px;
+    @extend .type-huge;
+}
