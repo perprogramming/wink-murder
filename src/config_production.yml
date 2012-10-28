@@ -1,2 +1,5 @@
 imports:
     - { resource: config.yml }
+
+assetic:
+    ruby: /usr/bin/ruby1.8
