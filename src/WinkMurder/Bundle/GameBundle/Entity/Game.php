@@ -32,6 +32,7 @@ class Game implements Hashable {
 
     /**
      * @ORM\ManyToOne(targetEntity="Photo")
+     * @ORM\JoinColumn(name="murdererPhoto_id", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $murdererPhoto;
 
