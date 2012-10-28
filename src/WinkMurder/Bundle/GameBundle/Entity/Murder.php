@@ -30,7 +30,7 @@ class Murder implements Hashable {
     protected $victim;
 
     /**
-     * @ORM\OneToMany(targetEntity="Suspicion", mappedBy="murder", cascade={"PERSIST", "DELETE"})
+     * @ORM\OneToMany(targetEntity="Suspicion", mappedBy="murder", cascade={"PERSIST", "REMOVE"})
      */
     protected $suspicions;
 

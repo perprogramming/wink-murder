@@ -253,7 +253,7 @@ class Game implements Hashable {
                 $numberOfUnsolvedMurders++;
             }
         }
-        return $numberOfUnsolvedMurders >= $this->requiredMurders;
+        return $numberOfUnsolvedMurders >= (min($this->requiredMurders, (count($this->players) - 1)));
     }
 
     public function hasMurdererLost() {
@@ -319,7 +319,7 @@ class Game implements Hashable {
         $mostPopularDeath = null;
         foreach ($this->murders as $murder) {
             if ($numberOfLikes = count($murder->getLikes())) {
-                if (!$mostPopularDeath || ($numberOfLikes > count($mostPopularDeath->getLikes()))) {
+                if (!$mostPopularDeath || ($numberOfLikes >= count($mostPopularDeath->getLikes()))) {
                     $mostPopularDeath = $murder;
                 }
             }

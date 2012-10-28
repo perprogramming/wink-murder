@@ -29,7 +29,6 @@ class AccountController extends BaseController {
 
     /**
      * @Route("/login/check/")
-     * @Method("POST")
      */
     public function loginCheckAction() {
     }

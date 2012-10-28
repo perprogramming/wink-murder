@@ -8,11 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 class LocaleController extends BaseController {
 
     /**
-     * @Route("/set-locale/")
+     * @Route("/set-locale/{_locale}")
      */
     public function setAction(Request $request) {
-        $locale = $request->get('locale');
-        $request->getSession()->setLocale($locale);
+        $this->get('session')->set('_locale', $request->getLocale());
         return $this->redirect($request->headers->get('referer') ?: '/');
     }
 

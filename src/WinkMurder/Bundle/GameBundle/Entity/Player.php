@@ -117,11 +117,13 @@ class Player implements Hashable {
     }
 
     public function likeMurder(Player $player) {
-        $this->favoriteMurder = $this->game->findMurderByPlayer($player);
+        if ($this->canLikeMurder($player)) {
+            $this->favoriteMurder = $this->game->findMurderByPlayer($player);
+        }
     }
 
     public function canLikeMurder(Player $player) {
-        return ($player->isDead() && !$this->likesMurder($player));
+        return ($player->isDead() && ($player !== $this) && !$this->likesMurder($player));
     }
 
     public function setMannerOfDeath($mannerOfDeath) {

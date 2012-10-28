@@ -47,8 +47,9 @@ security:
 
     providers:
         admin:
-            users:
-                admin: { password: '5b1e4104ab5eda1b3388a68a4621aa04bc5934c1', roles: ROLE_ADMIN }
+            memory:
+                users:
+                    admin: { password: '5b1e4104ab5eda1b3388a68a4621aa04bc5934c1', roles: ROLE_ADMIN }
         accounts:
             entity:
                 class: WinkMurderGameBundle:Account
@@ -60,5 +61,5 @@ security:
             iterations: 1
             encode_as_base64: false
 
-    factories:
-        - "%project.srcdir%/WinkMurder/Bundle/GameBundle/Resources/config/security_factory.xml"
+#    factories:
+#        - "%project.srcdir%/WinkMurder/Bundle/GameBundle/Resources/config/security_factory.xml"

@@ -20,18 +20,24 @@
     ],
 
     "require": {
-        "symfony/symfony": "2.0.*",
-        "doctrine/orm": "2.1.*",
-        "symfony/assetic-bundle": "2.0.x-dev",
-        "webfactory/assetdependenciesbugfix-bundle": "1.0.*",
+        "symfony/symfony": "2.1.*",
+        "doctrine/orm": "2.3.*",
+        "symfony/assetic-bundle": "2.1.x-dev",
+        "kriswallsmith/assetic": "1.1.x-dev",
+        "webfactory/assetdependenciesbugfix-bundle": "2.1.*",
         "webfactory/compass-bundle": "1.0.*",
-        "sensio/framework-extra-bundle": "2.0.x-dev",
+        "sensio/framework-extra-bundle": "2.1.x-dev",
         "webfactory/exceptions-bundle": "1.0.*",
         "jlong/sass-twitter-bootstrap": "2.1.0",
-        "stof/doctrine-extensions-bundle": "1.0.x-dev",
+        "stof/doctrine-extensions-bundle": "1.1.x-dev",
         "phpflickr/phpflickr": "3.1.*",
-        "doctrine/doctrine-migrations-bundle": "2.0.x-dev",
-        "doctrine/migrations": "dev-master"
+        "doctrine/doctrine-migrations-bundle": "dev-master",
+        "doctrine/migrations": "dev-master",
+        "symfony/monolog-bundle": "2.1.x-dev"
+    },
+
+    "require-dev": {
+        "phpunit/phpunit": "3.7.8"
     },
 
     "autoload": {

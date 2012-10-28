@@ -10,8 +10,11 @@ class GameRepository extends EntityRepository {
         $queryBuilder = $this->createDefaultQueryBuilder();
         $queryBuilder->andWhere('game.finished = false');
         $queryBuilder->addOrderBy('game.id', 'DESC');
-        $games = $queryBuilder->getQuery()->getResult();
-        return reset($games);
+        if ($games = $queryBuilder->getQuery()->getResult()) {
+            return reset($games);
+        } else {
+            return null;
+        }
     }
 
     public function findOneForPlayer(Player $player) {

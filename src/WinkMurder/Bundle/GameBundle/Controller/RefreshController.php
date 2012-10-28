@@ -16,7 +16,7 @@ class RefreshController extends BaseController {
      */
     public function hashAction(Request $request) {
         $hashInformation = array();
-        $hashInformation['locale'] = $request->getSession()->getLocale();
+        $hashInformation['locale'] = $request->getLocale();
         if ($game = $this->getCurrentGame())
             $hashInformation['game'] = $game->getHash();
         if ($this->getAuthenticatedPlayer())

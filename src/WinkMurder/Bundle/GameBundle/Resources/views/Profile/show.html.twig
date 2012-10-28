@@ -13,7 +13,7 @@
         </div>
 
         <div class="profile-lang-switch mrgn-btm-24">
-            <a href="{{ path('winkmurder_game_locale_set', {'locale': otherLocale}) }}" data-ajax="false" class="lang-switch">{{ ('language.' ~ otherLocale) | trans }}</a>
+            <a href="{{ path('winkmurder_game_locale_set', {'_locale': otherLocale}) }}" data-ajax="false" class="lang-switch">{{ ('language.' ~ otherLocale) | trans }}</a>
         </div>
     </div>
 {% endblock %}

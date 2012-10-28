@@ -8,15 +8,14 @@ parameters:
 
 framework:
     secret: %secret%
-    charset:         utf-8
     router:          { resource: "%kernel.root_dir%/routing.yml" }
     form:            true
     templating:      { engines: ['twig'] }
-    translator:      { fallback: en }
-    session:
-        default_locale: de
+    translator:      { fallback: de }
+    default_locale:  de
     esi:             { enabled: true }
     validation:      { enable_annotations: true }
+    session:         ~
 
 assetic:
     read_from:      %project.webdir%
@@ -38,6 +37,12 @@ doctrine:
         charset:  utf8
     orm:
         auto_mapping: true
+        mappings:
+            gedmo_translatable:
+                type: annotation
+                prefix: Gedmo\Translatable\Entity
+                dir: "%project.libdir%/gedmo/doctrine-extensions/lib/Gedmo/Translatable/Entity"
+                is_bundle: false
 
 monolog:
     handlers:
@@ -45,11 +50,6 @@ monolog:
             type:  stream
             path:  %kernel.logs_dir%/%kernel.environment%.log
             level: debug
-
-swiftmailer:
-    host:      %smtp.host%
-    username:  %smtp.username%
-    password:  %smtp.password%
 
 webfactory_exceptions:
     bundle: WinkMurderGameBundle
