@@ -4,7 +4,7 @@
     <div class="centered">
         <p class="type-big imfellsc mrgn-top-24 mrgn-btm-24">{{ 'game.murdererLost.heading' | trans }}</p>
         <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
-        <p class="type-huge jollylodger">{{ 'game.murdererLost.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
+        <p class="type-huge highlighted jollylodger">{{ 'game.murdererLost.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
     </div>
     {% include "WinkMurderGameBundle:Game:_mostPopularDeath.html.twig" %}
 {% endblock %}

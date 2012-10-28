@@ -5,11 +5,12 @@
 .player {
     @extend .clearfix;
     margin-bottom: 10px;
-    border: 1px solid $darkGrey;
+    border: 1px solid $lightGrey;
 }
 
 .player a {
     @extend .clearfix;
+    display: block;
 
     &:active,
     &:focus {
@@ -26,6 +27,7 @@
 .player-name {
     padding-top: 11px;
     @extend .type-medium;
+    color: $lightGrey;
 }
 
 .player-thumb {

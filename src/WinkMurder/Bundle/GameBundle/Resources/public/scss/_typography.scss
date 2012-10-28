@@ -2,6 +2,7 @@
 body, form, input, label {
     font-family: 'IM Fell English', Garamond, Cambria, Georgia, sans-serif;
     @extend .type-default;
+    color: $lightGrey;
 }
 
 * { margin: 0; padding: 0; }
@@ -21,12 +22,14 @@ h1 {
     @extend .type-big;
     @extend .imfellsc;
     font-weight: normal;
+    color: $brightOrange;
     margin-bottom: 20px;
 }
 
 h2 {
     @extend .type-medium;
     margin: 4px 0;
+    font-weight: normal;
 }
 
 h3 {

@@ -9,7 +9,7 @@
                 <p class="imfellsc type-big mrgn-btm-12">{{ 'game.latestMurder.headingVictim' | trans }}</p>
             {% else %}
                 <img src="{{ game.latestMurder.victim.photo.url }}" alt="{{ game.latestMurder.victim.photo.title }}" width="60" class="profile-thumb" />
-                <p class="imfellsc type-big mrgn-btm-12">{{ 'game.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
+                <p class="imfellsc type-big highlighted mrgn-btm-12">{{ 'game.latestMurder.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
             {% endif %}
             <p class="mrgn-top-12 mrgn-btm-12 centered type-small">&#9830;</p>
         </div>
