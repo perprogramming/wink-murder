@@ -33,10 +33,4 @@ class AccountController extends BaseController {
     public function loginCheckAction() {
     }
 
-    /**
-     * @Route("/logout/")
-     */
-    public function logoutAction() {
-    }
-
 }
