@@ -3,15 +3,13 @@
 }
 
 .player {
-    float: left;
-    width: 100%;
+    @extend .clearfix;
     margin-bottom: 10px;
     border: 1px solid $darkGrey;
 }
 
 .player a {
-    float: left;
-    width: 100%;
+    @extend .clearfix;
 
     &:active,
     &:focus {
@@ -21,13 +19,8 @@
 }
 
 .player-wrapper {
-    float: left;
-    width: 97%;
+    @extend .clearfix;
     background: url(../img/glyphicons_217_circle_arrow_right.png) no-repeat right center;
-}
-
-.players-player-wrapper {
-    padding-right: 45px;
 }
 
 .player-name {
@@ -40,18 +33,17 @@
     margin-right: 10px;
 }
 
-.player-dead {
-    background-color: #eee;
-    background: url(../img/22-skull-n-bones.png) no-repeat 95% center;
-}
-
-.player-dead .player-thumb {
-    border: 5px solid #000;
-    width: 40px;
+.dead-player-wrapper {
+    border: 2px solid #000;
+    @extend .clearfix;
 }
 
 .player-dead .player-name {
     padding-top: 5px;
+}
+
+.player-dead .player-name:after {
+    content: ' \2020';
 }
 
 .player-dead p {
