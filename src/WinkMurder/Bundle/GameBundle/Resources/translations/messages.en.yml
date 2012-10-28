@@ -148,31 +148,29 @@ rules:
         pageTitle: Rules
         heading: The Rules
         rules: |
-            <h4>The roles</h4>
-            <p>In this game there is one murderer on the loose. The murderer can be male as well as female. Only the murderer is aware of his role. All other participants are potential victims.</p>
+            <h4>Roles</h4>
+            <p>One player is the murderer. The murderer can be male as well as female. Only the murderer is aware of his role, all other players are potential victims.</p>
 
             <h4>Goal</h4>
             <p>The murderer‘s goal is to kill as many party guests as possible. All other participants are supposed to reveal the murderer‘s identity.</p>
 
-            <h4>The murder</h4>
+            <h4>The murder weapon</h4>
             <p>The murderer kills by winking at a person with ONE eye.</p>
 
             <h4>How to die</h4>
-            <p>Once a player has been killed, he has X minutes to die.</p>
-            <p>The victims are supposed to die as given to them. They are free to choose how dramatic their death is going to be but the more dramatic, the better. At the end of the game all participants will be able to choose the „best death of the night“ and the chosen player will win a great prize!</p>
+            <p>Once a player has been killed, he should die within the next five minutes. Victims should give the murderer time to flee the crime scene before they die.</p>
+            <p>The victims are supposed to die the death assigned to them on their profile page. Everybody is free to choose how dramatic their death is going to be — the more dramatic, the better. At the end of the game all participants will be able to choose the „best death of the night“ and the chosen player will win a great prize!</p>
 
-            <h4>Voting</h4>
-            <p>After each death, there will be a vote. The participants now have X minutes to choose the one party guest they consider to be the murderer. If a participant fails to vote in this time slot, his vote can not be count for the current round but he will be able to vote again in the following rounds.</p>
-            <p>The victims are NEVER ALLOWED to reveal the murderers identity. Once a victim has died, he is not able to contribute to the votings any more.</p>
-
-            <h4>End of a voting</h4>
-            <p>At the end of each vote, the result will be announced immediately.</p>
+            <h4>Investigation</h4>
+            <p>After each death, all living players try to identify the murderer. A vote is running for 10 minutes and participants can choose the one party guest they consider to be the murderer. If a participant fails to vote in this time slot, his vote can not be counted for the current round. He will be able to vote again in the following rounds.</p>
+            <p>Dead victims are NEVER ALLOWED to reveal the murderer's identity. Once a victim has died, he is not able to contribute to the votings any more.</p>
+            <p>At the end of each vote, the result will be announced immediately. If the murderer hasn't been identified by at least half the players, he stays free and will kill again.</p>
 
             <h4>End of the game</h4>
-            <p>The game ends a) as soon as the murderer successfully killed X participants or b) as soon as the murderer is caught.</p>
+            <p>The game ends a) as soon as the murderer successfully killed 12 players or b) as soon as the murderer is caught. The players need at least 50% correct votes to catch the murderer.</p>
 
             <h4>Help! I‘m drunk and I don‘t get anything!</h4>
-            <p>If you still have any questions, do not hesitate to contact our admin Søren, who himself is not participating in the game.</p>
+            <p>If you still have any questions, do not hesitate to contact Søren, who is the game master and not participating in the game.</p>
 
             <p class="centered type-small">&#9830;</p>
 
@@ -184,8 +182,8 @@ start:
         text: |
           <p class="mrgn-btm-24"><strong>Bonn</strong> — For over a week an unknown murderer has brought fear amongst the citizens of Bonn. While the police recently arrested a suspect, it now seems clear that the man can‘t be the one everyone had hoped to catch.</p>
           <p class="mrgn-btm-24">As a police spokesman said this afternoon, two more victims, a 22 years old female biology student and a computer science student (male, 24) were found dead today close to the Bonner Alt- and Weststadt.</p>
-          <p class="mrgn-btm-24">As with the other deaths there is no clue so far on how the students died. „It really seems as if the victims had no injuries at all“, said Horst Schroff from the SOKO Bonn. „We will need to wait for the autopsy results to clarify what lead to these tragic deaths.“</p>
-          <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in  dark clothes, immediately before they died. The media therefore termed the stranger „winkmurderer“. The term „winkmurderer“ is derived from a  popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
+          <p class="mrgn-btm-24">As with the other deaths there is are no clues how the students died. „It really seems as if the victims had no injuries at all“, said Horst Schroff from the SOKO Bonn. „We will need to wait for the autopsy results to clarify what lead to these tragic deaths.“</p>
+          <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in dark clothes just before they died. The media named the stranger „Winkmurderer“. The term „Winkmurderer“ is derived from a popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
           <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
           <p class="mrgn-btm-24 centered type-small">&#9830;</p>
 
@@ -193,4 +191,4 @@ exception:
     error:
         pageTitle: Error horror
         heading: You should not be here.
-        text: Go home, little human.
+        text: Go back to your kind, little human.

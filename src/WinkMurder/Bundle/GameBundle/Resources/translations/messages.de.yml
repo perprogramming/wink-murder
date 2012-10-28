@@ -161,21 +161,20 @@ rules:
             <p>Der Mörder tötet, indem er seinem Opfer mit EINEM Auge zuzwinkert.</p>
 
             <h4>Das Sterben</h4>
-            <p>Wird ein Spieler ermordet, hat dieser X Minuten Zeit zu sterben.</p>
-            <p>Der Spieler stirbt auf die ihm vorgegebene Art und Weise. Es ist dabei dem Spieler überlassen, wie dramatisch sein Tod aussehen soll. Es gilt jedoch: Je dramatischer, desto besser. Am Ende des Spiels werden alle Teilnehmer die Möglichkeit haben, den „besten Tod des Abends“ zu küren. Auf den gewählten Spieler wartetet ein toller Preis!</p>
+            <p>Wird ein Spieler ermordet, hat er fünf Minuten Zeit zu sterben. Er sollte dem Mörder kurz Zeit lassen, vom Tatort zu fliehen.</p>
+            <p>Der Spieler stirbt auf die ihm vorgegebene Art und Weise (siehe Profilseite). Es ist dabei dem Spieler überlassen, wie dramatisch sein Tod aussehen soll. Es gilt jedoch: Je dramatischer, desto besser. Am Ende des Spiels werden alle Teilnehmer die Möglichkeit haben, den „besten Tod des Abends“ zu küren. Auf den gewählten Spieler wartetet ein toller Preis!</p>
 
             <h4>Voting</h4>
-            <p>Nach dem Tod eines Teilnehmers beginnt eine Voting-Runde. Die Spieler haben nun X Minuten Zeit, denjenigen Mitspieler auszuwählen, den sie für den Mörder halten. Schafft ein Spieler es nicht, in der vorgegebenen Zeit seine Stimme abzugeben, kann diese für die laufende Runde nicht mehr gezählt werden. Dem Spieler bleibt jedoch die Möglichkeit, in den nächsten Runden wieder am Voting-Prozess teilzunehmen.</p>
+            <p>Nach dem Tod eines Teilnehmers beginnt eine Voting-Runde. Die Spieler haben nun zehn Minuten Zeit, denjenigen Mitspieler auszuwählen, den sie für den Mörder halten. Schafft ein Spieler es nicht, in der vorgegebenen Zeit seine Stimme abzugeben, kann diese für die laufende Runde nicht mehr gezählt werden. Dem Spieler bleibt jedoch die Möglichkeit, in den nächsten Runden wieder am Voting-Prozess teilzunehmen.</p>
             <p>Den Opfern ist es ZU KEINER ZEIT GESTATTET, die Identität des Mörders preis zu geben. Bereits ermordete Mitspieler sind von allen weiteren Voting-Runden ausgeschlossen.</p>
-
-            <h4>Ende einer Voting-Runde</h4>
-            <p>Am Ende jeder Voting-Runde wird den Spielern das Ergebnis der Abstimmung bekannt gegeben.</p>
+            <p>Am Ende jeder Voting-Runde wird den Spielern das Ergebnis der Abstimmung bekannt gegeben. Ist der Mörder nicht von mindestens der Hälfte der Spieler identifiziert worden, bleibt er frei und kann weiter morden.</p>
 
             <h4>Ende des Spiels</h4>
-            <p>Das Spiel endet, a) sobald der Mörder gefasst wurde oder b) sobald es dem Mörder gelungen ist unbehelligt X Mitspieler zu ermorden.</p>
+            <p>Das Spiel endet, a) sobald es dem Mörder gelungen ist unbehelligt 12 Mitspieler zu ermorden oder b) sobald der Mörder gefasst wurde oder. Die Spieler brauchen mindestens 50% richtige Votes, um den Mörder zu stellen.</p>
 
             <h4>Hilfe! Ich bin betrunken und kapiere gar nix!</h4>
-            <p>Falls ihr noch Fragen habt, könnt ihr euch auch jederzeit an unseren Admin Søren wenden. Søren selbst nimmt nicht am Spiel teil. :)</p>
+            <p>Falls ihr noch Fragen habt, könnt ihr euch auch jederzeit an unseren Admin Søren wenden. Søren selbst nimmt nicht am Spiel teil.</p>
+
             <p class="centered type-small">&#9830;</p>
 
 start:
@@ -194,4 +193,4 @@ exception:
     error:
         pageTitle: Error Horror
         heading: Du solltest hier nicht sein.
-        text: Geh nach Hause, Menschlein!
+        text: Geh zurück zu deinesgleichen, Menschlein!
