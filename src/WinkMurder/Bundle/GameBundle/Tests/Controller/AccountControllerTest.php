@@ -42,4 +42,24 @@ class AccountControllerTest extends WebTestCase {
         $this->assertEquals("Hi {$firstPhoto->getTitle()}!", $salutation->text());
     }
 
+    public function testUniqueLoginCheck() {
+        $game = $this->setupGame();
+
+        $firstPhoto = reset($game->getUnusedPhotos());
+
+        $clientA = static::createClient(array(), array('HTTP_HOST' => 'wink-murder.here'));
+        $crawlerA = $clientA->request('GET', '/login/');
+        $loginLinkA = $crawlerA->filter("a:contains('{$firstPhoto->getTitle()}')")->link();
+
+        $clientB = static::createClient(array(), array('HTTP_HOST' => 'wink-murder.here'));
+        $crawlerB = $clientA->request('GET', '/login/');
+        $loginLinkB = $crawlerA->filter("a:contains('{$firstPhoto->getTitle()}')")->link();
+
+        $clientA->click($loginLinkA);
+        $this->assertTrue($clientA->getResponse()->isRedirect('http://wink-murder.here/'));
+
+        $clientB->click($loginLinkB);
+        $this->assertTrue($clientB->getResponse()->isRedirect('http://wink-murder.here/login/'));
+    }
+
 }

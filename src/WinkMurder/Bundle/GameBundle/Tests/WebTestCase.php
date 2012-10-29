@@ -24,18 +24,6 @@ class WebTestCase extends BaseWebTestCase {
         $schemaTool->createSchema($classes);
     }
 
-    protected function createAdministratorClient() {
-        $client = static::createClient();
-        $client->followRedirects();
-        $crawler = $client->request('GET', '/administration/login/');
-        $form = $crawler->selectButton('Einloggen')->form();
-        $client->submit($form, array(
-            '_username' => 'admin',
-            '_password' => 'xxx'
-        ));
-        return $client;
-    }
-
     protected function getEntityManager() {
         $container = $this->getContainer();
         $doctrine = $container->get('doctrine');

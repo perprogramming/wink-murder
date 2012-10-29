@@ -23,8 +23,7 @@ class StartControllerTest extends WebTestCase {
         $client->request('GET', '/');
         $response = $client->getResponse();
 
-        $this->assertTrue($response->isRedirect());
-        $this->assertEquals('/you/', $response->getTargetUrl());
+        $this->assertTrue($response->isRedirect('/you/'));
     }
 
 }

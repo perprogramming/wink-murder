@@ -93,6 +93,14 @@ class Game implements Hashable {
         });
     }
 
+    public function findUnusedPhoto($id) {
+        foreach ($this->getUnusedPhotos() as $unusedPhoto) {
+            if ($id == $unusedPhoto->getId()) {
+                return $unusedPhoto;
+            }
+        }
+    }
+
     public function findPlayer($id) {
         foreach ($this->players as $player) {
             if ($player->getId() == $id) {
