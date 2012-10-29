@@ -10,28 +10,32 @@
                         {
                             'route': 'winkmurder_game_game_status',
                             'icon': 'jack-o-lantern',
-                            'label': 'navbar.player.game'
+                            'label': 'navbar.player.game',
+                            'ajax': false
                         },
                         {
                             'route': 'winkmurder_game_player_index',
                             'icon': 'group',
-                            'label': 'navbar.player.players'
+                            'label': 'navbar.player.players',
+                            'ajax': true
                         },
                         {
                             'route': 'winkmurder_game_profile_show',
                             'icon': 'idcard',
-                            'label': 'navbar.player.profile'
+                            'label': 'navbar.player.profile',
+                            'ajax': true
                         },
                         {
                             'route': 'winkmurder_game_rules_show',
                             'icon': 'rules',
-                            'label': 'navbar.player.rules'
+                            'label': 'navbar.player.rules',
+                            'ajax': true
                         }
                     ] %}
                     {% for item in navbarItems %}
                         {% set url = path(item.route) %}
                         {% set active = (app.request.pathInfo == url) %}
-                        <li><a href="{{ url }}" data-icon="{{ item.icon }}" data-transition="fade" data-prefetch{% if active %} class="ui-btn-active ui-state-persist"{% endif %}>{{ item.label | trans }}</a></li>
+                        <li><a href="{{ url }}" data-icon="{{ item.icon }}" {% if item.ajax %}data-transition="fade" data-prefetch{% else %}data-ajax="false"{% endif %}{% if active %} class="ui-btn-active ui-state-persist"{% endif %}>{{ item.label | trans }}</a></li>
                     {% endfor %}
                 {% endif %}
             </ul>
