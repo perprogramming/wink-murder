@@ -49,6 +49,7 @@ class Player implements Hashable {
         $this->game = $game;
         $this->photo = $photo;
         $this->mannerOfDeath = $mannerOfDeath;
+        $this->mannerOfDeath->addPlayer($this);
     }
 
     public function getId() {

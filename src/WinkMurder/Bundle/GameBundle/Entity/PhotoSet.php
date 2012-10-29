@@ -47,7 +47,9 @@ class PhotoSet implements Hashable {
     }
 
     public function addPhoto($id, $title, $url) {
-        $this->photos->add(new Photo($id, $this, $title, $url));
+        $photo = new Photo($id, $this, $title, $url);
+        $this->photos->add($photo);
+        return $photo;
     }
 
     public function removePhoto(Photo $photo) {

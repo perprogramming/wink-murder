@@ -20,7 +20,7 @@ class MannerOfDeath implements Hashable {
     protected $id;
 
     /**
-     * @ORM\OneToMany(targetEntity="Player", mappedBy="mannerOfDeath")
+     * @ORM\OneToMany(targetEntity="Player", mappedBy="mannerOfDeath", cascade={"PERSIST"})
      */
     protected $players;
 
@@ -44,7 +44,7 @@ class MannerOfDeath implements Hashable {
     }
 
     public function getPlayers() {
-        return $this->players;
+        return $this->players->toArray();
     }
 
     public function addPlayer(Player $player) {
