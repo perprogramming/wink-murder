@@ -105,6 +105,10 @@ game:
     murdererWon:
         heading: The murderer won!
         convict: The murderer is %murderer%!
+    commitMurder:
+        question: Do you really want to kill %name%?
+        submit: Yes
+        cancel: No
 
 mannerofdeath:
     index:
