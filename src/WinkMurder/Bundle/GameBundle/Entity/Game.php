@@ -38,7 +38,7 @@ class Game implements Hashable {
 
     /**
      * @ORM\OneToMany(targetEntity="Murder", mappedBy="game", cascade={"PERSIST", "REMOVE"}, orphanRemoval=true)
-     * @ORM\OrderBy({"timeOfOffense" = "ASC"})
+     * @ORM\OrderBy({"timeOfOffense" = "DESC"})
      */
     protected $murders;
 
@@ -83,7 +83,7 @@ class Game implements Hashable {
 
     public function getUnusedPhotos() {
         $players = $this->players;
-        return array_filter($this->photoSet->getPhotos(), function(Photo $photo) use ($players) {
+        $photos = array_filter($this->photoSet->getPhotos(), function(Photo $photo) use ($players) {
             foreach ($players as $player) {
                 if ($player->getPhoto() === $photo) {
                     return false;
@@ -91,6 +91,10 @@ class Game implements Hashable {
             }
             return true;
         });
+        usort($photos, function($photoA, $photoB) {
+            return strcmp($photoA->getTitle(), $photoB->getTitle());
+        });
+        return $photos;
     }
 
     public function findUnusedPhoto($id) {
@@ -117,8 +121,20 @@ class Game implements Hashable {
         }
     }
 
+    public function getMurders() {
+        $murders = $this->murders->toArray();
+        usort($murders, function(Murder $murderA, Murder $murderB) {
+            return intval($murderB->getTimeOfOffense()->format('U')) - intval($murderA->getTimeOfOffense()->format('U'));
+        });
+        return $murders;
+    }
+
     public function getPlayers() {
-        return $this->players->toArray();
+        $players = $this->players->toArray();
+        usort($players, function($playerA, $playerB) {
+            return strcmp($playerA->getName(), $playerB->getName());
+        });
+        return $players;
     }
 
     public function addPlayer(Photo $photo, MannerOfDeath $mannerOfDeath) {
@@ -159,7 +175,13 @@ class Game implements Hashable {
         return false;
     }
 
-    public function getAliveOtherPlayers(Player $player) {
+    public function getOtherPlayers(Player $player = null) {
+        return array_filter($this->getPlayers(), function(Player $other) use ($player) {
+            return $other !== $player;
+        });
+    }
+
+    public function getAliveOtherPlayers(Player $player = null) {
         return array_filter($this->getAlivePlayers(), function(Player $other) use ($player) {
             return $other !== $player;
         });
@@ -181,9 +203,9 @@ class Game implements Hashable {
         if ($this->isMurdererIdentified()) throw new \Exception("The murderer is identified.");
     }
 
-    public function kill(Player $player, Player $murderer = null) {
+    public function kill(Player $player, Player $murderer = null, $time = null) {
         $this->checkKill($player, $murderer);
-        $this->murders->add(new Murder($this, $player, new \DateTime('now')));
+        $this->murders->add(new Murder($this, $player, $time ?: new \DateTime('now')));
     }
 
     public function resurrect(Player $player) {
@@ -261,7 +283,7 @@ class Game implements Hashable {
                 $numberOfUnsolvedMurders++;
             }
         }
-        return $numberOfUnsolvedMurders >= (min($this->requiredMurders, (count($this->players) - 1)));
+        return $numberOfUnsolvedMurders >= (min($this->requiredMurders, (count($this->getOtherPlayers($this->getMurderer())))));
     }
 
     public function hasMurdererLost() {
