@@ -84,7 +84,7 @@ class GameController extends BaseController {
             $this->getEntityManager()->flush();
         } catch (\Exceptions $e) {
         }
-        return $this->redirect($this->generateUrl('winkmurder_game_game_players'));
+        return $this->redirect($this->generateUrl('winkmurder_game_game_status'));
     }
 
 }

@@ -170,7 +170,8 @@ investigations:
             noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
             suspicion: Dein Verdacht ist auf %suspect% gefallen.
         murdersWithPreliminaryProceedingsDiscontinued:
-            heading: Abgeschlossene Ermittlungen
+            heading: Frühere Morde
+            suspicion: Du hattest %suspect% verdächtigt.
             favLinkText: Gefällt Dir?
             likeMurder: Gefällt Dir!
 

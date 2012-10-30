@@ -169,7 +169,8 @@ investigations:
             noSuspectLeft: There are no players to suspect. You must be the murderer...
             suspicion: You suspect %suspect% to be the murderer.
         murdersWithPreliminaryProceedingsDiscontinued:
-            heading: Closed investigations
+            heading: Prior murders
+            suspicion: You suspected %supsect%.
             favLinkText: Like?
             likeMurder: Liked!
 

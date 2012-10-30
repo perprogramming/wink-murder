@@ -1,5 +1,5 @@
 {% include "WinkMurderGameBundle:Common:Murder/_latestMurderTeaser.html.twig" %}
 {% include "WinkMurderGameBundle:Common:Murder/_endOfPreliminaryProceedings.html.twig" %}
-{% if app.user.player.canSuspect %}
+{% if app.user and app.user.player.canSuspect %}
     <p class="centered"><a href="{{ path('winkmurder_game_investigations_index') }}">{{ 'game.status.proceedingsOngoing.suspicionLink' | trans }}</a></p>
 {% endif %}
