@@ -177,7 +177,7 @@ rules:
             <h4>Help! I‘m drunk and I don‘t get anything!</h4>
             <p>If you still have any questions, do not hesitate to contact Søren, who is the game master and not participating in the game.</p>
 
-            <p class="centered type-small">&#9830;</p>
+            <p class="centered type-micro">&#9830;</p>
 
 start:
     index:
@@ -190,7 +190,7 @@ start:
           <p class="mrgn-btm-24">As with the other deaths there is are no clues how the students died. „It really seems as if the victims had no injuries at all“, said Horst Schroff from the SOKO Bonn. „We will need to wait for the autopsy results to clarify what lead to these tragic deaths.“</p>
           <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in dark clothes just before they died. The media named the stranger „Winkmurderer“. The term „Winkmurderer“ is derived from a popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
           <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
-          <p class="mrgn-btm-24 centered type-small">&#9830;</p>
+          <p class="mrgn-btm-24 centered type-micro">&#9830;</p>
 
 exception:
     error:

@@ -180,19 +180,19 @@ rules:
             <h4>Hilfe! Ich bin betrunken und kapiere gar nix!</h4>
             <p>Falls ihr noch Fragen habt, könnt ihr euch auch jederzeit an unseren Admin Søren wenden. Søren selbst nimmt nicht am Spiel teil.</p>
 
-            <p class="centered type-small">&#9830;</p>
+            <p class="centered type-micro">&#9830;</p>
 
 start:
     index:
         pageTitle: Willkommen
         heading: Blinzelmörder treibt weiterhin sein Unwesen
-        leadin: Erneut hat der als „Blinzelmörder“ bekannt gewordene Unbekannte zugeschlagen. Zwei weitere Opfer wurden am Morgen Nahe der Bonner Innenstadt aufgefunden.
+        leadin: Erneut hat der als „Blinzelmörder“ bekannt gewordene Unbekannte zugeschlagen. Zwei weitere Opfer wurden am Morgen nahe der Bonner Innenstadt aufgefunden.
         text: |
             <p><strong>Bonn</strong> — Seit nunmehr einer Woche treibt der als „Blinzelmörder“ bekannt gewordene Täter sein Unwesen in Bonn. Wähnten sich die Einwohner zuletzt in Sicherheit nachdem die Polizei einen Tatverdächtigen verhaftet hatte, scheint nun klar, dass es sich bei dem Mann nicht um den Mörder handelt.</p>
             <p>Wie die örtliche Polizei am Nachmittag bekannt gab, wurden zwei weitere Opfer am Morgen in der Nähe der Bonner Alt- und Weststadt aufgefunden. Bei den Opfern handelt sich um eine 22-jährige Biologiestudentin und einen 34-jährigen Informatik-Studenten.</p>
             <p>Zu den genauen Todesumständen sind wie auch bei den vorangegangenen Fällen keine Details bekannt. „Es scheint auch hier auf den ersten Blick, als fehle den Opfern rein gar nichts“, äußerte sich Horst Schroff, Leiter der Sonderkommission am Nachmittag zu den aktuellen Vorfällen. „Eine Autopsie wird klären müssen, was zu dem tragischen Tod der beiden jungen Leute geführt hat“. Zeugen der vergangenen Morde hatten berichtet, dass die Opfer anscheinend grundlos in sich zusammen sackten. Die Zeugenaussagen stimmen jedoch darin überein, dass die Opfer kurz vor ihrem Tode stets von einer dunkel gekleideten Gestalt passiert wurden. Der Täter oder die Täterin wurde in den Medien daraufhin als „Blinzelmörder“ bezeichnet. Der Begriff „Blinzelmörder“ bezieht sich dabei auf das populäre, auch als „Winkmurder“ bekannt gewordene Partyspiel, bei dem ein ausgewählter Mörder seine Opfer durch Zuzwinkern „ermordet“.</p>
             <p>Gerade in der Nacht zu Halloween, so befürchtet die Kripo, könnte es zu weiteren Todesfällen kommen. Die örtlichen Behörden bitten die Bevölkerung daher um erhöhte Aufmerksamkeit und Vorsicht.</p>
-            <p class="centered type-small">&#9830;</p>
+            <p class="centered type-micro">&#9830;</p>
 
 exception:
     error:
