@@ -1,0 +1,42 @@
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
+
+{% block pageTitle %}{{ 'game.players.pageTitle' | trans }}{% endblock %}
+
+{% block content %}
+    {% include "WinkMurderGameBundle:Game:_controlgroup.html.twig" %}
+
+    <h1>{{ 'game.players.heading' | trans }}</h1>
+
+    {% if game.started and not app.user %}
+        <p><a href="{{ path('winkmurder_game_account_login') }}" data-transition="flip" data-role="button" data-inline="true">{{ 'game.players.loginLink' | trans }}</a></p>
+    {% endif %}
+
+    {% if game.players %}
+        <ul class="player-list">
+            {% for player in game.players %}
+                <li class="player {% if player.dead %}player-dead{% endif %}">
+                    {% if app.user and app.user.player.canMurder(player) %}
+                        <a href="{{ path('winkmurder_game_player_commitmurder', {id: player.id}) }}" data-rel="dialog" data-transition="slidedown">
+                            {{ _self.teaser(player) }}
+                        </a>
+                    {% else %}
+                        {{ _self.teaser(player) }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>{{ 'game.players.noPlayersYet' | trans }}</p>
+    {% endif %}
+{% endblock %}
+
+{% macro teaser(player) %}
+    {% if player.dead %}
+        <div class="dead-player-wrapper">
+            {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" %}
+            <p class="ui-li-desc pdng-top-6">{{ 'game.players.mannerOfDeath' | trans({'%death%': player.mannerOfDeath.name}) }}</p>
+        </div>
+    {%  else %}
+        {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" %}
+    {% endif %}
+{% endmacro %}

@@ -30,20 +30,16 @@ security:
                 login_path: /login/
                 check_path: /login/check/
                 always_use_default_target_path: true
-                default_target_path: /
+                default_target_path: /you/
 
     access_control:
-        - { path: ^/(css/|favicon.ico|bundles/), roles: IS_AUTHENTICATED_ANONYMOUSLY }
-
         - { path: ^/administration/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/, roles: ROLE_ADMIN }
 
-        - { path: ^/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/set-locale/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/you/, roles: ROLE_PLAYER }
+        - { path: ^/investigations/, roles: ROLE_PLAYER }
 
-        - { path: ^/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/refresh/$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/, roles: ROLE_PLAYER }
+        - { path: ^/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
 
     providers:
         admin:

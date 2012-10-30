@@ -1,0 +1,6 @@
+<div class="centered mrgn-btm-24">
+    <p class="type-big imfellsc mrgn-top-24 mrgn-btm-24">{{ 'game.status.murdererWon.heading' | trans }}</p>
+    <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
+    <p class="type-huge highlighted jollylodger">{{ 'game.status.murdererWon.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
+</div>
+{% include "WinkMurderGameBundle:Game:status/_mostPopularDeath.html.twig" %}

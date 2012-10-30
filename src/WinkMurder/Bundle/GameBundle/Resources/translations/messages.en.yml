@@ -82,94 +82,44 @@ administration:
                 status: You have %count% manners of death so far.
                 link: Administrate
 
+common:
+    murder:
+        latestMurderTeaser:
+            heading: %victim% is the latest murder victim!
+            headingVictim: Whoops! You have been killed. Now that's embarrassing.
+        endOfPreliminaryProceedings:
+            leading: The investigations end in:
+
 game:
     mostPopularDeath: The most popular death was that by
     status:
+        pageTitle: Status
         noMurderYet:
-            pageTitle:  All is quiet, nobody died.. yet.
             heading: All is quiet, nobody died.. yet.
             text: Be careful, there's a murderer stalking these parts.
-        proceedingsDiscontinued:
-            pageTitle: The investigations are closed
         proceedingsOngoing:
-            pageTitle: The investigations are ongoing
             suspicionLink: Who do you suspect?
         murdererLost:
-            pageTitle: The case has been solved!
             heading: The case has been solved!
             convict: %murderer% is the murderer!
         murdererWon:
-            pageTitle: The murderer won!
             heading: The murderer won!
             convict: The murderer is %murderer%!
-
-investigations:
-    index:
-        pageTitle: Investigations
-        latestMurderWithPreliminaryProceedingsOngoing:
-            heading: Ongoing investigations
-            none: There are no investigations ongoing.
-            noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
-            selectSuspect: Who do you suspect?
-            noSuspectLeft: There are no players to suspect. You must be the murderer...
-            suspicion: You suspect %suspect% to be the murderer.
-        murdersWithPreliminaryProceedingsDiscontinued:
-            heading: Closed investigations
-            favLinkText: Like?
-
-mannerofdeath:
-    index:
-        heading: Manners Of Death
-        new: Create new manner
-        back: Back
-        edit: Edit
-        delete: Delete
-        form:
-            name_en: Name (English)
-            name_de: Name (German)
-            submit: Save
-
-murder:
-    latestMurderTeaser:
-        heading: %victim% is the latest murder victim!
-        headingVictim: Whoops! You have been killed. Now that's embarrassing.
-    endOfPreliminaryProceedings:
-        leading: The investigations end in:
-navbar:
-    administration:
-        heading: Administration
-        logout: Logout
-    player:
-        game: Game
-        players: Players
-        investigations: Investigations
-        profile: Profile
-        rules: Rules
-
-player:
-    index:
+    players:
         pageTitle: Players
         heading: Players
+        loginLink: Join the game
         mannerOfDeath: Manner of death: "%death%"
-        likeMurder: Liked!
+        noPlayersYet: There are no players yet.
     commitMurder:
         pageTitle: Murder
         question: Do you really want to kill %name%?
         submit: Yes
         cancel: No
-profile:
-    show:
-        pageTitle: Profile
-        heading: Hi %name%!
-        mannerOfDeath:
-            name: Your manner of death is:
-            briefing: You should die as follows:
-
-rules:
-    show:
+    rules:
         pageTitle: Rules
         heading: The Rules
-        rules: |
+        text: |
             <h4>Roles</h4>
             <p>One player is the murderer. The murderer can be male as well as female. Only the murderer is aware of his role, all other players are potential victims.</p>
 
@@ -195,19 +145,66 @@ rules:
             <p>If you still have any questions, do not hesitate to contact Søren, who is the game master and not participating in the game.</p>
 
             <p class="centered type-micro">&#9830;</p>
-
-start:
-    index:
-        pageTitle: Welcome
+    story:
+        pageTitle: Story
         heading: Winkmurderer still on the loose
         leadin: Two more „winkmurderer“ victims found dead in the city of Bonn. Police desperate.
         text: |
-          <p class="mrgn-btm-24"><strong>Bonn</strong> — For over a week an unknown murderer has brought fear amongst the citizens of Bonn. While the police recently arrested a suspect, it now seems clear that the man can‘t be the one everyone had hoped to catch.</p>
-          <p class="mrgn-btm-24">As a police spokesman said this afternoon, two more victims, a 22 years old female biology student and a computer science student (male, 24) were found dead today close to the Bonner Alt- and Weststadt.</p>
-          <p class="mrgn-btm-24">As with the other deaths there is are no clues how the students died. „It really seems as if the victims had no injuries at all“, said Horst Schroff from the SOKO Bonn. „We will need to wait for the autopsy results to clarify what lead to these tragic deaths.“</p>
-          <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in dark clothes just before they died. The media named the stranger „Winkmurderer“. The term „Winkmurderer“ is derived from a popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
-          <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
-          <p class="mrgn-btm-24 centered type-micro">&#9830;</p>
+            <p class="mrgn-btm-24"><strong>Bonn</strong> — For over a week an unknown murderer has brought fear amongst the citizens of Bonn. While the police recently arrested a suspect, it now seems clear that the man can‘t be the one everyone had hoped to catch.</p>
+            <p class="mrgn-btm-24">As a police spokesman said this afternoon, two more victims, a 22 years old female biology student and a computer science student (male, 24) were found dead today close to the Bonner Alt- and Weststadt.</p>
+            <p class="mrgn-btm-24">As with the other deaths there is are no clues how the students died. „It really seems as if the victims had no injuries at all“, said Horst Schroff from the SOKO Bonn. „We will need to wait for the autopsy results to clarify what lead to these tragic deaths.“</p>
+            <p class="mrgn-btm-24">According to eye witnesses, all the victims simply dropped dead with no obvious extraneous cause. Strangely though, all victims seem to have been passed by a person in dark clothes just before they died. The media named the stranger „Winkmurderer“. The term „Winkmurderer“ is derived from a popular party game, in which a chosen „murderer“ „kills“ his victims by winking at them with one eye.</p>
+            <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
+            <p class="mrgn-btm-24 centered type-micro">&#9830;</p>
+
+investigations:
+    index:
+        pageTitle: Investigations
+        latestMurderWithPreliminaryProceedingsOngoing:
+            heading: Ongoing investigations
+            none: There are no investigations ongoing.
+            noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
+            selectSuspect: Who do you suspect?
+            noSuspectLeft: There are no players to suspect. You must be the murderer...
+            suspicion: You suspect %suspect% to be the murderer.
+        murdersWithPreliminaryProceedingsDiscontinued:
+            heading: Closed investigations
+            favLinkText: Like?
+            likeMurder: Liked!
+
+mannerofdeath:
+    index:
+        heading: Manners Of Death
+        new: Create new manner
+        back: Back
+        edit: Edit
+        delete: Delete
+        form:
+            name_en: Name (English)
+            name_de: Name (German)
+            submit: Save
+
+navbar:
+    administration:
+        heading: Administration
+        logout: Logout
+    player:
+        game: Game
+        investigations: Investigations
+        profile: Profile
+    game:
+        story: Story
+        status: Status
+        players: Players
+        rules: Rules
+
+profile:
+    show:
+        pageTitle: Profile
+        heading: Hi %name%!
+        mannerOfDeath:
+            name: Your manner of death is:
+            briefing: You should die as follows:
 
 exception:
     error:

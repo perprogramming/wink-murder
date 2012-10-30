@@ -1,4 +1,4 @@
-{% extends "WinkMurderGameBundle:Layout:_start.html.twig" %}
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
 
 {% block pageTitle %}{{ 'account.login.pageTitle' | trans }}{% endblock %}
 
@@ -10,7 +10,7 @@
             {% for photo in game.unusedPhotos %}
                 <li class="player"><a href="{{ path('winkmurder_game_account_logincheck', {id: photo.id}) }}" data-ajax="false">
                     <div class="player-wrapper">
-                        {% include "WinkMurderGameBundle:Photo:_teaser.html.twig" %}
+                        {% include "WinkMurderGameBundle:Common:Photo/_teaser.html.twig" %}
                     </div>
                 </a></li>
             {% endfor %}

@@ -10,12 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
  */
 class RulesController extends BaseController {
 
-    /**
-     * @Route("/")
-     * @Template
-     */
-    public function showAction() {
-        return array();
-    }
+
 
 }

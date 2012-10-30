@@ -1,4 +1,4 @@
-{% extends "WinkMurderGameBundle:Layout:_administration.html.twig" %}
+{% extends "WinkMurderGameBundle:Common:Layout/_administration.html.twig" %}
 
 {% block pageTitle %}{{ 'administration.index.pageTitle' | trans }}{% endblock %}
 
@@ -17,7 +17,7 @@
                     {% for photo in game.photoSet.photos %}
                         <li data-filtertext="{{ photo.title }}">
                             <a href="{{ path('winkmurder_game_administration_selectmurderer', {id: photo.id}) }}" data-ajax="false">
-                                {% include "WinkMurderGameBundle:Photo:_teaser.html.twig" %}
+                                {% include "WinkMurderGameBundle:Common:Photo/_teaser.html.twig" %}
                             </a>
                         </li>
                     {% endfor %}
@@ -35,7 +35,7 @@
                         <li data-filtertext="{{ player.name }}">
                             <div class="ui-grid-a">
                                 <div class="ui-block-a">
-                                    {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                                    {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" %}
                                 </div>
                                 {% if player.dead %}
                                     <div class="ui-block-a">

@@ -1,0 +1,22 @@
+{% import "WinkMurderGameBundle:Common:Layout/_navigation.html.twig" as navigation %}
+
+<div class="centered">
+    {{ navigation.controlgroup([
+        {
+            'url': path('winkmurder_game_game_story'),
+            'label': 'navbar.game.story'
+        },
+        {
+            'url': path('winkmurder_game_game_status'),
+            'label': 'navbar.game.status'
+        },
+        {
+            'url': path('winkmurder_game_game_players'),
+            'label': 'navbar.game.players'
+        },
+        {
+            'url': path('winkmurder_game_game_rules'),
+            'label': 'navbar.game.rules'
+        }
+    ]) }}
+</div>

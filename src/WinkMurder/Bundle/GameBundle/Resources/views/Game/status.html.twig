@@ -1,0 +1,9 @@
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
+
+{% block pageTitle %}{{ 'game.status.pageTitle' | trans }}{% endblock %}
+
+{% block content %}
+    {% include "WinkMurderGameBundle:Game:_controlgroup.html.twig" %}
+
+    {% include "WinkMurderGameBundle:Game:status/" ~ game.status ~ ".html.twig" %}
+{% endblock %}

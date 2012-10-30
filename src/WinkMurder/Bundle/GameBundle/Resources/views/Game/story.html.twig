@@ -1,0 +1,11 @@
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
+
+{% block pageTitle %}{{ 'game.story.pageTitle' | trans }}{% endblock %}
+
+{% block content %}
+    {% include "WinkMurderGameBundle:Game:_controlgroup.html.twig" %}
+
+    <h1>{{ 'game.story.heading' | trans }}</h1>
+    <p class="leadin type-medium mrgn-btm-24"><em>{{ 'game.story.leadin' | trans }}</em></p>
+    <div>{{ 'game.story.text' | trans | raw }}</div>
+{% endblock %}

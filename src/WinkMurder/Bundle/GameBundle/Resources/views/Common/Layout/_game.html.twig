@@ -1,0 +1,47 @@
+{% extends "WinkMurderGameBundle:Common:Layout/_base.html.twig" %}
+{% use "WinkMurderGameBundle:Common:Layout/_autorefresh.html.twig" %}
+
+{% import "WinkMurderGameBundle:Common:Layout/_navigation.html.twig" as navigation %}
+
+{% block footer %}
+    <div data-role="footer" data-id="player" data-position="fixed">
+        {% set items = [] %}
+        {% set items = items | merge([
+            {
+                'url': path('winkmurder_game_game_index'),
+                'icon': 'jack-o-lantern',
+                'label': 'navbar.player.game',
+                'activeUrls': [
+                    path('winkmurder_game_game_story'),
+                    path('winkmurder_game_game_status'),
+                    path('winkmurder_game_game_players'),
+                    path('winkmurder_game_game_rules')
+                ]
+            }
+        ]) %}
+        {% if app.user %}
+            {% set items = items | merge([
+                {
+                    'url': path('winkmurder_game_investigations_index'),
+                    'icon': 'search',
+                    'label': 'navbar.player.investigations'
+                },
+                {
+                    'url': path('winkmurder_game_profile_show'),
+                    'icon': 'idcard',
+                    'label': 'navbar.player.profile'
+                }
+            ]) %}
+        {% else %}
+            {% set items = items | merge([
+                {
+                    'url': path('winkmurder_game_locale_set', {'_locale': otherLocale}),
+                    'icon': 'gear',
+                    'label': 'language.' ~ otherLocale,
+                    'ajax': false
+                }
+            ]) %}
+        {% endif %}
+        {{ navigation.navbar(items) }}
+    </div>
+{% endblock %}

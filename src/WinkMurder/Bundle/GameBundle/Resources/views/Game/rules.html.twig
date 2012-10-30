@@ -1,0 +1,10 @@
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
+
+{% block pageTitle %}{{ 'game.rules.pageTitle' | trans }}{% endblock %}
+
+{% block content %}
+    {% include "WinkMurderGameBundle:Game:_controlgroup.html.twig" %}
+
+    <h1 class="highlighted">{{ 'game.rules.heading' | trans }}</h1>
+    <div>{{ 'game.rules.text' | trans | raw }}</div>
+{% endblock %}

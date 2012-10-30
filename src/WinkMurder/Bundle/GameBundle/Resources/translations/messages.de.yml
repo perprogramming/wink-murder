@@ -35,7 +35,6 @@ administration:
                 change: Ändern
                 select: Bitte wähle den Mörder:
                 filterPlaceholder: Suchen...
-                noPlayersYet: Du kannst keinen Mörder wählen, solange sich noch keine Spieler eingeloggt haben.
             players:
                 heading: Spieler
                 noneYet: Es gibt noch keine Spieler.
@@ -84,77 +83,44 @@ administration:
                 status: Du hast bisher %count% Todesarten definiert.
                 link: Verwalten
 
+common:
+    murder:
+        latestMurderTeaser:
+            heading: %victim% ist das letzte Mordopfer!
+            headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
+        endOfPreliminaryProceedings:
+            leading: Die Ermittlungen enden in:
+
 game:
+    mostPopularDeath: Der beliebteste Tod war der von
     status:
-        pageTitle: Spiel
-        mostPopularDeath: Der beliebteste Tod war der von
-    noMurderYet:
-        heading: Noch ist niemand gestorben..
-        text: ..aber es könnte jeden Moment ein Mord geschehen. Pass auf dich auf!
-    latestMurder:
-        heading: %victim% ist das letzte Mordopfer!
-        headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
-        mannerOfDeathLeading: Es war ein furchtbarer Tod:
-        noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
-        preliminaryProceedingsDiscontinued: Die Ermittlungen gegen ausgewählte Verdächtige sind abgeschlossen.
-        selectSuspect: Wen verdächtigst du?
-        noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
-        suspicion: Dein Verdacht ist auf %suspect% gefallen.
-        endOfPreliminaryProceedings: Die Ermittlungen enden in:
-    murdererLost:
-        heading: Der Fall wurde gelöst!
-        convict: %murderer% ist der Mörder!
-    murdererWon:
-        heading: Der Mörder hat gewonnen!
-        convict: %murderer% ist der Mörder!
+        pageTitle: Status
+        noMurderYet:
+            heading: Noch ist niemand gestorben..
+            text: ..aber es könnte jeden Moment ein Mord geschehen. Pass auf dich auf!
+        proceedingsOngoing:
+            suspicionLink: Wen verdächtigst Du?
+        murdererLost:
+            heading: Der Fall wurde gelöst!
+            convict: %murderer% ist der Mörder!
+        murdererWon:
+            heading: Der Mörder hat gewonnen!
+            convict: %murderer% ist der Mörder!
+    players:
+        pageTitle: Mitspieler
+        heading: Mitspieler
+        loginLink: Jetzt mitspielen
+        mannerOfDeath: Todesart: "%death%"
+        noPlayersYet: Es gibt noch keine Mitspieler.
     commitMurder:
+        pageTitle: Mord
         question: Willst Du %name% wirklich umbringen?
         submit: Ja
         cancel: Nein
-
-mannerofdeath:
-    index:
-        heading: Todesarten
-        new: Neue Todesart
-        back: Zurück
-        edit: Bearbeiten
-        delete: Löschen
-        form:
-            name_en: Name (Englisch)
-            name_de: Name (Deutsch)
-            submit: Speichern
-
-navbar:
-    administration:
-        heading: Administration
-        logout: Ausloggen
-    player:
-        game: Spiel
-        players: Mitspieler
-        profile: Profil
-        rules: Regeln
-
-player:
-    index:
-        pageTitle: Mitspieler
-        heading: Mitspieler
-        mannerOfDeath: Todesart: "%death%"
-        likeMurder: Liked!
-        favLinkText: Like?
-
-profile:
-    show:
-        pageTitle: Profil
-        heading: Hi %name%!
-        mannerOfDeath:
-            name: Deine Todesart ist:
-            briefing: Du solltest wie folgt sterben:
-
-rules:
-    show:
+    rules:
         pageTitle: Regeln
         heading: Die Regeln
-        rules: |
+        text: |
             <h4>Rollenverteilung</h4>
             <p>In diesem Spiel gibt es einen Mörder. Es kann sich dabei sowohl um einen männlichen, als auch einen weiblichen Teilnehmer handeln. Nur dem Mörder selbst ist seine Rolle bekannt, bei allen weiteren Mitspielern handelt es sich um potenzielle Opfer.</p>
 
@@ -181,9 +147,7 @@ rules:
             <p>Falls ihr noch Fragen habt, könnt ihr euch auch jederzeit an unseren Admin Søren wenden. Søren selbst nimmt nicht am Spiel teil.</p>
 
             <p class="centered type-micro">&#9830;</p>
-
-start:
-    index:
+    story:
         pageTitle: Willkommen
         heading: Blinzelmörder treibt weiterhin sein Unwesen
         leadin: Erneut hat der als „Blinzelmörder“ bekannt gewordene Unbekannte zugeschlagen. Zwei weitere Opfer wurden am Morgen nahe der Bonner Innenstadt aufgefunden.
@@ -193,6 +157,55 @@ start:
             <p>Zu den genauen Todesumständen sind wie auch bei den vorangegangenen Fällen keine Details bekannt. „Es scheint auch hier auf den ersten Blick, als fehle den Opfern rein gar nichts“, äußerte sich Horst Schroff, Leiter der Sonderkommission am Nachmittag zu den aktuellen Vorfällen. „Eine Autopsie wird klären müssen, was zu dem tragischen Tod der beiden jungen Leute geführt hat“. Zeugen der vergangenen Morde hatten berichtet, dass die Opfer anscheinend grundlos in sich zusammen sackten. Die Zeugenaussagen stimmen jedoch darin überein, dass die Opfer kurz vor ihrem Tode stets von einer dunkel gekleideten Gestalt passiert wurden. Der Täter oder die Täterin wurde in den Medien daraufhin als „Blinzelmörder“ bezeichnet. Der Begriff „Blinzelmörder“ bezieht sich dabei auf das populäre, auch als „Winkmurder“ bekannt gewordene Partyspiel, bei dem ein ausgewählter Mörder seine Opfer durch Zuzwinkern „ermordet“.</p>
             <p>Gerade in der Nacht zu Halloween, so befürchtet die Kripo, könnte es zu weiteren Todesfällen kommen. Die örtlichen Behörden bitten die Bevölkerung daher um erhöhte Aufmerksamkeit und Vorsicht.</p>
             <p class="centered type-micro">&#9830;</p>
+
+investigations:
+    index:
+        pageTitle: Ermittlungen
+        latestMurderWithPreliminaryProceedingsOngoing:
+            heading: Laufende Ermittlung
+            none: Es gibt keine laufende Ermittlung.
+            noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
+            selectSuspect: Wen verdächtigst du?
+            noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
+            suspicion: Dein Verdacht ist auf %suspect% gefallen.
+        murdersWithPreliminaryProceedingsDiscontinued:
+            heading: Abgeschlossene Ermittlungen
+            favLinkText: Gefällt Dir?
+            likeMurder: Gefällt Dir!
+
+mannerofdeath:
+    index:
+        heading: Todesarten
+        new: Neue Todesart
+        back: Zurück
+        edit: Bearbeiten
+        delete: Löschen
+        form:
+            name_en: Name (Englisch)
+            name_de: Name (Deutsch)
+            submit: Speichern
+
+navbar:
+    administration:
+        heading: Administration
+        logout: Ausloggen
+    player:
+        game: Spiel
+        investigations: Ermittlungen
+        profile: Profil
+    game:
+        story: Geschichte
+        status: Status
+        players: Mitspieler
+        rules: Regeln
+
+profile:
+    show:
+        pageTitle: Profil
+        heading: Hi %name%!
+        mannerOfDeath:
+            name: Deine Todesart ist:
+            briefing: Du solltest wie folgt sterben:
 
 exception:
     error:

@@ -1,4 +1,4 @@
-{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
 
 {% block pageTitle %}{{ 'investigations.index.pageTitle' | trans }}{% endblock %}
 
@@ -7,8 +7,8 @@
         <h2>{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.heading' | trans }}</h2>
         <div>
             {% if game.latestMurderWithPreliminaryProceedingsOngoing %}
-                {% include "WinkMurderGameBundle:Murder:_latestMurderTeaser.html.twig" %}
-                {% include "WinkMurderGameBundle:Murder:_endOfPreliminaryProceedings.html.twig" %}
+                {% include "WinkMurderGameBundle:Common:Murder/_latestMurderTeaser.html.twig" %}
+                {% include "WinkMurderGameBundle:Common:Murder/_endOfPreliminaryProceedings.html.twig" %}
                 {% if app.user.player.dead %}
                     <p class="type-medium centered">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.noSuspicionByDead' | trans }}</>
                 {% else %}
@@ -22,7 +22,7 @@
                                     <li class="player">
                                         <div class="player-wrapper">
                                             <a href="{{ path('winkmurder_game_investigations_suspect', {id: player.id}) }}" data-ajax="false">
-                                                {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
+                                                {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" %}
                                             </a>
                                         </div>
                                     </li>
@@ -49,9 +49,9 @@
                             {{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.favLinkText' | trans }}
                         </a>
                     {% endif %}
-                    {% include "WinkMurderGameBundle:Player:_teaser.html.twig" with {player: murder.victim} %}
+                    {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" with {player: murder.victim} %}
                     {% if app.user.player.likesMurder(murder.victim) %}
-                        <p class="faved">{{ 'player.index.likeMurder' | trans }}</p>
+                        <p class="faved">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.likeMurder' | trans }}</p>
                     {% endif %}
                 </li>
             {% endfor %}

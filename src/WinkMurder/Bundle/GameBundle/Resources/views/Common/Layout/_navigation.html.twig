@@ -1,0 +1,24 @@
+
+{% macro navbar(items) %}
+    <div data-role="navbar">
+        <ul>
+        {% for item in items %}
+            <li>{{ _self.navigationItem(item) }}</li>
+        {% endfor %}
+        </ul>
+    </div>
+{% endmacro %}
+
+{% macro controlgroup(items) %}
+    <div data-role="controlgroup" data-type="horizontal">
+    {% for item in items %}
+        {{ _self.navigationItem(item) }}
+    {% endfor %}
+    </div>
+{% endmacro %}
+
+{% macro navigationItem(item) %}
+    {% set item = {'ajax': true, 'icon': false, 'activeUrls': [item.url]} | merge(item) %}
+    {% set active = app.request.pathInfo in item.activeUrls %}
+    <a href="{{ item.url }}"{% if item.icon %} data-icon="{{ item.icon }}"{% endif %}{% if item.ajax %} data-transition="fade" data-prefetch{% else %}data-ajax="false"{% endif %}{% if active %} class="ui-btn-active ui-state-persist"{% endif %} data-role="button">{{ item.label | trans }}</a>
+{% endmacro %}
