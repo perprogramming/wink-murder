@@ -16,7 +16,7 @@
             {% for player in game.players %}
                 <li class="player {% if player.dead %}player-dead{% endif %}">
                     {% if app.user and app.user.player.canMurder(player) %}
-                        <a href="{{ path('winkmurder_game_player_commitmurder', {id: player.id}) }}" data-rel="dialog" data-transition="slidedown">
+                        <a href="{{ path('winkmurder_game_game_commitmurder', {id: player.id}) }}" data-rel="dialog" data-transition="slidedown">
                             {{ _self.teaser(player) }}
                         </a>
                     {% else %}

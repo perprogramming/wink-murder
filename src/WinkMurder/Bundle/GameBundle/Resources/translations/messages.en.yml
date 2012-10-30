@@ -160,9 +160,10 @@ game:
 investigations:
     index:
         pageTitle: Investigations
+        heading: Investigations
+        none: There are no investigations yet.
         latestMurderWithPreliminaryProceedingsOngoing:
             heading: Ongoing investigations
-            none: There are no investigations ongoing.
             noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
             selectSuspect: Who do you suspect?
             noSuspectLeft: There are no players to suspect. You must be the murderer...

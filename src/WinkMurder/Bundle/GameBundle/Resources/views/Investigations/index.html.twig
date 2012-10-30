@@ -3,10 +3,15 @@
 {% block pageTitle %}{{ 'investigations.index.pageTitle' | trans }}{% endblock %}
 
 {% block content %}
-    <div class="centered">
-        <h2>{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.heading' | trans }}</h2>
-        <div>
-            {% if game.latestMurderWithPreliminaryProceedingsOngoing %}
+    {% if not game.latestMurder %}
+        <div class="centered">
+            <h2>{{ 'investigations.index.heading' | trans }}</h2>
+            <p>{{ 'investigations.index.none' | trans }}</p>
+        </div>
+    {% elseif game.latestMurderWithPreliminaryProceedingsOngoing %}
+        <div class="centered">
+            <h2>{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.heading' | trans }}</h2>
+            <div>
                 {% include "WinkMurderGameBundle:Common:Murder/_latestMurderTeaser.html.twig" %}
                 {% include "WinkMurderGameBundle:Common:Murder/_endOfPreliminaryProceedings.html.twig" %}
                 {% if app.user.player.dead %}
@@ -33,29 +38,33 @@
                         {% endif %}
                     {% endif %}
                 {% endif %}
-            {% else %}
-                <p>{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.none' | trans }}</p>
-            {% endif %}
+            </div>
         </div>
-    </div>
-    {% if game.murdersWithPreliminaryProceedingsDiscontinued %}
+        {{ _self.discontinuedMurdersList(game.murdersWithPreliminaryProceedingsDiscontinued) }}
+    {% elseif game.murders %}
+        {{ _self.discontinuedMurdersList(game.murders) }}
+    {% endif %}
+{% endblock %}
+
+{% macro discontinuedMurdersList(murders) %}
+    {% if murders %}
         <h2 class="centered">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.heading' | trans }}</h2>
         <div>
             <ul class="player-list">
-            {% for murder in game.murdersWithPreliminaryProceedingsDiscontinued %}
-                <li class="player player-dead {% if app.user.player.likesMurder(murder.victim) %}player-liked{% endif %}">
-                    {% if app.user.player.canLikeMurder(murder.victim) %}
-                        <a class="fav-link" href="{{ path('winkmurder_game_investigations_likemurder', {id: murder.victim.id}) }}" data-ajax="false">
-                            {{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.favLinkText' | trans }}
-                        </a>
-                    {% endif %}
-                    {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" with {player: murder.victim} %}
-                    {% if app.user.player.likesMurder(murder.victim) %}
-                        <p class="faved">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.likeMurder' | trans }}</p>
-                    {% endif %}
-                </li>
-            {% endfor %}
+                {% for murder in murders %}
+                    <li class="player player-dead {% if app.user.player.likesMurder(murder.victim) %}player-liked{% endif %}">
+                        {% if app.user.player.canLikeMurder(murder.victim) %}
+                            <a class="fav-link" href="{{ path('winkmurder_game_investigations_likemurder', {id: murder.victim.id}) }}" data-ajax="false">
+                                {{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.favLinkText' | trans }}
+                            </a>
+                        {% endif %}
+                        {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" with {player: murder.victim} %}
+                        {% if app.user.player.likesMurder(murder.victim) %}
+                            <p class="faved">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.likeMurder' | trans }}</p>
+                        {% endif %}
+                    </li>
+                {% endfor %}
             </ul>
         </div>
     {% endif %}
-{% endblock %}
+{% endmacro %}

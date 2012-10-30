@@ -29,6 +29,7 @@ $(function() {
             var source = $(this);
             var display = source.after('<p class="type-huge highlighted jollylodger mrgn-top-6 mrgn-btm-6"></p>').next();
             var endOfPreliminaryProceedings = parseInt(source.attr('data-end-of-preliminary-proceedings'));
+            source.removeClass('fx-end-of-preliminary-proceedings');
 
             var timerInterval;
 

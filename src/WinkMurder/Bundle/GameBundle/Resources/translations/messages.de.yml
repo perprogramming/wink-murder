@@ -161,9 +161,10 @@ game:
 investigations:
     index:
         pageTitle: Ermittlungen
+        heading: Ermittlungen
+        none: Es gibt keine laufende Ermittlung.
         latestMurderWithPreliminaryProceedingsOngoing:
             heading: Laufende Ermittlung
-            none: Es gibt keine laufende Ermittlung.
             noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
             selectSuspect: Wen verdächtigst du?
             noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
