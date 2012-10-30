@@ -6,18 +6,13 @@
     <h1>{{ 'player.index.heading' | trans }}</h1>
     <ul class="player-list">
         {% for player in players %}
-            <li class="player {% if player.dead %}player-dead{% endif %} {% if app.user.player.likesMurder(player) %}player-liked{% endif %}">
+            <li class="player {% if player.dead %}player-dead{% endif %}">
                 {% if app.user.player.canMurder(player) %}
-                    <a href="{{ path('winkmurder_game_game_commitmurder', {id: player.id}) }}" data-rel="dialog" data-transition="slidedown">
+                    <a href="{{ path('winkmurder_game_player_commitmurder', {id: player.id}) }}" data-rel="dialog" data-transition="slidedown">
                         {{ _self.teaser(player) }}
                     </a>
                 {% else %}
                     {{ _self.teaser(player) }}
-                    {% if app.user.player.canLikeMurder(player) %}
-                        <a class="fav-link" href="{{ path('winkmurder_game_game_likemurder', {id: player.id}) }}" data-ajax="false">
-                            {{ 'player.index.favLinkText' | trans }}
-                        </a>
-                    {% endif %}
                 {% endif %}
             </li>
         {% endfor %}
@@ -32,9 +27,5 @@
         </div>
     {%  else %}
         {% include "WinkMurderGameBundle:Player:_teaser.html.twig" %}
-    {% endif %}
-
-    {% if app.user.player.likesMurder(player) %}
-        <p class="faved">{{ 'player.index.likeMurder' | trans }}</p>
     {% endif %}
 {% endmacro %}

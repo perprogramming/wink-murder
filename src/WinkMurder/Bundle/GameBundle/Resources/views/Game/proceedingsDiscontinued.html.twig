@@ -1,7 +1,10 @@
-{% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
+
+{% block pageTitle %}{{ 'game.status.proceedingsDiscontinued.pageTitle' | trans }}{% endblock %}
 
 {% block content %}
-    {{ parent() }}
+    {% include "WinkMurderGameBundle:Murder:_latestMurderTeaser.html.twig" %}
+
     {% set templates = [
         "WinkMurderGameBundle:Game:notClearedUpReasons/_atLarge.html.twig",
         "WinkMurderGameBundle:Game:notClearedUpReasons/_404.html.twig"

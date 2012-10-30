@@ -137,6 +137,14 @@ class Game implements Hashable {
         return $players;
     }
 
+    public function getLatestMurderWithPreliminaryProceedingsOngoing() {
+        if ($murder = $this->getLatestMurder()) {
+            if (!$murder->arePreliminaryProceedingsDiscontinued()) {
+                return $murder;
+            }
+        }
+    }
+
     public function getMurdersWithPreliminaryProceedingsDiscontinued() {
         return array_filter($this->getMurders(), function(Murder $murder) {
             return $murder->arePreliminaryProceedingsDiscontinued();
@@ -225,7 +233,14 @@ class Game implements Hashable {
 
     /** @return Murder */
     public function getLatestMurder() {
-        return $this->murders->last();
+        return reset($this->getMurders());
+    }
+
+    public function canSuspect(Player $witness, Player $suspect = null) {
+        if ($witness->isDead()) return false;
+        if ($this->hasSuspicion($witness)) return false;
+        if ($suspect && $suspect->isDead()) return false;
+        return true;
     }
 
     public function hasSuspicion(Player $witness) {
@@ -236,8 +251,10 @@ class Game implements Hashable {
         return $this->getLatestMurder()->getSuspicion($witness);
     }
 
-    public function addSuspicion(Player $suspect, Player $witness) {
-        $this->getLatestMurder()->addSuspicion($suspect, $witness);
+    public function suspect(Player $witness, Player $suspect) {
+        if ($this->canSuspect($witness, $suspect)) {
+            $this->getLatestMurder()->addSuspicion($witness, $suspect);
+        }
     }
 
     public function isMurdererIdentified() {

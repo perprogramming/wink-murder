@@ -1,0 +1,13 @@
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
+
+{% block pageTitle %}{{ 'player.commitMurder.pageTitle' | trans }}{% endblock %}
+
+{% block content %}
+    <div class="centered">
+        <p>{{ 'player.commitMurder.question' | trans({'%name%': victim.name}) }}</p>
+        <form action="{{ path('winkmurder_game_investigations_confirmcommitmurder', {'id': victim.id}) }}" method="post" data-ajax="false">
+            <div><input type="submit" value="{{ 'player.commitMurder.submit' | trans }}" /></div>
+            <div><a href="#" data-rel="back" data-role="button">{{ 'player.commitMurder.cancel' | trans }}</a></div>
+        </form>
+    </div>
+{% endblock %}

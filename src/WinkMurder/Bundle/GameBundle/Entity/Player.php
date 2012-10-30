@@ -105,8 +105,12 @@ class Player implements Hashable {
         return $this->game->getSuspicion($this);
     }
 
+    public function canSuspect(Player $suspect = null) {
+        return $this->game->canSuspect($this, $suspect);
+    }
+
     public function suspect(Player $suspect) {
-        $this->game->addSuspicion($suspect, $this);
+        $this->game->suspect($this, $suspect);
     }
 
     public function murder(Player $victim) {

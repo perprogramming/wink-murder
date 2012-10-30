@@ -1,0 +1,9 @@
+<div class="centered">
+    {% if game.latestMurder.victim is sameas(app.user.player) %}
+        <p class="imfellsc type-big mrgn-btm-12">{{ 'murder.latestMurderTeaser.headingVictim' | trans }}</p>
+    {% else %}
+        <img src="{{ game.latestMurder.victim.photo.url }}" alt="{{ game.latestMurder.victim.photo.title }}" width="60" class="profile-thumb" />
+        <p class="imfellsc type-big mrgn-btm-12">{{ 'murder.latestMurderTeaser.heading' | trans({'%victim%': game.latestMurder.victim.name}) }}</p>
+    {% endif %}
+    <p class="mrgn-top-12 mrgn-btm-12 centered type-small">&#9830;</p>
+</div>

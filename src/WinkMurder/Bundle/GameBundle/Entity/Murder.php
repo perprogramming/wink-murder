@@ -77,7 +77,7 @@ class Murder implements Hashable {
         return $this->suspicions->toArray();
     }
 
-    public function addSuspicion(Player $suspect, Player $witness) {
+    public function addSuspicion(Player $witness, Player $suspect) {
         if (!$this->hasSuspicion($witness)) {
             if (!$witness->isDead()) {
                 $suspicion = new Suspicion($this, $suspect, $witness);

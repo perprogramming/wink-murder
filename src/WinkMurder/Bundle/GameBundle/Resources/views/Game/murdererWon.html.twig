@@ -1,10 +1,12 @@
-{% extends "WinkMurderGameBundle:Game:_status.html.twig" %}
+{% extends "WinkMurderGameBundle:Layout:_game.html.twig" %}
+
+{% block pageTitle %}{{ 'game.status.murdererWon.pageTitle' | trans }}{% endblock %}
 
 {% block content %}
     <div class="centered mrgn-btm-24">
-        <p class="type-big imfellsc mrgn-top-24 mrgn-btm-24">{{ 'game.murdererWon.heading' | trans }}</p>
+        <p class="type-big imfellsc mrgn-top-24 mrgn-btm-24">{{ 'game.status.murdererWon.heading' | trans }}</p>
         <img src="{{ game.murderer.photo.url }}" alt="{{ game.murderer.photo.title }}" width="60" class="profile-thumb" />
-        <p class="type-huge highlighted jollylodger">{{ 'game.murdererWon.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
+        <p class="type-huge highlighted jollylodger">{{ 'game.status.murdererWon.convict' | trans({'%murderer%': game.murderer.name}) }}</p>
     </div>
     {% include "WinkMurderGameBundle:Game:_mostPopularDeath.html.twig" %}
 {% endblock %}

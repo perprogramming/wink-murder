@@ -27,6 +27,21 @@ class GameTest extends \PHPUnit_Framework_TestCase {
         }, $this->createGameWithPlayers($names)->getPlayers()));
     }
 
+    public function testGetLatestMurder() {
+        $game = $this->createGameWithPlayers(range(1, 10));
+        $game->setRequiredMurders(20);
+
+        // Jetzt die Spieler zufällig ermorden
+        foreach ($game->getPlayers() as $player) {
+            $game->kill($player, null, new \DateTime(date('Y-m-d', rand(0, time()))));
+        }
+
+        $latestMurder = $game->getLatestMurder();
+        foreach ($game->getMurders() as $murder) {
+            $this->assertLessThanOrEqual($latestMurder->getTimeOfOffense(), $murder->getTimeOfOffense());
+        }
+    }
+
     public function testGetMurdersSorted() {
         $game = $this->createGameWithPlayers(range(1, 10));
         $game->setRequiredMurders(20);

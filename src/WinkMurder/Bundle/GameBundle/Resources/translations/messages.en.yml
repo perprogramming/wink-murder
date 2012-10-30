@@ -83,32 +83,39 @@ administration:
                 link: Administrate
 
 game:
+    mostPopularDeath: The most popular death was that by
     status:
-        pageTitle: Game
-        mostPopularDeath: The most popular death was that by
-    noMurderYet:
-        heading: All is quiet, nobody died.. yet.
-        text: Be careful, there's a murderer stalking these parts.
-    latestMurder:
-        heading: %victim% is the latest murder victim!
-        headingVictim: Whoops! You have been killed. Now that's embarrassing.
-        mannerOfDeathLeading: It was a most gruesome death:
-        noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
-        preliminaryProceedingsDiscontinued: The preliminary proceedings were discontinued.
-        selectSuspect: Who do you suspect?
-        noSuspectLeft: There are no players to suspect. You must be the murderer...
-        suspicion: You suspect %suspect% to be the murderer.
-        endOfPreliminaryProceedings: The investigations end in:
-    murdererLost:
-        heading: The case has been solved!
-        convict: %murderer% is the murderer!
-    murdererWon:
-        heading: The murderer won!
-        convict: The murderer is %murderer%!
-    commitMurder:
-        question: Do you really want to kill %name%?
-        submit: Yes
-        cancel: No
+        noMurderYet:
+            pageTitle:  All is quiet, nobody died.. yet.
+            heading: All is quiet, nobody died.. yet.
+            text: Be careful, there's a murderer stalking these parts.
+        proceedingsDiscontinued:
+            pageTitle: The investigations are closed
+        proceedingsOngoing:
+            pageTitle: The investigations are ongoing
+            suspicionLink: Who do you suspect?
+        murdererLost:
+            pageTitle: The case has been solved!
+            heading: The case has been solved!
+            convict: %murderer% is the murderer!
+        murdererWon:
+            pageTitle: The murderer won!
+            heading: The murderer won!
+            convict: The murderer is %murderer%!
+
+investigations:
+    index:
+        pageTitle: Investigations
+        latestMurderWithPreliminaryProceedingsOngoing:
+            heading: Ongoing investigations
+            none: There are no investigations ongoing.
+            noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
+            selectSuspect: Who do you suspect?
+            noSuspectLeft: There are no players to suspect. You must be the murderer...
+            suspicion: You suspect %suspect% to be the murderer.
+        murdersWithPreliminaryProceedingsDiscontinued:
+            heading: Closed investigations
+            favLinkText: Like?
 
 mannerofdeath:
     index:
@@ -122,6 +129,12 @@ mannerofdeath:
             name_de: Name (German)
             submit: Save
 
+murder:
+    latestMurderTeaser:
+        heading: %victim% is the latest murder victim!
+        headingVictim: Whoops! You have been killed. Now that's embarrassing.
+    endOfPreliminaryProceedings:
+        leading: The investigations end in:
 navbar:
     administration:
         heading: Administration
@@ -129,6 +142,7 @@ navbar:
     player:
         game: Game
         players: Players
+        investigations: Investigations
         profile: Profile
         rules: Rules
 
@@ -138,8 +152,11 @@ player:
         heading: Players
         mannerOfDeath: Manner of death: "%death%"
         likeMurder: Liked!
-        favLinkText: Like?
-
+    commitMurder:
+        pageTitle: Murder
+        question: Do you really want to kill %name%?
+        submit: Yes
+        cancel: No
 profile:
     show:
         pageTitle: Profile
