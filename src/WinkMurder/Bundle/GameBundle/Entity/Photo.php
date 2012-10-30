@@ -54,6 +54,14 @@ class Photo implements Hashable {
         return $this->photoSet;
     }
 
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+
+    public function setUrl($url) {
+        $this->url = $url;
+    }
+
     public function getHashValues() {
         return array(
             'id' => $this->id,

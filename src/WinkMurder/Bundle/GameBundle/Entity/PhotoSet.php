@@ -64,6 +64,10 @@ class PhotoSet implements Hashable {
         return $this->title;
     }
 
+    public function setTitle($title) {
+        $this->title = $title;
+    }
+
     public function getHashValues() {
         return array(
             'id' => $this->id,

@@ -44,14 +44,19 @@ class Synchronization {
         $user = $flickr->people_findByUsername($this->username);
         $photoSetListResult = $flickr->photosets_getList($user['id']);
         foreach ($photoSetListResult['photoset'] as $photoSetData) {
-            if (!($photoSet = $photoSetRepository->find($photoSetData['id']))) {
+            if ($photoSet = $photoSetRepository->find($photoSetData['id'])) {
+                $photoSet->setTitle($photoSetData['title']);
+            } else {
                 $photoSet = new PhotoSet($photoSetData['id'], $photoSetData['title']);
                 $em->persist($photoSet);
             }
             $photoListResult = $flickr->photosets_getPhotos($photoSet->getId(), 'url_sq');
             if ($photoListResult['stat'] == 'ok') {
                 foreach ($photoListResult['photoset']['photo'] as $photoData) {
-                    if (!$photoSet->findPhoto($photoData['id'])) {
+                    if ($photo = $photoSet->findPhoto($photoData['id'])) {
+                        $photo->setTitle($photoData['title']);
+                        $photo->setUrl($photoData['url_sq']);
+                    } else {
                         $photoSet->addPhoto($photoData['id'], $photoData['title'], $photoData['url_sq']);
                     }
                 }
