@@ -32,7 +32,7 @@ class AccountControllerTest extends WebTestCase {
         $client = static::createClient();
         $client->followRedirects();
 
-        $crawler = $client->request('GET', '/');
+        $crawler = $client->request('GET', '/investigations/');
         $loginLink = $crawler->filter("a:contains('{$firstPhoto->getTitle()}')")->link();
 
         $crawler = $client->click($loginLink);
@@ -56,7 +56,7 @@ class AccountControllerTest extends WebTestCase {
         $loginLinkB = $crawlerA->filter("a:contains('{$firstPhoto->getTitle()}')")->link();
 
         $clientA->click($loginLinkA);
-        $this->assertTrue($clientA->getResponse()->isRedirect('http://wink-murder.here/'));
+        $this->assertTrue($clientA->getResponse()->isRedirect('http://wink-murder.here/you/'));
 
         $clientB->click($loginLinkB);
         $this->assertTrue($clientB->getResponse()->isRedirect('http://wink-murder.here/login/'));
