@@ -17,6 +17,7 @@ img { line-height: 1; }
 .type-medium { font-size: 20px; }
 .type-default { font-size: 18px; }
 .type-small { font-size: 15px; }
+.type-micro { font-size: 12px; }
 
 h1 {
     @extend .type-big;
@@ -42,5 +43,5 @@ p {
 
 a {
     text-decoration: none;
-    color: $darkGrey;
+    color: $lightGrey;
 }
