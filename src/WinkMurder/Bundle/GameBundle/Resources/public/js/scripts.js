@@ -39,7 +39,7 @@ $(function() {
 
                 if (left <= 0) {
                     window.clearInterval(timerInterval);
-                    window.location.reload();
+                    window.location.href = '/game/status/';
                     return;
                 }
 
