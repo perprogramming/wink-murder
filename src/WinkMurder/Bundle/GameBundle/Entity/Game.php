@@ -137,6 +137,12 @@ class Game implements Hashable {
         return $players;
     }
 
+    public function getMurdersWithPreliminaryProceedingsDiscontinued() {
+        return array_filter($this->getMurders(), function(Murder $murder) {
+            return $murder->arePreliminaryProceedingsDiscontinued();
+        });
+    }
+
     public function addPlayer(Photo $photo, MannerOfDeath $mannerOfDeath) {
         $player = new Player($this, $photo, $mannerOfDeath);
         $this->players->add($player);

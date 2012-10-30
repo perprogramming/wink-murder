@@ -45,6 +45,21 @@ class GameTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($sortedTimestamps, $timestamps);
     }
 
+    public function testGetMurdersWithPreliminaryProceedingsDiscontinued() {
+        $game = $this->createGameWithPlayers(range(1, 10));
+        $game->setRequiredMurders(20);
+
+        // Jetzt die Spieler zufällig ermorden, manche aber in der Zukunft
+        $now = time();
+        foreach ($game->getPlayers() as $player) {
+            $game->kill($player, null, new \DateTime(date('Y-m-d', rand(0, $now + 1000))));
+        }
+
+        foreach ($game->getMurdersWithPreliminaryProceedingsDiscontinued() as $murder) {
+            $this->assertLessThan($now, intval($murder->getTimeOfOffense()->format('U')));
+        }
+    }
+
     /** @return Game */
     protected function createGameWithPhotos($names) {
         $photoSet = new PhotoSet(uniqid(), uniqid());
