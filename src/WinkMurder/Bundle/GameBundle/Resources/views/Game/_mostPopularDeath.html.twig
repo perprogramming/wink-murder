@@ -1,5 +1,6 @@
 {% if game.mostPopularDeath %}
     <div class="centered">
-        <p>{{ 'game.status.mostPopularDeath' | trans({'%name%': game.mostPopularDeath.victim.name}) }}</p>
+        <p class="mrgn-btm-6">{{ 'game.status.mostPopularDeath' | trans }}</p>
+        <p class="jollylodger type-big block">{{ game.mostPopularDeath.victim.name }}</p>
     </div>
 {% endif %}
