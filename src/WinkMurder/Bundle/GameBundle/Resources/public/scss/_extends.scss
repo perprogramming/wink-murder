@@ -39,3 +39,8 @@
     background: linear-gradient(to bottom,  $lightOrange 0%,$darkOrange 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$lightOrange', endColorstr='$darkOrange',GradientType=0 ); /* IE6-9 */
 }
+
+.wm-button .ui-btn-inner {
+    @extend .imfell;
+    padding: 5px 10px;
+}

@@ -2,11 +2,13 @@
 
 {% if game.arePreliminaryProceedingsOngoing %}
 
-    <p class="centered">
-        {% if app.user %}<a data-role="button" data-inline="true" href="{{ path('winkmurder_game_investigations_index') }}">{% endif %}
-        {{ 'game.status.murdererStillAtLarge.investigationsLink' | trans }}
-        {% if app.user %}</a>{% endif %}
-    </p>
+    {% if app.user %}
+        <p class="centered wm-button">
+            <a data-role="button" data-inline="true" href="{{ path('winkmurder_game_investigations_index') }}">
+                {{ 'game.status.murdererStillAtLarge.investigationsLink' | trans }}
+            </a>
+        </p>
+    {% endif %}
 
 {% else %}
 
