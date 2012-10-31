@@ -20,7 +20,7 @@ class InvestigationsController extends BaseController {
                 'game' => $this->getCurrentGame()
             );
         }
-        return $this->redirect($this->generateUrl('winkmurder_game_guestaccess_index'));
+        throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
     }
 
     /**

@@ -25,14 +25,8 @@ class GameControllerTest extends WebTestCase {
     }
 
     public function testIndexForwardOnStartedGameExistsAuthenticated() {
-        $game = $this->setupGame();
-        $firstPhoto = reset($game->getUnusedPhotos());
-
-        $client = static::createClient();
-        $client->followRedirects();
-        $crawler = $client->request('GET', '/login/');
-        $loginLink = $crawler->filter("a:contains('{$firstPhoto->getTitle()}')")->link();
-        $crawler = $client->click($loginLink);
+        $client = static::createPlayerClient();
+        $crawler = $client->getCrawler();
 
         $gameLink = $crawler->filter("a:contains('Spiel')")->link();
 
@@ -65,23 +59,14 @@ class GameControllerTest extends WebTestCase {
     }
 
     public function testPlayersAuthenticated() {
-        $game = $this->setupGame();
-        $client = static::createClient();
-        $client->followRedirects();
-        $crawler = $client->request('GET', '/game/players/');
-        $loginPageLink = $crawler->selectLink('Jetzt mitspielen')->link();
-        $crawler = $client->click($loginPageLink);
-
-        $firstUnusedPhoto = reset($game->getUnusedPhotos());
-
-        $loginLink = $crawler->selectLink($firstUnusedPhoto->getTitle())->link();
-        $crawler = $client->click($loginLink);
+        $client = static::createPlayerClient();
+        $crawler = $client->getCrawler();
         $spielLink = $crawler->selectLink('Spiel')->link();
         $crawler = $client->click($spielLink);
         $spielerLink = $crawler->selectLink('Mitspieler')->link();
         $crawler = $client->click($spielerLink);
 
-        $game = $this->getEntityManager()->getRepository('WinkMurderGameBundle:Game')->findCurrentOne();
+        $game = $this->getCurrentGame();
 
         $this->assertEquals(0, $crawler->filter('a:contains("Jetzt mitspielen")')->count());
         $this->assertEquals(1, count($game->getPlayers()));
