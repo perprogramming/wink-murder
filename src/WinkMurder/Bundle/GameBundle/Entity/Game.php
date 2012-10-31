@@ -198,8 +198,25 @@ class Game implements Hashable {
 
     /** @return Player */
     public function getMurderer() {
+        return $this->findPlayerByPhoto($this->murdererPhoto);
+    }
+
+    /** @return Photos */
+    public function getPhotosWithoutAccount() {
+        $game = $this;
+        return array_filter($this->getPhotoSet()->getPhotos(), function(Photo $photo) use ($game) {
+            if ($player = $game->findPlayerByPhoto($photo)) {
+                return !$player->getAccount();
+            } else {
+                return true;
+            }
+        });
+    }
+
+    /** @return Photo */
+    public function findPlayerByPhoto(Photo $photo = null) {
         foreach ($this->players as $player) {
-            if ($player->getPhoto() == $this->murdererPhoto) {
+            if ($player->getPhoto() == $photo) {
                 return $player;
             }
         }

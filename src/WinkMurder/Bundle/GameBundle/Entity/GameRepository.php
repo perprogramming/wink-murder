@@ -34,6 +34,8 @@ class GameRepository extends EntityRepository {
         $queryBuilder->addSelect('player');
         $queryBuilder->leftJoin('player.mannerOfDeath', 'mannerOfDeath');
         $queryBuilder->addSelect('mannerOfDeath');
+        $queryBuilder->leftJoin('player.account', 'account');
+        $queryBuilder->addSelect('account');
         $queryBuilder->leftJoin('game.murders', 'murder');
         $queryBuilder->addSelect('murder');
         $queryBuilder->leftJoin('murder.suspicions', 'suspicion');

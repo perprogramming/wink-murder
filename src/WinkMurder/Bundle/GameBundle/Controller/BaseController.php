@@ -4,6 +4,7 @@ namespace WinkMurder\Bundle\GameBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use WinkMurder\Bundle\GameBundle\Entity\Account;
+use WinkMurder\Bundle\GameBundle\Security\GuestAccess;
 
 abstract class BaseController extends Controller {
 
@@ -20,7 +21,7 @@ abstract class BaseController extends Controller {
     /** @return \WinkMurder\Bundle\GameBundle\Entity\Account */
     protected function getAuthenticatedAccount() {
         $user = $this->getSecurityContext()->getToken()->getUser();
-        if ($user instanceof Account)
+        if ($user instanceof Account || $user instanceof GuestAccess)
             return $user;
     }
 
