@@ -12,7 +12,7 @@ class LocaleControllerTest extends WebTestCase {
 
         $crawler = $client->request('GET', '/set-locale/en');
 
-        $this->assertGreaterThan(0, $crawler->filter('h1:contains("Winkmurderer still on the loose")')->count());
+        $this->assertEquals(1, $crawler->filter('h1:contains("Winkmurderer still on the loose")')->count());
     }
 
 }

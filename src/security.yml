@@ -27,7 +27,6 @@ security:
                 always_remember_me: true
                 lifetime: 31536000
             form_login:
-                login_path: /guest-access/login/
                 check_path: /guest-access/login/check/
                 always_use_default_target_path: true
                 default_target_path: /guest-access/
