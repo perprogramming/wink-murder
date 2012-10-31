@@ -5,11 +5,11 @@
 {% block content %}
     {% if not game.latestMurder %}
         <div class="centered">
-            <h2>{{ 'investigations.index.heading' | trans }}</h2>
+            <h1>{{ 'investigations.index.heading' | trans }}</h1>
             <p>{{ 'investigations.index.none' | trans }}</p>
         </div>
     {% else %}
-        <h2 class="centered">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.heading' | trans }}</h2>
+        <h1 class="centered">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.heading' | trans }}</h1>
         {% if game.latestMurderWithPreliminaryProceedingsOngoing %}
             <div class="mrgn-btm-12">
                 {% include "WinkMurderGameBundle:Common:Murder/_latestMurderTeaser.html.twig" with {'murder': game.latestMurderWithPreliminaryProceedingsOngoing} %}
@@ -47,10 +47,10 @@
                 {% endif %}
             </div>
         {% else %}
-            <p class="centered">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.none' | trans }}</p>
+            <p class="centered mrgn-btm-36">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.none' | trans }}</p>
         {% endif %}
         {% if game.murdersWithPreliminaryProceedingsDiscontinued %}
-            <h2 class="centered mrgn-btm-12">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.heading' | trans }}</h2>
+            <h1 class="centered mrgn-btm-12">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.heading' | trans }}</h1>
             <div>
                 <ul class="player-list">
                     {% for murder in game.murdersWithPreliminaryProceedingsDiscontinued %}
@@ -60,7 +60,7 @@
                                     {{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.favLinkText' | trans }}
                                 </a>
                             {% endif %}
-                            {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" with {player: murder.victim} %}
+                            {{ _self.teaser(murder) }}
                             {% if murder.getSuspicion(app.user.player) %}
                                 <p>{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.suspicion' | trans({'%suspect%': murder.getSuspicion(app.user.player).suspect.name}) }}</p>
                             {% endif %}
@@ -74,3 +74,10 @@
         {% endif %}
     {% endif %}
 {% endblock %}
+
+{% macro teaser(murder) %}
+    <div class="dead-player-wrapper">
+        {% include "WinkMurderGameBundle:Common:Player/_teaser.html.twig" with {player: murder.victim} %}
+        <p class="ui-li-desc pdng-top-6">{{ 'game.players.mannerOfDeath' | trans({'%death%': murder.victim.mannerOfDeath.name}) }}</p>
+    </div>
+{% endmacro %}

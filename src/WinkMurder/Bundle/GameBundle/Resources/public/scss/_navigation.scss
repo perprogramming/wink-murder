@@ -20,3 +20,16 @@
     @extend .active-gradient;
     border-color: $darkOrange;
 }
+
+
+/* Custom controlgroup */
+.ui-controlgroup {
+    @extend .mrgn-top-3;
+    @extend .mrgn-btm-36;
+}
+
+.ui-controlgroup-controls .ui-btn-inner {
+    padding: 5px  7px;
+    @extend .imfell;
+    @extend .type-micro;
+}
