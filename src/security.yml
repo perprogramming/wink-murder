@@ -19,20 +19,31 @@ security:
                 target: /administration/login/
         accounts:
             pattern: ^/
-            provider: accounts
+            provider: accountsAndGuest
             anonymous: ~
             remember_me:
                 name: WinkMurderPlayer
                 key: %secret%
                 always_remember_me: true
                 lifetime: 31536000
+            form_login:
+                login_path: /guest-access/login/
+                check_path: /guest-access/login/check/
+                always_use_default_target_path: true
+                default_target_path: /guest-access/
             account:
                 login_path: /login/
                 check_path: /login/check/
                 always_use_default_target_path: true
                 default_target_path: /you/
+            logout:
+                path: /guest-access/logout/
+                target: /guest-access/login/
 
     access_control:
+        - { path: ^/guest-access/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/guest-access/, roles: ROLE_GUEST }
+
         - { path: ^/administration/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/, roles: ROLE_ADMIN }
 
@@ -45,7 +56,14 @@ security:
         admin:
             memory:
                 users:
-                    admin: { password: '5b1e4104ab5eda1b3388a68a4621aa04bc5934c1', roles: ROLE_ADMIN }
+                    admin: { password: %admin_password%, roles: ROLE_ADMIN }
+        guest:
+            id: wink_murder.guest_user_provider
+
+        accountsAndGuest:
+            chain:
+                providers: [accounts, guest]
+
         accounts:
             entity:
                 class: WinkMurderGameBundle:Account
@@ -53,6 +71,10 @@ security:
 
     encoders:
         Symfony\Component\Security\Core\User\User:
+            algorithm: sha1
+            iterations: 1
+            encode_as_base64: false
+        WinkMurder\Bundle\GameBundle\Security\GuestAccess:
             algorithm: sha1
             iterations: 1
             encode_as_base64: false

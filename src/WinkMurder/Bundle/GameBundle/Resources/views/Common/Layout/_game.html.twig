@@ -19,7 +19,7 @@
                 ]
             }
         ]) %}
-        {% if app.user %}
+        {% if app.user and app.user.player %}
             {% set items = items | merge([
                 {
                     'url': path('winkmurder_game_investigations_index'),
@@ -32,7 +32,26 @@
                     'label': 'navbar.player.profile'
                 }
             ]) %}
+            {% if is_granted('ROLE_GUEST') %}
+                {% set items = items | merge([
+                    {
+                        'url': path('winkmurder_game_guestaccess_clear'),
+                        'icon': 'group',
+                        'label': 'navbar.player.guestAccessClear',
+                        'ajax': false
+                    }
+                ]) %}
+            {% endif %}
         {% else %}
+            {% if is_granted('ROLE_GUEST') %}
+                {% set items = items | merge([
+                    {
+                        'url': path('winkmurder_game_guestaccess_index'),
+                        'icon': 'group',
+                        'label': 'navbar.player.guestAccessChoose'
+                    }
+                ]) %}
+            {% endif %}
             {% set items = items | merge([
                 {
                     'url': path('winkmurder_game_locale_set', {'_locale': otherLocale}),

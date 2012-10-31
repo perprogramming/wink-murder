@@ -1,0 +1,15 @@
+{% if error %}
+    <div>{{ error.message }}</div>
+{% endif %}
+<form action="{{ action }}" data-ajax="false" method="post">
+    <div data-role="fieldcontain">
+        <label for="username">{{ 'common.login.loginForm.username' | trans }}</label>
+        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    </div>
+
+    <div data-role="fieldcontain">
+        <label for="password">{{ 'common.login.loginForm.password' | trans }}</label>
+        <input type="password" id="password" name="_password" />
+    </div>
+    <input type="submit" value="{{ 'common.login.loginForm.submit' | trans }}" data-inline="true" />
+</form>

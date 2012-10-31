@@ -8,13 +8,6 @@ account:
         heading: Wer bist Du?
         noPlayersLeft: Es sind keine Zugänge übrig. Bitte den Spielleiter um einen neuen Zugang.
 
-authentication:
-    login:
-        adminForm:
-            username: Benutzername
-            password: Passwort
-            submit: Anmelden
-
 administration:
     header:
         heading: Administration
@@ -88,6 +81,11 @@ common:
         latestMurderTeaser:
             heading: %victim% ist das letzte Mordopfer!
             headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
+    login:
+        loginForm:
+            username: Benutzername
+            password: Passwort
+            submit: Anmelden
 
 game:
     mostPopularDeath: Der beliebteste Tod war der von
@@ -156,6 +154,16 @@ game:
             <p>Gerade in der Nacht zu Halloween, so befürchtet die Kripo, könnte es zu weiteren Todesfällen kommen. Die örtlichen Behörden bitten die Bevölkerung daher um erhöhte Aufmerksamkeit und Vorsicht.</p>
             <p class="centered type-micro">&#9830;</p>
 
+
+guestAccess:
+    login:
+        pageTitle: Gastzugang
+        heading: Gastzugang
+    index:
+        pageTitle: Gastzugang
+        heading: Wähle deinen Spieler
+        noPlayersLeft: Es gibt keine freien Spieler.
+
 investigations:
     index:
         pageTitle: Ermittlungen
@@ -195,6 +203,8 @@ navbar:
         game: Spiel
         investigations: Ermittlungen
         profile: Profil
+        guestAccessClear: Logout
+        guestAccessChoose: Wähle deinen Spieler
     game:
         story: Geschichte
         status: Status

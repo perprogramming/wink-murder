@@ -2,6 +2,7 @@ imports:
     - {resource: "security.yml"}
 
 parameters:
+    admin_password: 5b1e4104ab5eda1b3388a68a4621aa04bc5934c1
     flickr_key: e9863e313c7660001d688030a5080de8
     flickr_secret: 3010cce97ff441c9
     flickr_username: winkmurder
