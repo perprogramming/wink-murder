@@ -28,7 +28,7 @@
                         <p class="centered type-medium">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>
                     {% else %}
                         {% if game.aliveOtherPlayers(app.user.player) %}
-                            <h2 class="centered mrgn-btm-12">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.selectSuspect' | trans }}</p>
+                            <h2 class="centered mrgn-btm-12">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.selectSuspect' | trans }}</h2>
                             <ul class="player-list">
                                 {% for player in game.aliveOtherPlayers(app.user.player) %}
                                     <li class="player">
@@ -49,7 +49,7 @@
         {% else %}
             <p class="centered mrgn-btm-36">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.none' | trans }}</p>
         {% endif %}
-        {% if game.murdersWithPreliminaryProceedingsDiscontinued %}
+        {% if game.murdersWithPreliminaryProceedingsDiscontinued and not game.latestMurderWithPreliminaryProceedingsOngoing %}
             <h1 class="centered mrgn-btm-12">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.heading' | trans }}</h1>
             <div>
                 <ul class="player-list">
