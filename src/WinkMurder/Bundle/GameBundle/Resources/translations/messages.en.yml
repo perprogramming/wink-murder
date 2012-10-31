@@ -96,7 +96,7 @@ game:
             heading: All is quiet, nobody died.. yet.
             text: Be careful, there's a murderer stalking these parts.
         murdererStillAtLarge:
-            investigationsLink: The investigations are ongoing...
+            investigationsLink: Help us investigate!
         murdererLost:
             heading: The case has been solved!
             convict: %murderer% is the murderer!

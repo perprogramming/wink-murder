@@ -97,7 +97,7 @@ game:
             heading: Noch ist niemand gestorben..
             text: ..aber es könnte jeden Moment ein Mord geschehen. Pass auf dich auf!
         murdererStillAtLarge:
-            investigationsLink: Die Ermittlungen laufen noch...
+            investigationsLink: Hilf uns bei den Ermittlungen!
         murdererLost:
             heading: Der Fall wurde gelöst!
             convict: %murderer% ist der Mörder!
