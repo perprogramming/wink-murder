@@ -8,23 +8,12 @@ account:
         heading: Who are you?
         noPlayersLeft: There are no accounts left to choose. Please ask the referee for an account.
 
-authentication:
-    login:
-        adminForm:
-            username: Username
-            password: Password
-            submit: Log in
-
 administration:
     header:
         heading: Administration
     login:
         pageTitle: Login
         heading: Backend access
-        adminForm:
-            username: Username
-            password: Password
-            submit: Login
     index:
         pageTitle: Administration
         currentGame:
@@ -87,6 +76,11 @@ common:
         latestMurderTeaser:
             heading: %victim% is the latest murder victim!
             headingVictim: Whoops! You have been killed. Now that's embarrassing.
+    login:
+        loginForm:
+            username: Username
+            password: Password
+            submit: Login
 
 game:
     mostPopularDeath: The most popular death was that by
@@ -155,6 +149,15 @@ game:
             <p class="mrgn-btm-24">The police fears that the murderer will strike again. Citizens are advised to be cautious, especially on All Hallows‘ Eve when there are big crowds on the streets.</p>
             <p class="mrgn-btm-24 centered type-micro">&#9830;</p>
 
+guestAccess:
+    login:
+        pageTitle: Guest Access
+        heading: Guest Access
+    index:
+        pageTitle: Guest Access
+        heading: Choose your player
+        noPlayersLeft: There are no players left.
+
 investigations:
     index:
         pageTitle: Investigations
@@ -194,6 +197,8 @@ navbar:
         game: Game
         investigations: Investigations
         profile: Profile
+        guestAccessClear: Logout
+        guestAccessChoose: Choose your player
     game:
         story: Story
         status: Status

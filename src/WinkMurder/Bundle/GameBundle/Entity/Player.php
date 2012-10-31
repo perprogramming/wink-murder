@@ -45,6 +45,11 @@ class Player implements Hashable {
      */
     protected $favoriteMurder;
 
+    /**
+     * @ORM\OneToOne(targetEntity="Account", mappedBy="player")
+     */
+    protected $account;
+
     public function __construct(Game $game, Photo $photo, MannerOfDeath $mannerOfDeath) {
         $this->game = $game;
         $this->photo = $photo;
@@ -141,6 +146,14 @@ class Player implements Hashable {
 
     public function getFavoriteMurder() {
         return $this->favoriteMurder;
+    }
+
+    public function setAccount(Account $account) {
+        $this->account = $account;
+    }
+
+    public function getAccount() {
+        return $this->account;
     }
 
     public function getHashValues() {

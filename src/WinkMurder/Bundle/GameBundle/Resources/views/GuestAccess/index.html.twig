@@ -1,0 +1,22 @@
+{% extends "WinkMurderGameBundle:Common:Layout/_game.html.twig" %}
+
+{% block pageTitle %}{{ 'guestAccess.index.pageTitle' | trans }}{% endblock %}
+
+{% block content %}
+    <h2>{{ 'guestAccess.index.heading' | trans }}</h2>
+    <div>
+        {% if game.photosWithoutAccount %}
+            <ul class="player-list">
+                {% for photo in game.photosWithoutAccount %}
+                    <li class="player"><a href="{{ path('winkmurder_game_guestaccess_choose', {id: photo.id}) }}" data-ajax="false">
+                        <div class="player-wrapper">
+                            {% include "WinkMurderGameBundle:Common:Photo/_teaser.html.twig" %}
+                        </div>
+                    </a></li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {{ 'guestAccess.index.noPlayersLeft' | trans }}
+        {% endif %}
+    </div>
+{% endblock %}

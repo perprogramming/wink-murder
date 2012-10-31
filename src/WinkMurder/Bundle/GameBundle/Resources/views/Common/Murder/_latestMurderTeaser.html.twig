@@ -1,5 +1,5 @@
 <div class="centered">
-    {% if app.user and game.latestMurder.victim is sameas(app.user.player) %}
+    {% if app.user and app.user.player and game.latestMurder.victim is sameas(app.user.player) %}
         <p class="imfellsc type-big mrgn-btm-12">{{ 'common.murder.latestMurderTeaser.headingVictim' | trans }}</p>
     {% else %}
         <img src="{{ game.latestMurder.victim.photo.url }}" alt="{{ game.latestMurder.victim.photo.title }}" width="60" class="profile-thumb" />

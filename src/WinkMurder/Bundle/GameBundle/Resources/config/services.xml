@@ -25,5 +25,10 @@
             <argument>%kernel.default_locale%</argument>
             <tag name="kernel.event_subscriber" />
         </service>
+
+        <service id="wink_murder.guest_user_provider" class="WinkMurder\Bundle\GameBundle\Security\GuestUserProvider">
+            <argument>%admin_password%</argument>
+            <argument type="service" id="doctrine.orm.entity_manager" />
+        </service>
     </services>
 </container>

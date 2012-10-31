@@ -119,12 +119,11 @@ class AdministrationController extends BaseController {
      */
     public function unauthenticateAction($id) {
         if ($player = $this->getCurrentGame()->findPlayer($id)) {
-            if ($account = $this->getAccountRepository()->findByPlayer($player)) {
-                $em = $this->getEntityManager();
-                $em->remove($account->getPlayer());
+            $em = $this->getEntityManager();
+            $em->remove($player);
+            if ($account = $player->getAccount())
                 $em->remove($account);
-                $em->flush();
-            }
+            $em->flush();
         }
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
