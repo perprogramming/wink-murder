@@ -14,7 +14,7 @@ $(function() {
                     window.location.reload();
                 }
             });
-        }, 60000);
+        }, 600000);
     })
 
     $('.fx-autosubmit').each(function() {
