@@ -36,7 +36,6 @@ class AccountControllerTest extends WebTestCase {
         $loginLink = $crawler->filter("a:contains('{$firstPhoto->getTitle()}')")->link();
 
         $crawler = $client->click($loginLink);
-        $response = $client->getResponse();
         $salutation = $crawler->filter('p.salutation');
 
         $this->assertEquals("Hi {$firstPhoto->getTitle()}!", $salutation->text());

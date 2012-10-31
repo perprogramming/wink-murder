@@ -5,6 +5,7 @@ namespace WinkMurder\Bundle\GameBundle\Security;
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\ORM\EntityManager;
+use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 
 class GuestUserProvider implements UserProviderInterface {
 
@@ -22,6 +23,7 @@ class GuestUserProvider implements UserProviderInterface {
         } elseif (preg_match('(guest-access-player:(\d+))', $username, $matches)) {
             return new GuestAccess($this->adminPassword, $this->entityManager->find('WinkMurderGameBundle:Player', $matches[1]));
         }
+        throw new UnsupportedUserException("Kein GuestAccess");
     }
 
     public function refreshUser(UserInterface $user) {
