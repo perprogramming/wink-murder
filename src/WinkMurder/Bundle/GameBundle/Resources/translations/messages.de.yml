@@ -14,10 +14,6 @@ administration:
     login:
         pageTitle: Einloggen
         heading: Ab ins Backend
-        adminForm:
-            username: Benutzername
-            password: Passwort
-            submit: Einloggen
     index:
         pageTitle: Administration
         currentGame:
