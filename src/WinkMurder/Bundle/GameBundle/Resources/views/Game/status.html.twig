@@ -3,7 +3,13 @@
 {% block pageTitle %}{{ 'game.status.pageTitle' | trans }}{% endblock %}
 
 {% block content %}
+    {% if game %}
+        {% set status = game.status %}
+    {% else %}
+        {% set status = 'noMurderYet' %}
+    {% endif %}
+
     {% include "WinkMurderGameBundle:Game:_controlgroup.html.twig" %}
 
-    {% include "WinkMurderGameBundle:Game:status/_" ~ game.status ~ ".html.twig" %}
+    {% include "WinkMurderGameBundle:Game:status/_" ~ status ~ ".html.twig" %}
 {% endblock %}
