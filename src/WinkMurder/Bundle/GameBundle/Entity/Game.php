@@ -77,10 +77,12 @@ class Game implements Hashable {
         return $this->id;
     }
 
+    /** @return PhotoSet */
     public function getPhotoSet() {
         return $this->photoSet;
     }
 
+    /** @return Photo[] */
     public function getUnusedPhotos() {
         $players = $this->players;
         $photos = array_filter($this->photoSet->getPhotos(), function(Photo $photo) use ($players) {
@@ -97,6 +99,7 @@ class Game implements Hashable {
         return $photos;
     }
 
+    /** @return Photo */
     public function findUnusedPhoto($id) {
         foreach ($this->getUnusedPhotos() as $unusedPhoto) {
             if ($id == $unusedPhoto->getId()) {
@@ -105,6 +108,7 @@ class Game implements Hashable {
         }
     }
 
+    /** @return Player */
     public function findPlayer($id) {
         foreach ($this->players as $player) {
             if ($player->getId() == $id) {
@@ -113,6 +117,7 @@ class Game implements Hashable {
         }
     }
 
+    /** @return Murder */
     public function findMurderByPlayer(Player $player) {
         foreach ($this->murders as $murder) {
             if ($murder->getVictim() == $player) {
@@ -121,6 +126,7 @@ class Game implements Hashable {
         }
     }
 
+    /** @return Murder[] */
     public function getMurders() {
         $murders = $this->murders->toArray();
         usort($murders, function(Murder $murderA, Murder $murderB) {
@@ -129,6 +135,7 @@ class Game implements Hashable {
         return $murders;
     }
 
+    /** @return Players[] */
     public function getPlayers() {
         $players = $this->players->toArray();
         usort($players, function($playerA, $playerB) {
@@ -137,6 +144,7 @@ class Game implements Hashable {
         return $players;
     }
 
+    /** @return Murder */
     public function getLatestMurderWithPreliminaryProceedingsOngoing() {
         if ($murder = $this->getLatestMurder()) {
             if (!$murder->arePreliminaryProceedingsDiscontinued()) {
@@ -145,12 +153,23 @@ class Game implements Hashable {
         }
     }
 
+    /** @return Murder */
+    public function getLatestMurderWithPreliminaryProceedingsDiscontinued() {
+        foreach ($this->getMurders() as $murder) {
+            if ($murder->arePreliminaryProceedingsDiscontinued()) {
+                return $murder;
+            }
+        }
+    }
+
+    /** @return Murder[] */
     public function getMurdersWithPreliminaryProceedingsDiscontinued() {
         return array_filter($this->getMurders(), function(Murder $murder) {
             return $murder->arePreliminaryProceedingsDiscontinued();
         });
     }
 
+    /** @return Player */
     public function addPlayer(Photo $photo, MannerOfDeath $mannerOfDeath) {
         $player = new Player($this, $photo, $mannerOfDeath);
         $this->players->add($player);
@@ -165,10 +184,12 @@ class Game implements Hashable {
         $this->murdererPhoto = $photo;
     }
 
+    /** @return Photo */
     public function getMurdererPhoto() {
         return $this->murdererPhoto;
     }
 
+    /** @return Player */
     public function getMurderer() {
         foreach ($this->players as $player) {
             if ($player->getPhoto() == $this->murdererPhoto) {
@@ -189,18 +210,21 @@ class Game implements Hashable {
         return false;
     }
 
+    /** @return Players[] */
     public function getOtherPlayers(Player $player = null) {
         return array_filter($this->getPlayers(), function(Player $other) use ($player) {
             return $other !== $player;
         });
     }
 
+    /** @return Players[] */
     public function getAliveOtherPlayers(Player $player = null) {
         return array_filter($this->getAlivePlayers(), function(Player $other) use ($player) {
             return $other !== $player;
         });
     }
 
+    /** @return Players[] */
     public function getAlivePlayers() {
         return array_filter($this->players->toArray(), function(Player $player) {
             return !$player->isDead();
@@ -237,6 +261,7 @@ class Game implements Hashable {
     }
 
     public function canSuspect(Player $witness, Player $suspect = null) {
+        if (!$this->getLatestMurderWithPreliminaryProceedingsOngoing()) return false;
         if ($witness->isDead()) return false;
         if ($this->hasSuspicion($witness)) return false;
         if ($suspect && $suspect->isDead()) return false;
@@ -247,6 +272,7 @@ class Game implements Hashable {
         return $this->getLatestMurder()->hasSuspicion($witness);
     }
 
+    /** @return Suspicion */
     public function getSuspicion(Player $witness) {
         return $this->getLatestMurder()->getSuspicion($witness);
     }
@@ -271,10 +297,12 @@ class Game implements Hashable {
         return false;
     }
 
+    /** @return \DateTime */
     public function getEndOfPreliminaryProceedings() {
         return $this->getLatestMurder()->getEndOfPreliminaryProceedings();
     }
 
+    /** @return \DateInterval */
     public function getDurationOfPreliminaryProceedings() {
         return new \DateInterval("PT{$this->durationOfPreliminaryProceedingsInMinutes}M");
     }
@@ -300,6 +328,7 @@ class Game implements Hashable {
     }
 
     public function hasMurdererWon() {
+        if ($this->getLatestMurder()) {
         $numberOfUnsolvedMurders = 0;
         foreach ($this->murders as $murder) {
             if ($murder->isUnsolved()) {
@@ -308,22 +337,23 @@ class Game implements Hashable {
         }
         return $numberOfUnsolvedMurders >= (min($this->requiredMurders, (count($this->getOtherPlayers($this->getMurderer())))));
     }
+        return false;
+    }
 
     public function hasMurdererLost() {
+        if ($this->getLatestMurder()) {
         return $this->getLatestMurder()->isClearedUp();
+    }
+        return false;
     }
 
     public function getStatus() {
-        if ($latestMurder = $this->getLatestMurder()) {
             if ($this->hasMurdererWon()) {
                 return 'murdererWon';
             } elseif ($this->hasMurdererLost()) {
                 return 'murdererLost';
-            } elseif ($latestMurder->arePreliminaryProceedingsDiscontinued()) {
-                return 'proceedingsDiscontinued';
-            } else {
-                return 'proceedingsOngoing';
-            }
+        } elseif ($this->getLatestMurder()) {
+            return 'murdererStillAtLarge';
         } else {
             return 'noMurderYet';
         }
@@ -368,6 +398,7 @@ class Game implements Hashable {
         $this->requiredPositiveSuspicionRate = $requiredPositiveSuspicionRate;
     }
 
+    /** @return Murder */
     public function getMostPopularDeath() {
         $mostPopularDeath = null;
         foreach ($this->murders as $murder) {

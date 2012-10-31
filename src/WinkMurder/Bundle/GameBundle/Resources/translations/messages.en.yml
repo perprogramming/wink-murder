@@ -97,8 +97,8 @@ game:
         noMurderYet:
             heading: All is quiet, nobody died.. yet.
             text: Be careful, there's a murderer stalking these parts.
-        proceedingsOngoing:
-            suspicionLink: Who do you suspect?
+        murdererStillAtLarge:
+            investigationsLink: The investigations are ongoing...
         murdererLost:
             heading: The case has been solved!
             convict: %murderer% is the murderer!
@@ -164,6 +164,7 @@ investigations:
         none: There are no investigations yet.
         latestMurderWithPreliminaryProceedingsOngoing:
             heading: Ongoing investigations
+            none: There are no ongoing investigations at the moment.
             noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
             selectSuspect: Who do you suspect?
             noSuspectLeft: There are no players to suspect. You must be the murderer...

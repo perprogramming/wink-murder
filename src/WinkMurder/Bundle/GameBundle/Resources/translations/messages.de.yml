@@ -98,8 +98,8 @@ game:
         noMurderYet:
             heading: Noch ist niemand gestorben..
             text: ..aber es könnte jeden Moment ein Mord geschehen. Pass auf dich auf!
-        proceedingsOngoing:
-            suspicionLink: Wen verdächtigst Du?
+        murdererStillAtLarge:
+            investigationsLink: Die Ermittlungen laufen noch...
         murdererLost:
             heading: Der Fall wurde gelöst!
             convict: %murderer% ist der Mörder!
@@ -165,6 +165,7 @@ investigations:
         none: Es gibt keine laufende Ermittlung.
         latestMurderWithPreliminaryProceedingsOngoing:
             heading: Laufende Ermittlung
+            none: Es gibt keine laufenden Ermittlungen.
             noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
             selectSuspect: Wen verdächtigst du?
             noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!

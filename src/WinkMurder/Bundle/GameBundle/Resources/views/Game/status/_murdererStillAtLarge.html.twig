@@ -1,0 +1,25 @@
+{% include "WinkMurderGameBundle:Common:Murder/_latestMurderTeaser.html.twig" with {'murder': game.latestMurderWithPreliminaryProceedingsDiscontinued} %}
+
+{% if game.arePreliminaryProceedingsOngoing %}
+
+    <p class="centered">
+        {% if app.user %}<a data-role="button" data-inline="true" href="{{ path('winkmurder_game_investigations_index') }}">{% endif %}
+        {{ 'game.status.murdererStillAtLarge.investigationsLink' | trans }}
+        {% if app.user %}</a>{% endif %}
+    </p>
+
+{% else %}
+
+    {% set templates = [
+        "WinkMurderGameBundle:Game:status/notClearedUpReasons/_atLarge.html.twig",
+        "WinkMurderGameBundle:Game:status/notClearedUpReasons/_404.html.twig"
+    ] %}
+
+    {% set which = game.latestMurder.id %} {# Für jeden Spieler je Tod ein neuer Grund #}
+    {# {% set which = 0 %} {# Zum Testen: ein bestimtes #}
+    {# {% set which = random(templates | length) %} {# Zum Testen: ein zufälliges #}
+
+    {% include cycle(templates, which) %}
+
+{% endif %}
+
