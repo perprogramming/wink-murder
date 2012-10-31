@@ -63,7 +63,7 @@ class GameControllerTest extends WebTestCase {
         $crawler = $client->getCrawler();
         $spielLink = $crawler->selectLink('Spiel')->link();
         $crawler = $client->click($spielLink);
-        $spielerLink = $crawler->selectLink('Mitspieler')->link();
+        $spielerLink = $crawler->selectLink('Spieler')->link();
         $crawler = $client->click($spielerLink);
 
         $game = $this->getCurrentGame();
@@ -71,6 +71,34 @@ class GameControllerTest extends WebTestCase {
         $this->assertEquals(0, $crawler->filter('a:contains("Jetzt mitspielen")')->count());
         $this->assertEquals(1, count($game->getPlayers()));
         $this->assertEquals(1, $crawler->filter('li.player')->count());
+    }
+
+    public function testCommitMurder() {
+        $game = static::setupGame();
+        $murderer = static::createPlayerClient($game->getMurdererPhoto());
+        $game = $this->getCurrentGame();
+        $unusedPhotos = $game->getUnusedPhotos();
+        $playerPhoto = $unusedPhotos[0];
+        $player = static::createPlayerClient($playerPhoto);
+
+        $murderer->click($murderer->getCrawler()->selectLink('Spiel')->link());
+        $murderer->click($murderer->getCrawler()->selectLink('Spieler')->link());
+        $murderer->click($murderer->getCrawler()->filter("li.player a:contains('{$playerPhoto->getTitle()}')")->link());
+        $murderer->submit($murderer->getCrawler()->selectButton('Ja')->form());
+
+        $game = $this->getCurrentGame();
+
+        $latestMurder = $game->getLatestMurder();
+        $this->assertNotNull($latestMurder);
+        $this->assertEquals(1, count($game->getMurders()));
+        $this->assertEquals($playerPhoto->getTitle(), $latestMurder->getVictim()->getPhoto()->getTitle());
+    }
+
+    public function testWrongCommitMurder() {
+        $player = static::createPlayerClient();
+        $player->followRedirects(false);
+        $player->request('GET', '/game/commit-murder/NAN/');
+        $this->assertTrue($player->getResponse()->isRedirect('/game/players/'));
     }
 
 }

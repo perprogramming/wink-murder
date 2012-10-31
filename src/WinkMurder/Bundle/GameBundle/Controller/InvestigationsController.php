@@ -35,8 +35,9 @@ class InvestigationsController extends BaseController {
                 $this->getEntityManager()->flush();
             } catch (\Exception $e) {
             }
+            return $this->redirect($this->generateUrl('winkmurder_game_investigations_index'));
         }
-        return $this->redirect($this->generateUrl('winkmurder_game_investigations_index'));
+        throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
     }
 
     /**
@@ -51,8 +52,9 @@ class InvestigationsController extends BaseController {
                 $this->getEntityManager()->flush();
             } catch (\Exception $e) {
             }
+            return $this->redirect($this->generateUrl('winkmurder_game_investigations_index'));
         }
-        return $this->redirect($this->generateUrl('winkmurder_game_investigations_index'));
+        throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
     }
 
 }

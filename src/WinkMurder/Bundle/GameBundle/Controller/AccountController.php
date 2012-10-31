@@ -29,6 +29,7 @@ class AccountController extends BaseController {
 
     /**
      * @Route("/login/check/")
+     * @codeCoverageIgnore
      */
     public function loginCheckAction() {
     }

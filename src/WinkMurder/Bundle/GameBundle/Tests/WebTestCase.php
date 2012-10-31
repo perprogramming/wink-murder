@@ -56,10 +56,11 @@ class WebTestCase extends BaseWebTestCase {
             $em->persist($suffocation);
             $photoSet = new PhotoSet('mock', 'Mock Photoset');
             $photoSet->addPhoto('1', 'Per', 'per.jpg');
-            $photoSet->addPhoto('2', 'Søren', 'soeren.jpg');
+            $murdererPhoto = $photoSet->addPhoto('2', 'Søren', 'soeren.jpg');
             $photoSet->addPhoto('3', 'Eva', 'eva.jpg');
             $em->persist($photoSet);
             $game = new Game($photoSet);
+            $game->setMurdererPhoto($murdererPhoto);
             $game->start();
             $em->persist($game);
             $em->flush();
