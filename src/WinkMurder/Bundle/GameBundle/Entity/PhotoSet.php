@@ -24,7 +24,6 @@ class PhotoSet implements Hashable {
 
     /**
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="photoSet", cascade={"PERSIST", "REMOVE"}, orphanRemoval=true)
-     * @ORM\OrderBy({"id" = "ASC"})
      */
     protected $photos;
 
