@@ -131,7 +131,7 @@ game:
             <p>At the end of each vote, the result will be announced immediately. If the murderer hasn't been identified by at least half the players, he stays free and will kill again.</p>
 
             <h4>End of the game</h4>
-            <p>The game ends a) as soon as the murderer successfully killed 12 players or b) as soon as the murderer is caught. The players need at least 50% correct votes to catch the murderer.</p>
+            <p>The game ends a) as soon as the murderer successfully killed 12 players without being identified or b) as soon as the murderer is caught. The players need at least 50% correct votes to catch the murderer.</p>
 
             <h4>Help! I‘m drunk and I don‘t get anything!</h4>
             <p>If you still have any questions, do not hesitate to contact Søren, who is the game master and not participating in the game.</p>
@@ -200,7 +200,7 @@ navbar:
         guestAccessClear: Logout
         guestAccessChoose: Choose your player
     game:
-        story: Story
+        story: Background
         status: Status
         players: Players
         rules: Rules

@@ -5,11 +5,11 @@
 {% block content %}
     {% include "WinkMurderGameBundle:Game:_controlgroup.html.twig" %}
 
-    <h1>{{ 'game.players.heading' | trans }}</h1>
-
     {% if game.started and not app.user %}
-        <p><a href="{{ path('winkmurder_game_account_login') }}" data-transition="flip" data-role="button" data-inline="true">{{ 'game.players.loginLink' | trans }}</a></p>
+        <p class="centered mrgn-btm-24"><a class="wm-button" href="{{ path('winkmurder_game_account_login') }}" data-transition="flip" data-role="button" data-inline="true">{{ 'game.players.loginLink' | trans }}</a></p>
     {% endif %}
+
+    <h1>{{ 'game.players.heading' | trans }}</h1>
 
     {% if game.players %}
         <ul class="player-list">
