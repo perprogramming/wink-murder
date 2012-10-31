@@ -163,6 +163,13 @@ class Game implements Hashable {
     }
 
     /** @return Murder[] */
+    public function getMurdersWithSuspicionOrPreliminaryProceedingsDiscontinued(Player $player) {
+        return array_filter($this->getMurders(), function(Murder $murder) use ($player) {
+            return $murder->arePreliminaryProceedingsDiscontinued() || $murder->hasSuspicion($player);
+        });
+    }
+
+    /** @return Murder[] */
     public function getMurdersWithPreliminaryProceedingsDiscontinued() {
         return array_filter($this->getMurders(), function(Murder $murder) {
             return $murder->arePreliminaryProceedingsDiscontinued();

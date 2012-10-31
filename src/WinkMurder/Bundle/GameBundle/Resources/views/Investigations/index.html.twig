@@ -13,7 +13,14 @@
         {% if game.latestMurderWithPreliminaryProceedingsOngoing %}
             <div class="mrgn-btm-12">
                 {% include "WinkMurderGameBundle:Common:Murder/_latestMurderTeaser.html.twig" with {'murder': game.latestMurderWithPreliminaryProceedingsOngoing} %}
-                {% include "WinkMurderGameBundle:Common:Murder/_endOfPreliminaryProceedings.html.twig" %}
+                <div class="centered mrgn-btm-24">
+                    <p data-end-of-preliminary-proceedings="{{ game.endOfPreliminaryProceedings.format('U') }}" class="fx-end-of-preliminary-proceedings mrgn-btm-6">
+                        <span>{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.endOfPreliminaryProceedingsLeadin' | trans({'%end%': game.endOfPreliminaryProceedings.format('d.m.Y H:i:s')}) }}</span>
+                    </p>
+                    <script type="text/javascript">//<![CDATA[
+                    setupTimer();
+                    //]]></script>
+                </div>
                 {% if app.user.player.dead %}
                     <p class="type-medium centered">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.noSuspicionByDead' | trans }}</>
                 {% else %}
@@ -21,7 +28,7 @@
                         <p class="centered type-medium">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.suspicion' | trans({'%suspect%': app.user.player.suspicion.suspect.name}) }}</p>
                     {% else %}
                         {% if game.aliveOtherPlayers(app.user.player) %}
-                            <p class="mrgn-btm-12">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.selectSuspect' | trans }}</p>
+                            <h2 class="centered mrgn-btm-12">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.selectSuspect' | trans }}</p>
                             <ul class="player-list">
                                 {% for player in game.aliveOtherPlayers(app.user.player) %}
                                     <li class="player">
@@ -43,7 +50,7 @@
             <p class="centered">{{ 'investigations.index.latestMurderWithPreliminaryProceedingsOngoing.none' | trans }}</p>
         {% endif %}
         {% if game.murdersWithPreliminaryProceedingsDiscontinued %}
-            <h2 class="centered">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.heading' | trans }}</h2>
+            <h2 class="centered mrgn-btm-12">{{ 'investigations.index.murdersWithPreliminaryProceedingsDiscontinued.heading' | trans }}</h2>
             <div>
                 <ul class="player-list">
                     {% for murder in game.murdersWithPreliminaryProceedingsDiscontinued %}

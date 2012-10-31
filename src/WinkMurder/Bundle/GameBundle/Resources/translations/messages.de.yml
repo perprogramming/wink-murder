@@ -88,8 +88,6 @@ common:
         latestMurderTeaser:
             heading: %victim% ist das letzte Mordopfer!
             headingVictim: Hoppla! Du wurdest umgebracht. Wie peinlich.
-        endOfPreliminaryProceedings:
-            leading: Die Ermittlungen enden in:
 
 game:
     mostPopularDeath: Der beliebteste Tod war der von
@@ -165,13 +163,14 @@ investigations:
         none: Es gibt keine laufende Ermittlung.
         latestMurderWithPreliminaryProceedingsOngoing:
             heading: Laufende Ermittlung
-            none: Es gibt keine laufenden Ermittlungen.
+            none: Es gibt keine laufende Ermittlung.
+            endOfPreliminaryProceedingsLeadin: Die Ermittlungen enden spätestens in:
             noSuspicionByDead: Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.
             selectSuspect: Wen verdächtigst du?
             noSuspectLeft: Whoa. Außer dir ist niemand am Leben.. dann.. bist du der.. M-m-mörder? Aaahhhhhh!!
             suspicion: Dein Verdacht ist auf %suspect% gefallen.
         murdersWithPreliminaryProceedingsDiscontinued:
-            heading: Frühere Morde
+            heading: Bisherige Opfer
             suspicion: Du hattest %suspect% verdächtigt.
             favLinkText: Gefällt Dir?
             likeMurder: Gefällt Dir!

@@ -87,8 +87,6 @@ common:
         latestMurderTeaser:
             heading: %victim% is the latest murder victim!
             headingVictim: Whoops! You have been killed. Now that's embarrassing.
-        endOfPreliminaryProceedings:
-            leading: The investigations end in:
 
 game:
     mostPopularDeath: The most popular death was that by
@@ -165,13 +163,14 @@ investigations:
         latestMurderWithPreliminaryProceedingsOngoing:
             heading: Ongoing investigations
             none: There are no ongoing investigations at the moment.
+            endOfPreliminaryProceedingsLeadin: The investigations end no later than in:
             noSuspicionByDead: As you are already dead, you can no longer hunt the murderer.
             selectSuspect: Who do you suspect?
             noSuspectLeft: There are no players to suspect. You must be the murderer...
             suspicion: You suspect %suspect% to be the murderer.
         murdersWithPreliminaryProceedingsDiscontinued:
-            heading: Prior murders
-            suspicion: You suspected %supsect%.
+            heading: Previous victims
+            suspicion: You suspected %suspect%.
             favLinkText: Like?
             likeMurder: Liked!
 
