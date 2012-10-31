@@ -24,6 +24,12 @@ class AccountControllerTest extends WebTestCase {
         $this->assertEquals(count($photos), $loginLinks->count());
     }
 
+    public function testLoginWithGuestAccess() {
+        $guestAccessClient = static::createGuestAccessClient();
+        $guestAccessClient->request('GET', '/login/');
+        $this->assertEquals(1, $guestAccessClient->getCrawler()->filter('h2:contains("Wähle deinen Spieler")')->count());
+    }
+
     public function testLoginWithoutGame() {
         $client = static::createClient();
         $client->request('GET', '/login/');

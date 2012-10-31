@@ -22,12 +22,14 @@ class GuestAccessController extends BaseController {
 
         $session = $request->getSession();
 
+        // @codeCoverageIgnoreStart
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
         } else {
             $error = $session->get(SecurityContext::AUTHENTICATION_ERROR);
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
+        // @codeCoverageIgnoreEnd
 
         return array(
             'last_username' => $session->get(SecurityContext::LAST_USERNAME),
@@ -43,6 +45,7 @@ class GuestAccessController extends BaseController {
 
     /**
      * @Route("/logout/")
+     * @codeCoverageIgnore
      */
     public function logoutAction() {
     }
@@ -52,7 +55,15 @@ class GuestAccessController extends BaseController {
      * @Template
      */
     public function indexAction() {
-        return array('game' => $this->getCurrentGame());
+        if ($this->getAuthenticatedAccount()) {
+            if ($this->getAuthenticatedPlayer()) {
+                return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
+            } else {
+                return array('game' => $this->getCurrentGame());
+            }
+        } else {
+            return $this->redirect($this->generateUrl('winkmurder_game_guestaccess_login'));
+        }
     }
 
     /**

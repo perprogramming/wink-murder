@@ -13,6 +13,12 @@ class ProfileControllerTest extends WebTestCase {
         $this->assertTrue($client->getResponse()->isRedirect('http://wink-murder.here/login'));
     }
 
+    public function testShowWithGuestAccessWithoutPlayer() {
+        $guestAccessClient = static::createGuestAccessClient();
+        $guestAccessClient->request('GET', '/you/');
+        $this->assertTrue($guestAccessClient->getResponse()->isForbidden());
+    }
+
     public function testShowAuthenticated() {
         $client = static::createPlayerClient();
         $crawler = $client->getCrawler();

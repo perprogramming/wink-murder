@@ -68,6 +68,20 @@ class WebTestCase extends BaseWebTestCase {
         return $game;
     }
 
+    protected static function createGuestAccessClient($password = 'testing') {
+        $game = static::setupGame();
+        $client = static::createClient();
+        $client->followRedirects();
+
+        $client->request('GET', '/guest-access/');
+        $client->submit($client->getCrawler()->selectButton('Anmelden')->form(), array(
+            '_username' => 'admin',
+            '_password' => $password
+        ));
+
+        return $client;
+    }
+
     /** @return Client */
     protected static function createPlayerClient(Photo $photo = null) {
         $game = static::setupGame();

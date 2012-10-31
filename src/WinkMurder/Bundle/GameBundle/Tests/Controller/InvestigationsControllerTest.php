@@ -4,13 +4,19 @@ namespace WinkMurder\Bundle\GameBundle\Tests\Controller;
 
 use WinkMurder\Bundle\GameBundle\Tests\WebTestCase;
 
-class ProfileControllerTest extends WebTestCase {
+class InvestigationsControllerTest extends WebTestCase {
 
-    public function testIndexAction() {
+    public function testIndex() {
         $game = $this->setupGame();
         $client = static::createClient(array(), array('HTTP_HOST' => 'wink-murder.here'));
         $client->request('GET', '/investigations/');
         $this->assertTrue($client->getResponse()->isRedirect('http://wink-murder.here/login'));
+    }
+
+    public function testIndexWithGuestAccessWithoutPlayer() {
+        $guestAccessClient = static::createGuestAccessClient();
+        $guestAccessClient->request('GET', '/investigations/');
+        $this->assertTrue($guestAccessClient->getResponse()->isForbidden());
     }
 
     public function testIndexAuthenticated() {
@@ -21,7 +27,7 @@ class ProfileControllerTest extends WebTestCase {
         $this->assertTrue($client->getResponse()->isOk());
     }
 
-    public function testSuspectAction() {
+    public function testSuspect() {
         $game = static::setupGame();
         $client = static::createClient(array(), array('HTTP_HOST' => 'wink-murder.here'));
         $client->followRedirects(false);
@@ -29,26 +35,14 @@ class ProfileControllerTest extends WebTestCase {
         $this->assertTrue($client->getResponse()->isRedirect('http://wink-murder.here/login'));
     }
 
-    public function testSuspectActionAuthenticated() {
-        $game = static::setupGame();
-        $murdererClient = static::createPlayerClient($game->getMurdererPhoto());
-        $game = $this->getCurrentGame();
-        $unusedPhotos = $game->getUnusedPhotos();
-        $playerClients = array();
-        foreach ($unusedPhotos as $unusedPhoto) {
-            $playerClients[] = static::createPlayerClient($unusedPhoto);
-        }
-        $game = static::getCurrentGame();
-        $murderer = $game->getMurderer();
-        $players = $game->getOtherPlayers($murderer);
+    public function testSuspectWithGuestAccessWithoutPlayer() {
+        $guestAccessClient = static::createGuestAccessClient();
+        $guestAccessClient->request('GET', '/investigations/suspect/1/');
+        $this->assertTrue($guestAccessClient->getResponse()->isForbidden());
+    }
 
-        $murdererClient->request('POST', '/game/commit-murder/' . $players[0]->getId() . '/confirm/');
-
-        foreach ($playerClients as $playerClient) {
-            $playerClient->click($playerClient->getCrawler()->selectLink('Ermittlungen')->link());
-        }
-
-        $killedPlayerClient = array_shift($playerClients);
+    public function testSuspectAuthenticated() {
+        list($murderer, $killedPlayer, $killedPlayerClient, $playerClients) = static::startGameWithMurder();
 
         $this->assertEquals(1, $killedPlayerClient->getCrawler()->filter('p:contains("Da du schon tot bist, kannst du nicht mehr an der Jagd auf den Mörder teilnehmen.")')->count());
 
@@ -63,12 +57,57 @@ class ProfileControllerTest extends WebTestCase {
         }
     }
 
-    public function testLikeAction() {
+    public function testLike() {
         $game = static::setupGame();
         $client = static::createClient(array(), array('HTTP_HOST' => 'wink-murder.here'));
         $client->followRedirects(false);
         $client->request('GET', '/investigations/like-murder/1/');
         $this->assertTrue($client->getResponse()->isRedirect('http://wink-murder.here/login'));
+    }
+
+    public function testLikeWithGuestAccessWithoutPlayer() {
+        $guestAccessClient = static::createGuestAccessClient();
+        $guestAccessClient->request('GET', '/investigations/like-murder/1/');
+        $this->assertTrue($guestAccessClient->getResponse()->isForbidden());
+    }
+
+    public function testLikeAuthenticated() {
+        list($murderer, $killedPlayer, $killedPlayerClient, $playerClients) = static::startGameWithMurder();
+
+        foreach($playerClients as $playerClient) {
+            $playerClient->click($playerClient->getCrawler()->selectLink($murderer->getName())->link());
+        }
+
+        foreach ($playerClients as $playerClient) {
+            $playerClient->request('GET', '/investigations/like-murder/' . $killedPlayer->getId() . '/');
+            $this->assertEquals(1, $playerClient->getCrawler()->filter("li:contains('{$killedPlayer->getName()}') .faved")->count());
+        }
+    }
+
+    protected static function startGameWithMurder() {
+        $game = static::setupGame();
+        $murdererClient = static::createPlayerClient($game->getMurdererPhoto());
+        $game = static::getCurrentGame();
+        $unusedPhotos = $game->getUnusedPhotos();
+        $playerClients = array();
+        foreach ($unusedPhotos as $unusedPhoto) {
+            $playerClients[] = static::createPlayerClient($unusedPhoto);
+        }
+        $game = static::getCurrentGame();
+        $murderer = $game->getMurderer();
+        $players = $game->getOtherPlayers($murderer);
+
+        $killedPlayer = $players[0];
+
+        $murdererClient->request('POST', '/game/commit-murder/' . $killedPlayer->getId() . '/confirm/');
+
+        foreach ($playerClients as $playerClient) {
+            $playerClient->click($playerClient->getCrawler()->selectLink('Ermittlungen')->link());
+        }
+
+        $killedPlayerClient = array_shift($playerClients);
+
+        return array($murderer, $killedPlayer, $killedPlayerClient, $playerClients);
     }
 
 }

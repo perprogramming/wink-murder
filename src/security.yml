@@ -40,8 +40,7 @@ security:
                 target: /guest-access/login/
 
     access_control:
-        - { path: ^/guest-access/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/guest-access/, roles: ROLE_GUEST }
+        - { path: ^/guest-access/(clear|choose|logout)/, roles: ROLE_GUEST }
 
         - { path: ^/administration/login/, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/, roles: ROLE_ADMIN }

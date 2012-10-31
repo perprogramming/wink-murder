@@ -15,8 +15,12 @@ class AccountController extends BaseController {
      * @Template
      */
     public function loginAction() {
-        if ($this->getAuthenticatedPlayer()) {
-            return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
+        if ($this->getAuthenticatedAccount()) {
+            if ($this->getAuthenticatedPlayer()) {
+                return $this->redirect($this->generateUrl('winkmurder_game_profile_show'));
+            } else {
+                return $this->redirect($this->generateUrl('winkmurder_game_guestaccess_index'));
+            }
         } else {
             $game = $this->getCurrentGame();
             if ($game && $game->isStarted()) {
