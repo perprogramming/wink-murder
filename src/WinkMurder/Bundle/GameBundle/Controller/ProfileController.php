@@ -18,7 +18,7 @@ class ProfileController extends BaseController {
         if ($this->getAuthenticatedPlayer()) {
             return array('player' => $this->getAuthenticatedPlayer());
         }
-        return $this->redirect($this->generateUrl('winkmurder_game_investigations_index'));
+        throw new \Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException();
     }
 
 }
