@@ -4,13 +4,12 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hash;
 
 /**
  * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\GameRepository")
+ * @ORM\Table(name="Game", indexes={@ORM\Index(name="finished", columns={"finished", "id"})})
  */
-class Game implements Hashable {
+class Game {
 
     /**
      * @ORM\Id
@@ -81,9 +80,18 @@ class Game implements Hashable {
     }
 
     /** @return Photo[] */
+    public function getPhotos() {
+        $photos = $this->photoSet->getPhotos();
+        usort($photos, function($photoA, $photoB) {
+            return strcmp($photoA->getTitle(), $photoB->getTitle());
+        });
+        return $photos;
+    }
+
+    /** @return Photo[] */
     public function getUnusedPhotos() {
         $players = $this->players;
-        $photos = array_filter($this->photoSet->getPhotos(), function(Photo $photo) use ($players) {
+        return array_filter($this->getPhotos(), function(Photo $photo) use ($players) {
             foreach ($players as $player) {
                 if ($player->getPhoto() === $photo) {
                     return false;
@@ -91,10 +99,6 @@ class Game implements Hashable {
             }
             return true;
         });
-        usort($photos, function($photoA, $photoB) {
-            return strcmp($photoA->getTitle(), $photoB->getTitle());
-        });
-        return $photos;
     }
 
     /** @return Photo */
@@ -202,7 +206,7 @@ class Game implements Hashable {
     /** @return Photos */
     public function getPhotosWithoutAccount() {
         $game = $this;
-        return array_filter($this->getPhotoSet()->getPhotos(), function(Photo $photo) use ($game) {
+        return array_filter($this->getPhotos(), function(Photo $photo) use ($game) {
             if ($player = $game->findPlayerByPhoto($photo)) {
                 return !$player->getAccount();
             } else {
@@ -362,6 +366,16 @@ class Game implements Hashable {
         return false;
     }
 
+    public function getAccounts() {
+        $accounts = array();
+        foreach ($this->getPlayers() as $player) {
+            if ($account = $player->getAccount()) {
+                $accounts[] = $account;
+            }
+        }
+        return $accounts;
+    }
+
     public function hasMurdererLost() {
         if ($this->getLatestMurder()) {
         return $this->getLatestMurder()->isClearedUp();
@@ -379,25 +393,6 @@ class Game implements Hashable {
         } else {
             return 'noMurderYet';
         }
-    }
-
-    public function getHash() {
-        return new Hash($this);
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'photoSet' => $this->photoSet,
-            'players' => $this->players,
-            'murdererPhoto' => $this->murdererPhoto,
-            'murders' => $this->murders,
-            'requiredPositiveSuspicionRate' => $this->requiredPositiveSuspicionRate,
-            'durationOfPreliminaryProceedingsInMinutes' => $this->durationOfPreliminaryProceedingsInMinutes,
-            'requiredMurders' => $this->requiredMurders,
-            'started' => $this->started,
-            'finished' => $this->finished
-        );
     }
 
     public function setDurationOfPreliminaryProceedingsInMinutes($durationOfPreliminaryProceedingsInMinutes) {

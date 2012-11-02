@@ -159,7 +159,7 @@ class AdministrationController extends BaseController {
         $em = $this->getEntityManager();
         $game = $this->getCurrentGame();
         $settingsForm = $this->createForm(new GameForm(), $game);
-        $settingsForm->bindRequest($request);
+        $settingsForm->bind($request);
         $em->flush();
         return $this->redirect($this->generateUrl('winkmurder_game_administration_index'));
     }
@@ -173,7 +173,7 @@ class AdministrationController extends BaseController {
             $em = $this->getEntityManager();
             if ($game = $this->getCurrentGame()) {
                 $game->finish();
-                foreach ($this->getAccountRepository()->findByGame($game) as $account) {
+                foreach ($game->getAccounts() as $account) {
                     $em->remove($account);
                 }
             }

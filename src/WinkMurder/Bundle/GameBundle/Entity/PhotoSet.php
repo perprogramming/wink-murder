@@ -4,12 +4,11 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class PhotoSet implements Hashable {
+class PhotoSet {
 
     /**
      * @ORM\Id
@@ -65,14 +64,6 @@ class PhotoSet implements Hashable {
 
     public function setTitle($title) {
         $this->title = $title;
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'title' => $this->title,
-            'photos' => $this->photos
-        );
     }
 
 }

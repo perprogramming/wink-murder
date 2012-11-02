@@ -3,12 +3,11 @@
 namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class Photo implements Hashable {
+class Photo {
 
     /**
      * @ORM\Id
@@ -60,15 +59,6 @@ class Photo implements Hashable {
 
     public function setUrl($url) {
         $this->url = $url;
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'photoSet' => $this->photoSet,
-            'title' => $this->title,
-            'url' => $this->url
-        );
     }
 
 }

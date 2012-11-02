@@ -4,12 +4,11 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class Murder implements Hashable {
+class Murder {
 
     /**
      * @ORM\Id
@@ -162,19 +161,6 @@ class Murder implements Hashable {
             return false;
 
         return !$this->isClearedUp();
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'game' => $this->game,
-            'victim' => $this->victim,
-            'suspicions' => $this->suspicions,
-            'likes' => $this->likes,
-            'timeOfOffense' => $this->timeOfOffense,
-            'endOfPreliminaryProceedings' => $this->arePreliminaryProceedingsDiscontinued(),
-            'clearedUp' => $this->isClearedUp()
-        );
     }
 
     public function getLikes() {

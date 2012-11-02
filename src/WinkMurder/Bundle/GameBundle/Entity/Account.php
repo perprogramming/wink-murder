@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\AccountRepository")
+ * @ORM\Entity
  */
 class Account implements UserInterface {
 

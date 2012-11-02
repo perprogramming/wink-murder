@@ -3,12 +3,11 @@
 namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class Player implements Hashable {
+class Player {
 
     /**
      * @ORM\Id
@@ -154,17 +153,6 @@ class Player implements Hashable {
 
     public function getAccount() {
         return $this->account;
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'game' => $this->game,
-            'photo' => $this->photo,
-            'murder' => $this->murder,
-            'mannerOfDeath' => $this->mannerOfDeath,
-            'favoriteMurder' => $this->favoriteMurder
-        );
     }
 
 }

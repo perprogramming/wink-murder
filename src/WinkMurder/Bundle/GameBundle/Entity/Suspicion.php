@@ -3,12 +3,11 @@
 namespace WinkMurder\Bundle\GameBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity
  */
-class Suspicion implements Hashable {
+class Suspicion {
 
     /**
      * @ORM\Id
@@ -65,16 +64,6 @@ class Suspicion implements Hashable {
 
     public function isCorrect() {
         return $this->suspect->isMurderer();
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'murder' => $this->murder,
-            'suspect' => $this->suspect,
-            'witness' => $this->witness,
-            'timestamp' => $this->timestamp
-        );
     }
 
 }

@@ -17,13 +17,6 @@ class GameRepository extends EntityRepository {
         }
     }
 
-    public function findOneForPlayer(Player $player) {
-        $queryBuilder = $this->createDefaultQueryBuilder();
-        $queryBuilder->andWhere(':player MEMBER OF game.players');
-        $queryBuilder->setParameter('player', $player);
-        return $queryBuilder->getQuery()->getOneOrNullResult();
-    }
-
     protected function createDefaultQueryBuilder() {
         $queryBuilder = $this->createQueryBuilder('game');
         $queryBuilder->join('game.photoSet', 'photoSet');

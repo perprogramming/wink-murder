@@ -38,7 +38,7 @@ class MannerOfDeathController extends BaseController {
      */
     public function createAction(Request $request) {
         $form = $this->createForm(new MannerOfDeathForm());
-        $form->bindRequest($request);
+        $form->bind($request);
 
         $data = $form->getData();
         $entityManager = $this->getEntityManager();
@@ -87,7 +87,7 @@ class MannerOfDeathController extends BaseController {
      */
     public function updateAction($id, Request $request) {
         $form = $this->createForm(new MannerOfDeathForm());
-        $form->bindRequest($request);
+        $form->bind($request);
 
         $manner = $this->getMannerOfDeathRepository()->find($id);
         $data = $form->getData();

@@ -5,12 +5,11 @@ namespace WinkMurder\Bundle\GameBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 use Gedmo\Mapping\Annotation as Gedmo;
-use WinkMurder\Bundle\GameBundle\Entity\Hash\Hashable;
 
 /**
  * @ORM\Entity(repositoryClass="WinkMurder\Bundle\GameBundle\Entity\MannerOfDeathRepository")
  */
-class MannerOfDeath implements Hashable {
+class MannerOfDeath {
 
     /**
      * @ORM\Id
@@ -61,13 +60,6 @@ class MannerOfDeath implements Hashable {
 
     public function setTranslatableLocale($locale) {
         $this->locale = $locale;
-    }
-
-    public function getHashValues() {
-        return array(
-            'id' => $this->id,
-            'name' => $this->name
-        );
     }
 
 }
