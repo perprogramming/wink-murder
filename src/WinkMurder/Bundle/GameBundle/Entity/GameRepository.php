@@ -8,6 +8,7 @@ class GameRepository extends EntityRepository {
 
     public function findCurrentOne() {
         $queryBuilder = $this->createDefaultQueryBuilder();
+        $queryBuilder->andWhere('game.finished = false');
         $queryBuilder->addOrderBy('game.id', 'DESC');
         if ($games = $queryBuilder->getQuery()->getResult()) {
             return reset($games);
