@@ -2,28 +2,6 @@ var setupTimer;
 
 $(function() {
 
-    $('body.autorefresh').each(function() {
-        var body = $(this);
-        var refreshInterval;
-        var refreshHash = body.attr('data-refresh-hash');
-        var refreshUrl = body.attr('data-refresh-url');
-        refreshInterval = window.setInterval(function() {
-            $.get(refreshUrl, null, function(hash) {
-                if (hash != refreshHash) {
-                    window.clearInterval(refreshInterval);
-                    window.location.reload();
-                }
-            });
-        }, 600000);
-    })
-
-    $('.fx-autosubmit').each(function() {
-        var form = $(this);
-        form.find('input').change(function() {
-            form.submit();
-        });
-    });
-
     setupTimer = function() {
         $('.fx-end-of-preliminary-proceedings').each(function() {
             var source = $(this);
